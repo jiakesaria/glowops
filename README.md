@@ -7,9 +7,9 @@ record the result. Prototype due **Tuesday, October 13, 2026**; demo
 
 ## Current milestone
 
-Shared contracts and sample files are ready for team development. The checker,
-model access, evaluation runner, and improvement loop are the next milestone;
-they are not implemented in this starter commit.
+Shared contracts, model configuration, checker, fake mode, and verdict logging
+are implemented. The team can build against `check()` and `fake_check()` now.
+The evaluation runner and improvement loop remain assigned to Amitej and Sylvia.
 
 The sample papers and dataset are **fictional format fixtures**. They are not
 research evidence or actual CoW data. Fake-mode scores demonstrate plumbing,
@@ -28,8 +28,55 @@ python -m contracts.validate_samples
 
 The validation command works without an API key. For later real-model runs,
 copy `.env.example` to `.env` and enter your own credentials and provider model
-identifiers. `config.py` will read these settings in the next milestone.
+identifiers. `config.py` reads these settings, with environment variables taking
+precedence over `.env`. Model IDs are explicit rather than silently chosen.
 Never commit `.env` or keys.
+
+## Run the checker
+
+```sh
+# No API key needed; always returns the sample judgment and logs it as fake.
+python checker.py "Democracies are peaceful." --fake
+
+# Real calls after configuring the selected provider in .env.
+python checker.py "Democracies are peaceful." --model deepseek
+python checker.py "Democracies are peaceful." --model qwen
+
+# Offline integration tests, including simulated provider requests.
+python -m unittest discover -s tests -v
+```
+
+Successful calls print a JSON verdict and append one `LedgerRecord` to
+`data/ledger.jsonl`. `--ledger PATH` overrides the log location. The default
+`--round 0` is a no-lesson baseline; use `--round 1` or higher to load the latest
+approved lessons up to that round. An optional `--run-id` groups calls. For
+benchmark calls, supply `--split learn|holdout` and `--test-id` together.
+
+DeepSeek and Qwen both use the OpenAI-compatible chat interface and JSON-object
+output. Set the exact model supported by your account. The Qwen base URL must
+match your API key's region/workspace. Provider references:
+[DeepSeek JSON output](https://api-docs.deepseek.com/guides/json_mode/) and
+[Qwen OpenAI compatibility](https://www.alibabacloud.com/help/en/model-studio/compatibility-of-openai-with-dashscope).
+Only select models that support JSON-object output; unsupported API parameters
+cause a request error rather than a silently different request.
+
+Example Python use for the runner:
+
+```python
+from checker import check, fake_check
+
+verdict = fake_check("Democracies are peaceful.")
+# Each call already logs once; the runner should not duplicate its ledger entry.
+# verdict = check(case.hypothesis, round=1, split=case.split,
+#                 test_id=case.id, run_id="deepseek-round-1")
+```
+
+Retries repair malformed JSON, schema inconsistencies, invented evidence IDs,
+and insufficient declared year coverage. `MAX_JSON_RETRIES=2` allows up to three
+model responses. Transport retries are handled separately by the SDK. Invalid
+verdicts are not logged as successful outcomes. Factual support for a cited
+paraphrase and appropriate measurement/join choices still need research review;
+matching IDs alone does not verify those claims.
 
 ## Decision rubric, version 1.0
 
@@ -86,9 +133,10 @@ fallbacks or suggest that unfinished scripts work.
 │   ├── sample_tests.json
 │   ├── sample_failures.json
 │   └── sample_lessons.json
-├── config.py                       A; planned
-├── checker.py                      A; planned
-├── ledger.py                       A; planned
+├── config.py                       A
+├── checker.py                      A
+├── ledger.py                       A
+├── tests/test_checker.py           A; offline core integration checks
 ├── improve.py                      C / Sylvia; planned
 ├── run_tests.py                    D / Amitej; planned
 ├── run_rounds.py                   D; planned
@@ -137,7 +185,7 @@ error rather than silently falling back. Resolve file paths relative to the
 repository, not the shell's working directory. Do not label runs using any
 sample corpus as real-data evaluations.
 
-Planned Python interfaces:
+Python interfaces (optional keyword arguments carry evaluation metadata):
 
 ```python
 check(hypothesis: str) -> Verdict
@@ -146,14 +194,19 @@ fake_check(hypothesis: str) -> Verdict
 
 `fake_check` returns a validated copy of `sample_verdict.json` with the input
 hypothesis substituted. It does not inspect expected labels and its judgments
-are not meaningful. The runner owns evaluation metadata; `ledger.py` appends
-`LedgerRecord` envelopes. The checker must validate returned paper IDs and
-dataset-variable references against its actual inputs before accepting them.
+are not meaningful. The runner supplies evaluation metadata; the checker calls
+`ledger.py` to append `LedgerRecord` envelopes. The checker validates returned
+paper IDs and dataset-variable references against its actual inputs before
+accepting them. Both functions return a `Verdict` and automatically log once.
 
 The checker uses at most ten approved lessons from its current model's lesson
 history. Order selection deterministically and record applied lesson IDs.
 Pending lessons (`approved: false`) never influence a verdict. No approved
 lessons in a real file means no lessons; it must not load sample lessons.
+Lessons match the exact configured model ID and cannot come from a later round.
+Sample lessons are used only when both corpus files are sample fallbacks; no
+fixture lessons are applied to a real corpus. `create_client()` and `get_config()`
+in `config.py` are available for Sylvia's `improve.py` to reuse.
 
 ## Evaluation and improvement protocol
 
