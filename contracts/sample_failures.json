@@ -1,0 +1,124 @@
+[
+  {
+    "test_id": "sample-test-001",
+    "split": "learn",
+    "round": 0,
+    "model": "fake",
+    "hypothesis": "Among Sampleland country dyads in 2000\u20132010, higher bilateral trade in the previous year is associated with a lower probability of interstate war onset.",
+    "expected_decision": "proceed",
+    "rationale": "The fixture supports an operationalized association and replication is allowed.",
+    "actual_verdict": {
+      "schema_version": "1.0",
+      "hypothesis": "Among Sampleland country dyads in 2000\u20132010, higher bilateral trade in the previous year is associated with a lower probability of interstate war onset.",
+      "falsifiable": {
+        "status": "yes",
+        "explanation": "The association can be contradicted by observed dyad-year trade and conflict outcomes."
+      },
+      "already_tested": {
+        "status": "found",
+        "explanation": "The fictional sample corpus includes a study of this relationship. This supports a replication exercise, not a claim of novelty.",
+        "citations": [
+          {
+            "paper_id": "sample-paper-001",
+            "evidence": "The fixture describes prior-year trade and conflict onset in Sampleland during 2000\u20132010."
+          }
+        ]
+      },
+      "testable_with_available_data": {
+        "status": "available",
+        "explanation": "The fictional panel provides identifiers, annual trade, and onset including zero outcomes; its 1999 data supports the first lag.",
+        "required_unit_of_analysis": "unordered country dyad-year",
+        "required_years": {
+          "start": 1999,
+          "end": 2010
+        },
+        "matches": [
+          {
+            "concept": "prior-year bilateral trade",
+            "dataset_id": "sample-dyads-001",
+            "variable_names": [
+              "country_a",
+              "country_b",
+              "year",
+              "bilateral_trade"
+            ],
+            "explanation": "Construct a one-year lag within each dyad."
+          },
+          {
+            "concept": "interstate war onset",
+            "dataset_id": "sample-dyads-001",
+            "variable_names": [
+              "conflict_onset"
+            ],
+            "explanation": "The panel includes both onset and no-onset observations."
+          }
+        ],
+        "missing_requirements": []
+      },
+      "suggested_rewording": null,
+      "decision": "reject",
+      "decision_reason": "Incorrect fixture verdict: the relationship was already studied, therefore reject."
+    }
+  },
+  {
+    "test_id": "sample-test-002",
+    "split": "learn",
+    "round": 0,
+    "model": "fake",
+    "hypothesis": "Democracies are peaceful.",
+    "expected_decision": "revise",
+    "rationale": "Define democracy, whether the claim is dyadic, conflict outcome, years, and population; the idea can be repaired.",
+    "actual_verdict": {
+      "schema_version": "1.0",
+      "hypothesis": "Democracies are peaceful.",
+      "falsifiable": {
+        "status": "yes",
+        "explanation": "Incorrect fixture reasoning: assume peaceful means no war without asking for operational definitions."
+      },
+      "already_tested": {
+        "status": "found",
+        "explanation": "The fixture includes a related democracy study.",
+        "citations": [
+          {
+            "paper_id": "sample-paper-002",
+            "evidence": "The fictional paper examines joint democracy and conflict."
+          }
+        ]
+      },
+      "testable_with_available_data": {
+        "status": "available",
+        "explanation": "The fictional panel provides identifiers, annual trade, and onset including zero outcomes; its 1999 data supports the first lag.",
+        "required_unit_of_analysis": "unordered country dyad-year",
+        "required_years": {
+          "start": 1999,
+          "end": 2010
+        },
+        "matches": [
+          {
+            "concept": "prior-year bilateral trade",
+            "dataset_id": "sample-dyads-001",
+            "variable_names": [
+              "country_a",
+              "country_b",
+              "year",
+              "bilateral_trade"
+            ],
+            "explanation": "Construct a one-year lag within each dyad."
+          },
+          {
+            "concept": "interstate war onset",
+            "dataset_id": "sample-dyads-001",
+            "variable_names": [
+              "conflict_onset"
+            ],
+            "explanation": "The panel includes both onset and no-onset observations."
+          }
+        ],
+        "missing_requirements": []
+      },
+      "suggested_rewording": null,
+      "decision": "proceed",
+      "decision_reason": "Incorrect fixture verdict: silently supply missing scope and proceed."
+    }
+  }
+]

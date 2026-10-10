@@ -1,0 +1,32 @@
+[
+  {
+    "id": "sample-test-001",
+    "hypothesis": "Among Sampleland country dyads in 2000\u20132010, higher bilateral trade in the previous year is associated with a lower probability of interstate war onset.",
+    "split": "learn",
+    "expected_decision": "proceed",
+    "rationale": "The fixture supports an operationalized association and replication is allowed.",
+    "expected_falsifiable": "yes",
+    "expected_already_tested": "found",
+    "expected_data_coverage": "available"
+  },
+  {
+    "id": "sample-test-002",
+    "hypothesis": "Democracies are peaceful.",
+    "split": "learn",
+    "expected_decision": "revise",
+    "rationale": "Define democracy, whether the claim is dyadic, conflict outcome, years, and population; the idea can be repaired.",
+    "expected_falsifiable": "unknown",
+    "expected_already_tested": "found",
+    "expected_data_coverage": "unknown"
+  },
+  {
+    "id": "sample-test-003",
+    "hypothesis": "An undetectable force prevents wars, and every possible observation confirms its existence.",
+    "split": "holdout",
+    "expected_decision": "reject",
+    "rationale": "The claim explicitly rules out disconfirming evidence; making it testable would replace its central premise.",
+    "expected_falsifiable": "no",
+    "expected_already_tested": "not_found",
+    "expected_data_coverage": "unavailable"
+  }
+]

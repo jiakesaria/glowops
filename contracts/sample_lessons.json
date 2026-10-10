@@ -1,0 +1,26 @@
+[
+  {
+    "id": "sample-lesson-001",
+    "tag": "prior_research",
+    "text": "Prior study alone does not justify rejection when an explicit replication or extension is feasible.",
+    "source_test_ids": [
+      "sample-test-001"
+    ],
+    "source_split": "learn",
+    "round": 1,
+    "model": "fake",
+    "approved": true
+  },
+  {
+    "id": "sample-lesson-002",
+    "tag": "falsifiability",
+    "text": "Request operational definitions, population, and years before proceeding with a vague hypothesis.",
+    "source_test_ids": [
+      "sample-test-002"
+    ],
+    "source_split": "learn",
+    "round": 1,
+    "model": "fake",
+    "approved": false
+  }
+]
