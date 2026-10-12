@@ -141,6 +141,7 @@ fallbacks or suggest that unfinished scripts work.
 ├── run_tests.py                    D / Amitej; planned
 ├── run_rounds.py                   D; planned
 ├── data/
+    ├──/papers_original             B: Original papers in .pdf format
 │   ├── papers.txt                  B / Jerry; planned
 │   ├── cow_vars.txt                C; planned
 │   ├── tests.json                  D; planned
