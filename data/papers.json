@@ -1,0 +1,1024 @@
+[
+    {
+        "id": "braithwaite_2011",
+        "title": "Unpacking Escalation",
+        "authors": [
+            "Alex Braithwaite",
+            "Douglas Lemke"
+        ],
+        "year": 2011,
+        "journal": "Conflict Management and Peace Science",
+        "volume": 28,
+        "issue": 2,
+        "pages": "111-123",
+        "doi": "10.1177/0738894210396631",
+        "url": null,
+        "peer_reviewed": true,
+        "study_type": "statistical_analysis",
+        "uses_real_world_data": true,
+        "method_summary": "Runs the same two-step statistical model six times, each time with a different definition of escalation. Step one predicts whether a dispute starts at all. Step two predicts whether it escalates. Modeling both steps together corrects for the fact that countries choose which disputes they get into (a selection effect). Technique: censored probit (Heckman-style selection model).",
+        "tags": [
+            "escalation",
+            "territory",
+            "measurement",
+            "selection_effects",
+            "democratic_peace",
+            "power_preponderance",
+            "alliances",
+            "MID"
+        ],
+        "research_question": "Do the usual explanations for why disputes escalate still hold when you change how escalation is measured?",
+        "main_finding": "Territory is the only factor that consistently predicts escalation. Disputes over land escalated more under five of the six definitions and had the largest effect. The other usual explanations (joint democracy, one side being much stronger, alliances, satisfaction with the international order) work only under some definitions or not at all.",
+        "key_findings": [
+            "Six definitions of escalation were compared across 1,901 two-country disputes from 1816 to 2001: the target responded with force of its own (48% of disputes), any use of force (73%), both sides used force (30%), at least one death (28%), 250 or more deaths (15%), and war with 1,000 or more deaths (5%).",
+            "The six definitions are only loosely related to each other (correlations from 0.14 to 0.76), which suggests there are several different kinds of escalation, not one.",
+            "Territorial disputes significantly increased escalation in 5 of 6 models. The exception was one-sided use of force.",
+            "Joint democracy makes disputes less likely to start but never makes them less likely to escalate. Where it mattered, it made escalation more likely (for both sides using force). The link to war rests on only 8 country pairs and disappears when 4 questionable cases are removed.",
+            "One side being much stronger makes disputes less likely to start. But once escalation is defined by deaths, it makes escalation more likely, significantly so for 250+ deaths.",
+            "Defense pacts rarely affect escalation, however it is measured.",
+            "Joint satisfaction with the international order reduced escalation in 5 of 6 models, but did not predict dispute onset as expected. With an alternative measure of satisfaction, it no longer affected escalation at all.",
+            "Starting a dispute and escalating it are linked parts of one process. The selection term was significant in all but one model, so studying escalation without modeling onset gives biased results.",
+            "Escalation defined as 'use of force' behaved differently from the other five. The authors do not know why.",
+            "Overall, the usual explanations predict whether disputes start much better than whether they escalate."
+        ],
+        "claims_tested_with_data": [
+            "Territorial disputes escalate more often (supported across 5 of 6 measures)",
+            "Joint democracy reduces escalation (not supported; reduces onset only)",
+            "Power preponderance reduces escalation (not supported; increases deadly escalation)",
+            "Defense pacts reduce escalation (mostly not supported)",
+            "Joint satisfaction with the status quo reduces escalation (mixed; depends on measure)"
+        ],
+        "predictions_not_tested_in_this_paper": [],
+        "variables": {
+            "outcome": [
+                "dispute onset (MID begins in a country-pair year)",
+                "six escalation measures: reciprocated, use of force, mutual use of force, fatalities > 0, fatalities > 250, war (1,000+ battle deaths)"
+            ],
+            "explanatory": [
+                "joint democracy (both countries score 6+ on Polity IV)",
+                "territorial dispute (MID issue is territory; territorial claims data used for the onset stage)",
+                "joint satisfaction (alliance pattern similar to the leading state: UK 1919-1945, US 1946-1995)",
+                "power preponderance (stronger side's share of the pair's combined CINC capability score, 0.5 to 1)",
+                "defense pact"
+            ],
+            "controls": [
+                "contiguity (land border or under 125 km of water), onset stage only",
+                "rivalry, onset stage only",
+                "both countries minor powers, onset stage only",
+                "years since last dispute (cubic polynomial)"
+            ]
+        },
+        "data": {
+            "sources": [
+                "Militarized Interstate Disputes (MID) v3.0",
+                "Polity IV",
+                "Huth and Allee territorial claims",
+                "CoW National Material Capabilities (CINC)",
+                "CoW Formal Alliances",
+                "CoW Direct Contiguity",
+                "Thompson strategic rivalry data"
+            ],
+            "years": "1919-1995 for the main analysis (limited by the territorial claims data). Descriptive counts use 1816-2001.",
+            "unit": "non-directed country pairs per year (dyad-years)",
+            "sample_size": "about 500,000 dyad-years, containing 1,352 two-country disputes",
+            "notes": "Disputes that involved more than two countries on their first day are excluded."
+        },
+        "limitations": [
+            "Only covers disputes that start between exactly two countries.",
+            "The main analysis is limited to 1919-1995 because the territorial claims data only cover those years.",
+            "The finding that joint democracy increases escalation to war rests on 8 cases, some of which are coding artifacts (World War II coding, and regime type measured at the start of the year).",
+            "All explanations are fixed traits known before a dispute (regime type, power, alliances). None measure what states actually do during the dispute.",
+            "Third parties joining a dispute and geographic spread of disputes were not analyzed in detail (geographic data only exist after 1991)."
+        ],
+        "open_questions": [
+            "Why does escalation to 'use of force' behave differently from other kinds?",
+            "Is the territory-escalation link causal, and through which policies (the 'steps to war' argument)?",
+            "Would data on behavior during disputes predict escalation better than fixed country traits?",
+            "Do the same results hold for International Crisis Behavior (ICB) crises, or for conflicts at the 25-death vs 1,000-death thresholds?",
+            "Are established democracies better at getting effective mediators than new democracies?"
+        ],
+        "related": [
+            {
+                "id": "kinsella_2002",
+                "relation": "also uses a two-stage selection model of escalation; cited for escalation from verbal hostility to disputes"
+            },
+            {
+                "id": "carlson_1995",
+                "relation": "earlier escalation study using a different escalation measure"
+            },
+            {
+                "id": "gartzke_2007",
+                "relation": "also studies how contiguity and territory interact with other causes of conflict"
+            }
+        ]
+    },
+    {
+        "id": "carlson_1995",
+        "title": "A Theory of Escalation and International Conflict",
+        "authors": [
+            "Lisa J. Carlson"
+        ],
+        "year": 1995,
+        "journal": "Journal of Conflict Resolution",
+        "volume": 39,
+        "issue": 3,
+        "pages": "511-534",
+        "doi": null,
+        "url": null,
+        "peer_reviewed": true,
+        "study_type": "game_theory_model_plus_statistical_test",
+        "uses_real_world_data": true,
+        "method_summary": "Builds a two-player game in which each side is either 'high' or 'low' in cost tolerance (how much cost it will accept to win) and does not know the other's type. The first player chooses low or high escalation, the second player updates its beliefs from that move and responds, and the first player moves last. Three hypotheses are derived. One is tested with a logit regression on MID incident data, using military capability as a stand-in for cost tolerance.",
+        "tags": [
+            "escalation",
+            "cost_tolerance",
+            "power_asymmetry",
+            "incomplete_information",
+            "MID"
+        ],
+        "research_question": "Once a country decides to escalate, how far does it go (small steps or one big move), and what decides that?",
+        "main_finding": "The side that can bear less cost tends to make its strongest move first rather than escalating step by step, because it would lose a slow contest. Using military weakness as a stand-in for low cost tolerance, the bigger the power gap, the less likely the weaker side was to escalate beyond its first move. The data were consistent with this, but the effect was small and uneven.",
+        "key_findings": [
+            "Cost tolerance is defined as the most cost a state is willing to bear to get what it wants in a conflict.",
+            "In the model, the low-tolerance side knows it will be outlasted in a gradual contest, so its best chance is to act as if it can bear high costs by escalating to its maximum at the start. Example given: Japan's attack on Pearl Harbor in 1941.",
+            "Test sample: 119 two-country disputes from 1816 to 1976. In 80, the weaker side's first move was also its highest. In 39, it escalated further.",
+            "The model predicted 78% of cases correctly, compared with 67% from always guessing the most common outcome.",
+            "Going from rough equality to being 100 times weaker lowered the chance that the weaker side escalated further by about 13%.",
+            "The pattern was uneven across power gaps. The weaker side did not escalate further in 72% of cases where it was less than 2.4 times weaker, 63% at 2.4-12 times weaker, 50% at 12-59 times weaker, and 83% at 59+ times weaker. The middle groups go against the prediction.",
+            "Results were similar when World War II cases (about a quarter of the 12-59x group) were removed.",
+            "The power-ratio coefficient in the main table is small (-0.006, standard error 0.004) and is not marked as statistically significant."
+        ],
+        "claims_tested_with_data": [
+            "As the power gap grows, the weaker side is less likely to escalate beyond its first move (weak, uneven support)"
+        ],
+        "predictions_not_tested_in_this_paper": [
+            "Hypothesis 2: the low-tolerance side is more likely to escalate high as the gap between what the opponent gains from winning and losing grows",
+            "Hypothesis 3: the low-tolerance side is more likely to escalate high as the opponent's expected payoff from escalating slowly falls",
+            "A high-tolerance second mover is more likely to start with low escalation when it believes it faces a low-tolerance opponent"
+        ],
+        "variables": {
+            "outcome": [
+                "whether the weaker state's first escalation level in a dispute was also its highest (1) or it escalated further (0)"
+            ],
+            "explanatory": [
+                "ratio of the stronger state's CoW capability index to the weaker state's (1 = equal; higher = bigger gap)"
+            ],
+            "controls": [
+                "level of the weaker state's first escalating action"
+            ]
+        },
+        "data": {
+            "sources": [
+                "MID incident data (Gochman and Maoz 1984), with 14 action types grouped into threat, display of force, use of force, war",
+                "CoW National Material Capabilities (military spending, military personnel, iron/steel, energy, total and urban population)"
+            ],
+            "years": "1816-1976",
+            "unit": "the weaker state in a two-country dispute",
+            "sample_size": "119 disputes",
+            "notes": "Disputes where other states joined, and disputes between two minor powers, were excluded."
+        },
+        "limitations": [
+            "Cost tolerance is not measured directly. Military capability is used as an imperfect stand-in.",
+            "Small sample (119 cases) that ends in 1976.",
+            "The power-ratio effect is small and not marked significant in the main table, and the pattern across power-gap groups is not consistent.",
+            "The model allows only two escalation levels (low or high) and two player types, which the author notes is a simplification.",
+            "Only one of the model's three hypotheses is tested.",
+            "Disputes between two minor powers are excluded for lack of data."
+        ],
+        "open_questions": [
+            "Do the untested hypotheses (2 and 3) hold up?",
+            "Why does the relationship break down in the middle range of power gaps?",
+            "Can cost tolerance be measured more directly?",
+            "Does the pattern hold in later data (after 1976) and in disputes between minor powers?"
+        ],
+        "related": [
+            {
+                "id": "braithwaite_2011",
+                "relation": "later work showing escalation results depend heavily on how escalation is measured"
+            },
+            {
+                "id": "fearon_1994",
+                "relation": "also models crises as contests where each side has private information about its willingness to bear costs"
+            },
+            {
+                "id": "slantchev_2005",
+                "relation": "also models how military moves reveal information in crises"
+            }
+        ]
+    },
+    {
+        "id": "fearon_1994",
+        "title": "Domestic Political Audiences and the Escalation of International Disputes",
+        "authors": [
+            "James D. Fearon"
+        ],
+        "year": 1994,
+        "journal": "American Political Science Review",
+        "volume": 88,
+        "issue": 3,
+        "pages": "577-592",
+        "doi": null,
+        "url": "https://www.jstor.org/stable/2944796",
+        "peer_reviewed": true,
+        "study_type": "game_theory_model",
+        "uses_real_world_data": false,
+        "method_summary": "Models a crisis as a 'war of attrition' over time. At each moment, each leader chooses to attack, back down, or keep escalating. A leader who backs down pays an 'audience cost' at home that grows the longer the public standoff lasts. Each side privately knows how much it values war compared with giving in. The paper works out how rational leaders behave and what that implies.",
+        "tags": [
+            "audience_costs",
+            "costly_signal",
+            "tying_hands",
+            "crisis_bargaining",
+            "democracy",
+            "regime_type",
+            "incomplete_information"
+        ],
+        "research_question": "Why do international crises unfold as they do, and how does being watched by a domestic audience affect which side backs down?",
+        "main_finding": "Because backing down gets more costly at home the longer a crisis lasts, staying in a crisis reveals real resolve. Once a crisis is public, the side that can generate bigger audience costs (expected to be democracies) is less likely to back down. Military strength and visible interests affect whether a crisis starts, but not who backs down once it has started.",
+        "key_findings": [
+            "Audience costs let each side learn how willing the other is to fight. The price is that some crises end in war even though one or both sides would have preferred to make concessions at the start.",
+            "The further a crisis escalates, the less likely either side is to back down. War happens when both sides reach a point where backing down is worse than fighting.",
+            "The side with higher audience costs is always less likely to back down, regardless of how much either side values the prize or what they believed at the start.",
+            "Visible military strength and interests deter challenges. But once a challenge happens, they have no direct effect on who backs down, because the challenger has revealed it is more resolved than expected (states 'select themselves' into crises).",
+            "Leaders who face bigger domestic audiences should be more reluctant to try 'limited probes' (testing challenges they might abandon).",
+            "Crises between two high-audience-cost states should need fewer escalation steps. Fearon notes this fits existing evidence (Russett 1993).",
+            "When the two sides' audience costs are unequal, the risk of war in a crisis can rise. This offers one possible reason crises between democracies and non-democracies are more war-prone.",
+            "Every leader benefits in advance from being able to generate audience costs.",
+            "Democracies should be able to signal their intentions more credibly, which could ease the security dilemma between democracies."
+        ],
+        "claims_tested_with_data": [],
+        "predictions_not_tested_in_this_paper": [
+            "Democracies back down less often than non-democracies in crises with authoritarian states",
+            "Relative military capability and visible interests do not predict who backs down once a crisis is public",
+            "Leaders with stronger domestic audiences initiate fewer limited probes",
+            "Crises between democracies involve fewer escalation steps",
+            "Crises between a democracy and a non-democracy are more likely to end in war"
+        ],
+        "variables": {
+            "outcome": [
+                "which side backs down",
+                "whether the crisis ends in war",
+                "how long the crisis lasts"
+            ],
+            "explanatory": [
+                "audience cost rate for each side (how fast backing down gets more costly)",
+                "each side's private value for war",
+                "value of the disputed prize",
+                "observable relative capabilities and interests"
+            ],
+            "controls": []
+        },
+        "data": {
+            "sources": [],
+            "years": null,
+            "unit": "none (theoretical model)",
+            "sample_size": null,
+            "notes": "Uses historical anecdotes and quotes from leaders as illustrations only."
+        },
+        "limitations": [
+            "No data test in this paper.",
+            "Assumes audience costs grow steadily the longer a crisis lasts.",
+            "The link between democracy and higher audience costs is assumed, not shown. Fearon calls it a 'plausible working hypothesis' and notes non-democracies can generate some audience costs too.",
+            "The main model starts once a crisis is already public; the choice to challenge is only added informally.",
+            "Audience costs are hard to observe or measure directly, which makes the theory hard to test."
+        ],
+        "open_questions": [
+            "Do democracies actually generate larger audience costs than other regimes?",
+            "How can audience costs be measured in real crises?",
+            "Do leaders actually get punished at home for backing down?"
+        ],
+        "related": [
+            {
+                "id": "fearon_1995",
+                "relation": "same author's general framework; audience costs are one answer to the private-information problem"
+            },
+            {
+                "id": "weeks_2008",
+                "relation": "challenges the democratic advantage; tests audience costs across regime types with MID data"
+            },
+            {
+                "id": "tang_2026",
+                "relation": "reviews the historical case evidence for this theory and finds it weak"
+            },
+            {
+                "id": "slantchev_2005",
+                "relation": "argues military moves can signal resolve without relying on domestic audiences"
+            },
+            {
+                "id": "quek_2016",
+                "relation": "experimentally tests the other kind of costly signal (sunk costs) that this paper contrasts with audience costs"
+            }
+        ]
+    },
+    {
+        "id": "fearon_1995",
+        "title": "Rationalist Explanations for War",
+        "authors": [
+            "James D. Fearon"
+        ],
+        "year": 1995,
+        "journal": "International Organization",
+        "volume": 49,
+        "issue": 3,
+        "pages": "379-414",
+        "doi": null,
+        "url": "https://www.jstor.org/stable/2706903",
+        "peer_reviewed": true,
+        "study_type": "theory_paper",
+        "uses_real_world_data": false,
+        "method_summary": "Logical argument supported by simple bargaining models (including a formal appendix with a take-it-or-leave-it bargaining game) and historical examples used as illustrations.",
+        "tags": [
+            "bargaining_theory",
+            "causes_of_war",
+            "private_information",
+            "commitment_problems",
+            "preventive_war",
+            "issue_indivisibility",
+            "costly_signal"
+        ],
+        "research_question": "War is costly for both sides, so why can't rational states find a deal both would prefer to fighting?",
+        "main_finding": "Because war is costly and risky, there is almost always a deal both sides would prefer to war. Rational states fail to reach one for two main reasons: (1) each side has private information about its strength or resolve and a reason to exaggerate it, and (2) states cannot credibly promise to keep a deal in the future. Issues that truly cannot be divided are a third, less important reason.",
+        "key_findings": [
+            "As long as war is costly, the disputed issue can be divided, and states are not risk-seeking, there is a range of deals both sides prefer to war.",
+            "Common explanations (anarchy, expected gains from war, preventive motives, miscalculation) do not explain war on their own. Each has to work through an information problem or a commitment problem.",
+            "Private information plus incentives to bluff: each side has reasons to exaggerate its resolve, so the other cannot trust what it says, and war can result. Example: the July 1914 crisis.",
+            "Commitment problems take three forms: preemptive war (striking first gives an advantage), preventive war (a rising state cannot promise not to use its future power), and bargaining over things that are themselves sources of future power, such as strategic territory (examples: the Golan Heights, the 1939 Winter War).",
+            "Truly indivisible issues are rarer than they appear, because side payments and linking issues usually allow a split.",
+            "Fearon says he knows of no clear case in diplomatic records of leaders revising their estimate of the opponent's military capability during a crisis, even though revising estimates of the opponent's resolve is common. This suggests disagreements about relative power may come more from limited rationality than from private information."
+        ],
+        "claims_tested_with_data": [],
+        "predictions_not_tested_in_this_paper": [
+            "War is more likely when one side's power is shifting quickly relative to the other's",
+            "War is more likely when striking first gives a large military advantage",
+            "Disputes over territory that is a source of future military power are especially hard to settle",
+            "Wars should be preceded by crises in which each side's beliefs about the other's resolve change"
+        ],
+        "variables": {
+            "outcome": [
+                "whether bargaining fails and war occurs"
+            ],
+            "explanatory": [
+                "costs of war",
+                "probability of winning",
+                "private information about capability and resolve",
+                "incentives to misrepresent",
+                "shifts in relative power",
+                "first-strike (offense) advantage",
+                "divisibility of the issue"
+            ],
+            "controls": []
+        },
+        "data": {
+            "sources": [],
+            "years": null,
+            "unit": "none (theoretical argument)",
+            "sample_size": null,
+            "notes": "Historical examples (not tests): July 1914, the Franco-Prussian war, the Korean War, the 1990-91 Gulf War, the 1939 Winter War, the Golan Heights."
+        },
+        "limitations": [
+            "Assumes rational, unitary states. It deliberately sets aside explanations based on irrationality or on leaders who do not bear the costs of war.",
+            "Fearon notes that private information and anarchy are always present, so these mechanisms alone cannot explain why war happens in one case and not another. Specific models with specific variables are needed for that.",
+            "Historical examples are illustrations, not systematic tests."
+        ],
+        "open_questions": [
+            "Which specific conditions turn information or commitment problems into war in particular cases?",
+            "How important are limited rationality and domestic politics compared with the rationalist mechanisms?"
+        ],
+        "related": [
+            {
+                "id": "fearon_1994",
+                "relation": "audience costs as one way states overcome the private-information problem"
+            },
+            {
+                "id": "slantchev_2005",
+                "relation": "models how military moves communicate resolve under private information"
+            },
+            {
+                "id": "quek_2016",
+                "relation": "tests whether costly signals actually solve the private-information problem"
+            },
+            {
+                "id": "gartzke_2007",
+                "relation": "builds on bargaining logic; argues financial markets give states a way to signal without fighting"
+            }
+        ]
+    },
+    {
+        "id": "gartzke_2007",
+        "title": "The Capitalist Peace",
+        "authors": [
+            "Erik Gartzke"
+        ],
+        "year": 2007,
+        "journal": "American Journal of Political Science",
+        "volume": 51,
+        "issue": 1,
+        "pages": "166-191",
+        "doi": null,
+        "url": null,
+        "peer_reviewed": true,
+        "study_type": "statistical_analysis",
+        "uses_real_world_data": true,
+        "method_summary": "Replicates a standard democratic peace model (Oneal and Russett 1997), then adds measures of capitalism (financial market openness, economic development, similar foreign policy interests) to see whether democracy still predicts peace. Uses logistic regression on disputes, wars, and deadly disputes, with GEE as a check.",
+        "tags": [
+            "capitalist_peace",
+            "democratic_peace",
+            "liberal_peace",
+            "economic_development",
+            "financial_openness",
+            "interest_affinity",
+            "contiguity",
+            "MID",
+            "war"
+        ],
+        "research_question": "Is it democracy that keeps democracies from fighting each other, or is it capitalism?",
+        "main_finding": "Once you account for financial market openness, economic development, and similar foreign policy interests, democracy no longer predicts peace in standard tests. After controlling for regional differences, any one of these three is enough to absorb the effect usually credited to democracy.",
+        "key_findings": [
+            "The baseline model reproduces the democratic peace: the less democratic member of a pair being more democratic lowers the chance of a dispute.",
+            "Adding financial market openness makes democracy statistically insignificant. Openness strongly reduces disputes. Trade dependence and alliances also lose significance.",
+            "Economic development reduces disputes between neighboring countries but increases disputes between distant countries, because rich states can project power far from home.",
+            "Similar UN voting (a stand-in for shared interests) reduces disputes, but does not predict wars or deadly disputes.",
+            "There were no wars between pairs of democracies (Polity above 7) among 222 postwar wars. There were also no wars between 'capitalist' pairs (both scoring 6+ on financial openness). Each group is about 7% of observations.",
+            "In models of wars and deadly disputes, democracy becomes insignificant once the capitalism variables are added, while the capitalism variables stay significant.",
+            "The Middle East remains unusually conflict-prone even with all controls. Gartzke links this to income from oil rather than industry, and state-controlled markets."
+        ],
+        "claims_tested_with_data": [
+            "H1: Development makes neighboring pairs less likely to fight (supported)",
+            "H2: Development makes distant pairs more likely to fight (supported)",
+            "H3: Similar foreign policy interests make pairs less likely to fight (supported for disputes, not for wars)",
+            "H4: Financial or monetary integration makes pairs less likely to fight (supported)",
+            "Democracy's effect disappears once capitalism is measured (supported)"
+        ],
+        "predictions_not_tested_in_this_paper": [
+            "Resource-exporting states are more prone to interstate war even when rich"
+        ],
+        "variables": {
+            "outcome": [
+                "MID onset in a dyad-year",
+                "war",
+                "fatal MID (at least one battle death)"
+            ],
+            "explanatory": [
+                "financial openness of the less open state (IMF: 8 minus the number of government restrictions on foreign exchange and capital)",
+                "GDP per capita of the poorer state, and its interaction with contiguity",
+                "foreign policy affinity (similarity of UN General Assembly votes, S score)",
+                "democracy (Polity IV: lower score, higher score, product, both 7+)"
+            ],
+            "controls": [
+                "contiguity (land border or within 150 miles of water)",
+                "log distance between capitals",
+                "major power in pair",
+                "alliance (CoW)",
+                "capability ratio (CINC)",
+                "region dummies",
+                "trade dependence of the less dependent state",
+                "time since last dispute (splines)"
+            ]
+        },
+        "data": {
+            "sources": [
+                "Maoz dyadic MID data (DYMID, based on MID 2.1)",
+                "Polity IV",
+                "IMF Annual Report on Exchange Arrangements and Exchange Restrictions",
+                "Gleditsch (2002) trade and GDP data",
+                "Oneal and Russett data",
+                "UN General Assembly voting",
+                "CoW Formal Alliances",
+                "CoW National Material Capabilities"
+            ],
+            "years": "1950-1992",
+            "unit": "all country pairs per year (dyad-years)",
+            "sample_size": "all dyad-years 1950-1992; financial openness data cover only IMF members, so only 54 of 222 wars fall in the sample unless missing values are filled",
+            "notes": "Territorial claims data were not used because they do not fit the standard democratic peace design; contiguity is used as a stand-in for territorial issues."
+        },
+        "limitations": [
+            "Covers only 1950-1992. Pre-World War II years are not tested.",
+            "Financial openness data exist only for IMF members, which shrinks and biases the sample.",
+            "UN voting is an imperfect stand-in for shared interests.",
+            "Uses older MID 2.1-based data. The author planned to extend the analysis to MID 3 and ICB data.",
+            "The author says the findings need to be corroborated, extended, or refuted by further research."
+        ],
+        "open_questions": [
+            "Does the capitalist peace hold before 1945?",
+            "Do the results hold with newer MID versions and with ICB crisis data?",
+            "Why are resource-rich states still conflict-prone?",
+            "Will the shared interests among developed states last?"
+        ],
+        "related": [
+            {
+                "id": "kinsella_2002",
+                "relation": "uses the same Oneal and Russett data tradition; finds democracy and trade matter at several stages of conflict"
+            },
+            {
+                "id": "braithwaite_2011",
+                "relation": "finds joint democracy reduces dispute onset but not escalation"
+            },
+            {
+                "id": "fearon_1995",
+                "relation": "bargaining framework behind the argument that markets let states signal without fighting"
+            }
+        ]
+    },
+    {
+        "id": "kinsella_2002",
+        "title": "Conflict Emergence and Escalation in Interactive International Dyads",
+        "authors": [
+            "David Kinsella",
+            "Bruce Russett"
+        ],
+        "year": 2002,
+        "journal": "The Journal of Politics",
+        "volume": 64,
+        "issue": 4,
+        "pages": "1045-1068",
+        "doi": null,
+        "url": null,
+        "peer_reviewed": true,
+        "study_type": "statistical_analysis",
+        "uses_real_world_data": true,
+        "method_summary": "A two-stage model. Stage one predicts whether low-level hostility (such as strong verbal condemnation) appears between two countries in a year. Stage two predicts whether that hostility turns into a militarized dispute. Uses a probit model with selection, and checks the results with a second model (aggregated probit) in which 'opportunity' and 'willingness' factors must both be present.",
+        "tags": [
+            "escalation",
+            "conflict_emergence",
+            "selection_effects",
+            "democratic_peace",
+            "interdependence",
+            "trade",
+            "contiguity",
+            "alliances",
+            "IGOs",
+            "events_data"
+        ],
+        "research_question": "Are the factors that cause low-level hostility (like diplomatic spats) the same ones that turn it into militarized disputes?",
+        "main_finding": "Geography and power ('opportunity' factors) matter most for whether low-level hostility starts. Democracy, trade ties, and economic openness ('willingness' factors) reduce low-level hostility too, but matter more for keeping it from becoming a militarized dispute.",
+        "key_findings": [
+            "Joint democracy, trade dependence, and economic openness reduce both low-level conflict and militarized disputes, with a bigger effect on militarized disputes.",
+            "Near-equal power and having a major power in the pair make low-level conflict more likely, but do not affect whether it becomes a militarized dispute once selection is accounted for.",
+            "Alliances and shared membership in international organizations are linked to more low-level conflict, probably because they make countries more relevant to each other. Alliances strongly reduce escalation to militarized disputes. Shared organizations have no clear effect on escalation.",
+            "Distance and shared borders matter more at the low-level stage than at the militarized stage.",
+            "There is a selection effect, but it is modest (rho = -0.18, p = 0.015).",
+            "No support for the idea that democracies and economically linked states pick diplomatic fights to signal resolve instead of using force. They have fewer diplomatic fights too.",
+            "The alternative model gives nearly identical results.",
+            "Base rates: 7.0% of neighboring-pair years had a militarized dispute begin; among neighboring pairs already in low-level conflict, 23.0% did. For non-neighbors, the rates were 0.1% and 2.5%."
+        ],
+        "claims_tested_with_data": [
+            "Opportunity factors (proximity, contiguity, power parity, major power) matter more early in the conflict process (supported)",
+            "Willingness factors (democracy, trade dependence, openness, alliances) matter more later in the conflict process (supported)",
+            "Democracies and interdependent states use diplomatic conflicts as signals of resolve (not supported)",
+            "Selection effects bias studies that look only at militarized disputes (supported, but the bias is modest)"
+        ],
+        "predictions_not_tested_in_this_paper": [
+            "Whether the same opportunity/willingness pattern holds for escalation from militarized disputes to war"
+        ],
+        "variables": {
+            "outcome": [
+                "stage 1: any hostility in a dyad-year at or above 'strong verbal hostility' (COPDAB) or 2.2 on the Goldstein scale (WEIS, PANDA)",
+                "stage 2: militarized dispute (MID) onset"
+            ],
+            "explanatory": [
+                "opportunity: proximity (negative log distance), contiguity (land, or within 150 miles of water, including colonies), major power in pair, power ratio",
+                "willingness: democracy of the less democratic state, dyadic trade-to-GDP of the less dependent state, total trade-to-GDP of the less open state, number of shared international organizations, alliance"
+            ],
+            "controls": [
+                "time since last event (splines)",
+                "all explanatory variables lagged one year"
+            ]
+        },
+        "data": {
+            "sources": [
+                "Conflict and Peace Data Bank (COPDAB)",
+                "World Event/Interaction Survey (WEIS)",
+                "Protocol for the Assessment of Nonviolent Direct Action (PANDA)",
+                "MID data (dyad-year version)",
+                "Oneal and Russett (1999) data on democracy, trade, IGOs, alliances, capabilities"
+            ],
+            "years": "1951-1992",
+            "unit": "all country pairs per year (dyad-years)",
+            "sample_size": "all dyad-years 1951-1992 (exact count not stated in the sections reviewed)",
+            "notes": "The three event datasets cover different years but overlap, so they are combined to cover the full period."
+        },
+        "limitations": [
+            "'Escalation' here means low-level hostility turning into a militarized dispute, not a dispute turning into war.",
+            "Cold War era only (1951-1992).",
+            "Event datasets differ in coverage and coding, and individual events are not linked into sequences of moves.",
+            "The dyad-year format cannot follow move-by-move interactions between states.",
+            "Shared international organizations are a simple count, not weighted by importance."
+        ],
+        "open_questions": [
+            "Does the pattern hold for escalation from militarized disputes to war?",
+            "Why do opportunity factors matter early and willingness factors later? The authors call for a formal model of this.",
+            "Can better event data be built to track step-by-step interactions?"
+        ],
+        "related": [
+            {
+                "id": "braithwaite_2011",
+                "relation": "also uses two-stage selection models of escalation; cites this paper"
+            },
+            {
+                "id": "gartzke_2007",
+                "relation": "offers capitalism as an alternative explanation for the liberal peace"
+            },
+            {
+                "id": "fearon_1994",
+                "relation": "the signaling idea that democracies use low-level disputes to show resolve is tested here and not supported"
+            }
+        ]
+    },
+    {
+        "id": "quek_2016",
+        "title": "Are Costly Signals More Credible? Evidence of Sender-Receiver Gaps",
+        "authors": [
+            "Kai Quek"
+        ],
+        "year": 2016,
+        "journal": "The Journal of Politics",
+        "volume": 78,
+        "issue": 3,
+        "pages": "925-940",
+        "doi": "10.1086/685751",
+        "url": null,
+        "peer_reviewed": true,
+        "study_type": "lab_experiments",
+        "uses_real_world_data": false,
+        "method_summary": "Three controlled experiments. Experiment 1: an online game with 253 US adults (222 after quality exclusions) recruited through Amazon Mechanical Turk, paid by performance, one round. Experiment 2: the same game in the MIT lab with 64 MIT students over three rounds, paid by performance. Experiment 3: an online survey of 635 US adults reading a territorial crisis scenario in which a country mobilizes its military. In the games, senders were randomly assigned high or low resolve and chose between a free threat and a threat with a sunk cost. Receivers chose whether to back off ('stay out') or confront.",
+        "tags": [
+            "costly_signal",
+            "sunk_costs",
+            "credibility",
+            "deterrence",
+            "military_mobilization",
+            "experiment"
+        ],
+        "research_question": "Do resolved states use costly signals, and do receivers actually find those signals more believable?",
+        "main_finding": "People randomly given high resolve were much more likely to pay for a costly threat, as theory predicts. But receivers were not more likely to back off after a costly threat than after a free one. The signal works at the sender's end but not at the receiver's end, which Quek calls a 'sender-receiver gap'.",
+        "key_findings": [
+            "Experiment 1: 30% of resolved senders chose the costly threat versus 11% of unresolved senders (p = .013). 55% of receivers backed off after a costly threat versus 51% after a free threat (p = .74, no real difference).",
+            "Experiment 2: 49% of resolved senders chose the costly threat versus 10% of unresolved (p < .0001). 71% of receivers backed off after a costly threat versus 56% after a free threat (p = .16, not significant). In the first round alone, it was 50% versus 50%.",
+            "Experiment 3: mobilization described as 'very costly' was rated no more believable than mobilization described as 'not very costly' (5.00 vs 5.23 on a 0-6 scale, p = .29).",
+            "In a 2x2 version of Experiment 3, the expected cost of war to the threatening country changed how believable the threat seemed (p = .003 and p < .0001), but the cost of mobilization itself did not (p = .44 and p = .54).",
+            "Senders followed the theory: resolved senders sent most of the costly threats (74% in Experiment 1, 82% in Experiment 2)."
+        ],
+        "claims_tested_with_data": [
+            "Resolved senders are more likely to use sunk-cost signals (supported)",
+            "Receivers back down more after sunk-cost signals (not supported)",
+            "Costly military mobilization is seen as a more credible threat (not supported)"
+        ],
+        "predictions_not_tested_in_this_paper": [
+            "Whether the sender-receiver gap appears among real leaders in real crises"
+        ],
+        "variables": {
+            "outcome": [
+                "sender's choice of costly vs free threat",
+                "receiver's choice to stay out or confront",
+                "credibility rating on a 0-6 scale (Experiment 3)"
+            ],
+            "explanatory": [
+                "randomly assigned sender resolve (high or low)",
+                "whether the threat carried a sunk cost",
+                "described cost of mobilization",
+                "described cost of war (2x2 version)"
+            ],
+            "controls": [
+                "risk preference",
+                "round and session fixed effects (Experiment 2)"
+            ]
+        },
+        "data": {
+            "sources": [
+                "original experiments: Amazon Mechanical Turk (Experiments 1 and 3) and MIT Behavioral Research Laboratory (Experiment 2, February-March 2013)"
+            ],
+            "years": "2013 (experiments conducted)",
+            "unit": "individual participants",
+            "sample_size": "Experiment 1: 222 (after exclusions from 253); Experiment 2: 64; Experiment 3: 635",
+            "notes": "Countries in the Experiment 3 scenario were anonymized. Tests only the sunk-cost mechanism, not audience costs (tying hands)."
+        },
+        "limitations": [
+            "Participants are ordinary adults and students, not national leaders in real crises.",
+            "No real lives or stakes are involved, unlike decisions about war.",
+            "Tests only sunk-cost signals, not hands-tying signals like audience costs.",
+            "Small samples in some comparisons (for example, 32 receivers in the first round of Experiment 2).",
+            "The author describes the results as an initial baseline for future studies."
+        ],
+        "open_questions": [
+            "Does the sender-receiver gap appear in real-world crises?",
+            "Why do states keep using sunk-cost signals if receivers don't respond to them?",
+            "Do hands-tying signals show the same gap?"
+        ],
+        "related": [
+            {
+                "id": "fearon_1994",
+                "relation": "contrasts sunk-cost signaling with the audience cost (hands-tying) mechanism"
+            },
+            {
+                "id": "slantchev_2005",
+                "relation": "argues military mobilization both sinks costs and ties hands"
+            },
+            {
+                "id": "fearon_1995",
+                "relation": "costly signals are a response to the private-information problem described there"
+            }
+        ]
+    },
+    {
+        "id": "slantchev_2005",
+        "title": "Military Coercion in Interstate Crises",
+        "authors": [
+            "Branislav L. Slantchev"
+        ],
+        "year": 2005,
+        "journal": "American Political Science Review",
+        "volume": 99,
+        "issue": 4,
+        "pages": "533-547",
+        "doi": null,
+        "url": null,
+        "peer_reviewed": true,
+        "study_type": "game_theory_model",
+        "uses_real_world_data": false,
+        "method_summary": "Two-country model of a dispute over territory. The defender first chooses how much to mobilize. The challenger, whose value for the territory is private, then mobilizes or accepts the status quo. The defender can then give in, attack first, or resist, and the challenger finally attacks or backs down. Mobilization is paid for no matter what (sunk cost) and raises the chance of winning a war (ties hands). The model includes an offense-defense balance. Some results are illustrated with numerical examples.",
+        "tags": [
+            "costly_signal",
+            "military_mobilization",
+            "sunk_costs",
+            "tying_hands",
+            "bluffing",
+            "deterrence",
+            "compellence",
+            "crisis_bargaining",
+            "regime_type"
+        ],
+        "research_question": "How do military moves like mobilization work as signals in a crisis when they both cost money and improve the odds of winning a war?",
+        "main_finding": "Military mobilization does two things at once: it is paid for no matter what (it sinks costs), and it makes fighting more attractive by improving the odds of winning (it ties hands). Taking both into account changes earlier conclusions: bluffing can happen, the chance of war doesn't move in a simple way with a state's war payoff, and keeping the peace can require bigger military buildups than the ones that come right before wars.",
+        "key_findings": [
+            "Bluffing is possible in equilibrium, which earlier models using only sunk costs or only tied hands ruled out. Bluffing only happens in outcomes with no real risk of war, and bluffs are never called.",
+            "Three types of outcome appear: assured compellence (the challenger mobilizes enough that the defender gives in), risk of war, and assured deterrence (the defender mobilizes so much that no one challenges).",
+            "The defender can rule out bluffing by mobilizing more, but may choose not to because it is too expensive.",
+            "Earlier general results linking a player's expected payoff from war to the probability of war do not hold when the balance of power depends on mobilization choices.",
+            "Peace can involve higher military spending than the mobilizations that precede wars ('the price of peace').",
+            "A state's best mobilization level does not rise or fall in a simple way with its fighting costs.",
+            "Military moves can create commitments, not just reveal ones that already exist.",
+            "Since autocracies can also mobilize, states can signal resolve without relying on domestic politics. Whether democracies have a signaling advantage becomes an open question, and signaling-based explanations of the democratic peace face a problem.",
+            "Mobilization can be hard to read: it may be a warning or a preparation for war, which helps explain why crisis participants are nervous about it."
+        ],
+        "claims_tested_with_data": [],
+        "predictions_not_tested_in_this_paper": [
+            "Bluffing with military mobilization occurs in real crises",
+            "Peaceful crisis outcomes can involve higher mobilization than crises that end in war",
+            "Regime type need not affect crisis signaling when both sides can use military means"
+        ],
+        "variables": {
+            "outcome": [
+                "capitulation, war, or compellence/deterrence outcome",
+                "equilibrium mobilization levels",
+                "probability of war"
+            ],
+            "explanatory": [
+                "each side's mobilization level",
+                "each side's value for the territory (challenger's is private)",
+                "costs of fighting",
+                "offense-defense balance"
+            ],
+            "controls": []
+        },
+        "data": {
+            "sources": [],
+            "years": null,
+            "unit": "none (theoretical model)",
+            "sample_size": null,
+            "notes": "Numerical examples assume a uniform distribution of the challenger's value."
+        },
+        "limitations": [
+            "No data test.",
+            "Only the challenger's value is private. The author notes both sides could bluff if both were uncertain.",
+            "A single sequence of moves rather than a repeated or ongoing interaction.",
+            "Relies on a specific formula for the probability of winning, and some results are shown only with numerical examples."
+        ],
+        "open_questions": [
+            "When do states choose military moves instead of public commitments (audience costs) to signal resolve?",
+            "How can researchers tell whether a mobilization is a warning or a preparation for war?",
+            "Do democracies actually signal better than autocracies once military signals are accounted for?"
+        ],
+        "related": [
+            {
+                "id": "fearon_1994",
+                "relation": "argues domestic audience costs are not needed for credible signaling"
+            },
+            {
+                "id": "quek_2016",
+                "relation": "experimentally tests whether costly signals are believed; cites this paper"
+            },
+            {
+                "id": "weeks_2008",
+                "relation": "also questions whether democracies have a signaling advantage"
+            },
+            {
+                "id": "fearon_1995",
+                "relation": "builds on the private-information bargaining framework"
+            }
+        ]
+    },
+    {
+        "id": "tang_2026",
+        "title": "The Empirical Evidence of Audience Costs Theory: A Quasi-Meta-Analysis of Case Evidence Based on Bayesian Logic",
+        "authors": [
+            "Shiping Tang"
+        ],
+        "year": 2026,
+        "journal": "European Journal of International Relations",
+        "volume": null,
+        "issue": null,
+        "pages": "1-32 (online first)",
+        "doi": "10.1177/13540661261456163",
+        "url": null,
+        "peer_reviewed": true,
+        "study_type": "case_study_review",
+        "uses_real_world_data": true,
+        "method_summary": "A 'quasi-meta-analysis of case studies' (QMACS). Collects 19 historical crisis case studies written by other authors (mainly Snyder and Borghard 2011, Trachtenberg 2012 and 2014, and Schultz 2001), each involving at least one democracy. Each case is coded on three kinds of evidence: 'hoop' tests (passing helps a little, failing hurts a lot), 'smoking gun' tests (passing helps a lot, failing hurts a little), and 'doubly decisive' tests (both). Bayes' rule is then used to update how likely the theory is to be true, starting from a generous 60%.",
+        "tags": [
+            "audience_costs",
+            "costly_signal",
+            "crisis_bargaining",
+            "democracy",
+            "case_studies",
+            "process_tracing",
+            "bayesian",
+            "meta_analysis"
+        ],
+        "research_question": "Taking all the case-study evidence together, how well does audience costs theory hold up?",
+        "main_finding": "The case evidence for audience costs theory is thin, and the evidence against it is strong. Starting from a generous 60% chance that the theory is right, the evidence lowers it to about 27%. Audience costs exist, but they are smaller and depend more on the situation than supporters claim.",
+        "key_findings": [
+            "Hoop test (did democratic leaders voluntarily make strong public threats?): passed in 12 of 19 cases (6 strongly, 6 weakly) and failed in 7. This gives only weak support.",
+            "Smoking gun test (did the public punish leaders after they backed down?): the theory failed in all but one case (the 1956 Suez crisis). One case points the other way: Nixon and Kissinger were rewarded for withdrawing from Vietnam in 1972-73.",
+            "Doubly decisive test against the theory: of 8 relevant cases, 7 clearly go against it (leaders were not punished for backing down when the public opposed escalation, or were punished for escalating), and 1 is ambiguous (Suez). No case gives doubly decisive support for the theory.",
+            "12 of the 19 cases cannot test punishment because the democracy never backed down.",
+            "Bayesian updating: the 60% starting point rises to 72% after the hoop tests, falls to 17.6% from the doubly decisive tests alone, and ends at 26.8% when both are combined.",
+            "Fashoda crisis (France vs Britain, 1898), considered the case most favorable to the theory: France backed down and its leaders were not punished. Britain, the stronger and more resolved side, did not think public threats were needed. This counts as doubly decisive evidence against the theory.",
+            "Abadan crisis (Britain vs Iran, 1951): the Attlee government backed down three weeks before an election and was not punished, even though the opposition made it a campaign issue.",
+            "Tang argues selection effects (leaders avoiding crises they expect to lose) cannot rescue the theory, because they do not affect whether the public punishes a leader after the fact.",
+            "Survey experiments generally support the theory, but whether they apply to real crises is disputed, and leaders can use 'spin' to avoid audience costs."
+        ],
+        "claims_tested_with_data": [
+            "Democratic leaders voluntarily create audience costs with public threats (weak support)",
+            "Democratic publics punish leaders who back down from threats (not supported)",
+            "Audience costs are large enough to drive crisis outcomes (not supported)"
+        ],
+        "predictions_not_tested_in_this_paper": [
+            "Whether the same method applied to extended deterrence, the democratic peace, or democratic transitions would change conclusions in those debates"
+        ],
+        "variables": {
+            "outcome": [
+                "posterior probability that audience costs theory is correct"
+            ],
+            "explanatory": [
+                "coded evidence per case: whether leaders issued strong public threats, whether leaders were punished after backing down, whether leaders were punished for escalating"
+            ],
+            "controls": []
+        },
+        "data": {
+            "sources": [
+                "published case studies by Snyder and Borghard (2011), Trachtenberg (2012, 2014), Schultz (2001), Schlesinger and Levy (2021), and others"
+            ],
+            "years": "crises from 1863 to 1980",
+            "unit": "historical crisis cases involving at least one democracy",
+            "sample_size": "19 cases",
+            "notes": "Cases include Schleswig-Holstein (1863-64), Fashoda (1898), the Moroccan/Agadir crises (1905-06, 1911), Rhineland (1936), Munich (1938), Abadan (1951), Suez (1956), the Berlin crises, the Cuban Missile Crisis (1962), Vietnam decisions (1954, 1965, 1972-73), and the Iran hostage crisis (1979-80). Tang codes other authors' case studies; he does not go back to archives himself, except for a closer look at Fashoda."
+        },
+        "limitations": [
+            "Relies on other authors' case studies rather than new archival research.",
+            "The probabilities used in the Bayesian updating (including the 60% prior) are the author's judgment calls.",
+            "Only 19 cases, and only 8 are relevant to the strongest test.",
+            "Does not include large statistical studies; it focuses on case evidence.",
+            "Very recent, so other researchers have not yet had much time to respond."
+        ],
+        "open_questions": [
+            "Which other mechanisms link domestic politics to international behavior, beyond audience costs?",
+            "Why has audience costs theory stayed so influential despite weak evidence?",
+            "Can the same method be applied to extended deterrence, the democratic peace, and democratic transitions?"
+        ],
+        "related": [
+            {
+                "id": "fearon_1994",
+                "relation": "the theory being evaluated"
+            },
+            {
+                "id": "weeks_2008",
+                "relation": "cited as evidence that autocrats can also face audience costs"
+            },
+            {
+                "id": "slantchev_2005",
+                "relation": "proponent of audience costs in the debate this paper reviews (Slantchev 2012); 2005 paper argues military signals can work without domestic audiences"
+            },
+            {
+                "id": "fearon_1995",
+                "relation": "the broader bargaining framework audience costs fit into"
+            }
+        ]
+    },
+    {
+        "id": "weeks_2008",
+        "title": "Autocratic Audience Costs: Regime Type and Signaling Resolve",
+        "authors": [
+            "Jessica L. Weeks"
+        ],
+        "year": 2008,
+        "journal": "International Organization",
+        "volume": 62,
+        "issue": 1,
+        "pages": "35-64",
+        "doi": "10.1017/S0020818308080028",
+        "url": null,
+        "peer_reviewed": true,
+        "study_type": "theory_plus_statistical_analysis",
+        "uses_real_world_data": true,
+        "method_summary": "Develops an argument about when any type of regime can generate audience costs, then tests it statistically. Credibility is measured by whether the target of a threat responds with military action of its own (reciprocation): believable threats should be resisted less often. Uses logistic regression on MIDs from 1946 to 1999, with authoritarian regime types from Geddes's classification plus Polity IV.",
+        "tags": [
+            "audience_costs",
+            "regime_type",
+            "autocracy",
+            "democracy",
+            "costly_signal",
+            "credibility",
+            "MID",
+            "personalist_regimes"
+        ],
+        "research_question": "Do democracies really make more believable threats than dictatorships, or can many dictators also be punished for backing down?",
+        "main_finding": "Most non-democracies (single-party regimes, military regimes, dynastic monarchies) make threats about as believable as democracies'. Only personalist dictatorships, unstable regimes in transition, and new democracies have their threats resisted significantly more often.",
+        "key_findings": [
+            "Audience costs need three conditions: domestic groups can coordinate to punish the leader, they see backing down as bad, and outsiders can see that punishment is possible. Elites in many autocracies meet these conditions.",
+            "Treating all non-democracies as one group, democracies' threats are resisted less often: 41% vs 51% (1946-1999) and 38% vs 49% (1816-1999).",
+            "Splitting non-democracies by type, reciprocation rates for 1946-1999 are: mixed non-democracy 33%, democracy 41%, single-party 44%, dynastic monarchy 53%, military 55%, non-democratic interregnum 57%, non-dynastic monarchy 58%, personalist 61%, new democracy 65%.",
+            "With controls, the predicted chance of resistance is about 0.27 for democracies, single-party regimes, and mixed non-democracies, 0.28 for dynastic monarchies, about 0.36-0.37 for military regimes, non-dynastic monarchies, and interregna, 0.44 for new democracies, and 0.48 for personalist regimes.",
+            "Personalist regimes are about 1.8 times as likely to face resistance as democracies. New democracies are 1.6 times as likely as stable democracies.",
+            "Only personalist regimes, new democracies, and non-democratic interregna are statistically different from democracies.",
+            "Polity scores do not explain differences among autocracies, so the result is about regime structure, not just 'how autocratic' a country is.",
+            "Results hold when excluding high-conflict states, controlling for the target's regime type and economic development, and using only two-country disputes.",
+            "Single-party regimes making credible threats goes against Schultz's argument that open party competition is what makes democratic threats credible."
+        ],
+        "claims_tested_with_data": [
+            "Democracies make more credible threats than most autocracies (not supported once autocracies are split by type)",
+            "Personalist regimes make less credible threats (supported)",
+            "New democracies and regimes in transition make less credible threats (supported)",
+            "Non-dynastic monarchies make less credible threats (right direction, not significant)"
+        ],
+        "predictions_not_tested_in_this_paper": [
+            "Regime type affects war initiation, war outcomes, and the credibility of treaty promises in the same way",
+            "Autocratic elites punish leaders for other foreign policy failures, not just backing down"
+        ],
+        "variables": {
+            "outcome": [
+                "target reciprocation in a MID (1 if the target responded with military action, 0 if not)"
+            ],
+            "explanatory": [
+                "initiator regime type: consolidated democracy (Polity 7+ for 3+ years), new democracy, single-party, military, hybrid military/single-party, personalist, dynastic monarchy, non-dynastic monarchy, non-democratic interregnum, mixed non-democracy"
+            ],
+            "controls": [
+                "initiator's share of capabilities",
+                "contiguity",
+                "dispute issue (revision type)",
+                "initiator's evaluation of the status quo",
+                "target regime type and economic development (robustness checks)"
+            ]
+        },
+        "data": {
+            "sources": [
+                "Militarized Interstate Disputes (MID)",
+                "Geddes (2003) authoritarian regime classification",
+                "Polity IV",
+                "Herb (1999) classification of monarchies",
+                "CoW National Material Capabilities"
+            ],
+            "years": "1946-1999 for the main analysis (Geddes regime data start in 1946); 1816-1999 for the simple democracy vs non-democracy comparison",
+            "unit": "initiator-target pairs in MIDs",
+            "sample_size": "1,582 MIDs (1946-1999); 2,541 (1816-1999)",
+            "notes": "Post-revolution Iran, post-Soviet republics, apartheid South Africa, and others not coded by Geddes are grouped as 'mixed non-democracies'."
+        },
+        "limitations": [
+            "Reciprocation is an indirect measure of credibility; it does not show whether leaders were actually punished.",
+            "Regime-type analysis is limited to 1946-1999, because Geddes's coding starts in 1946.",
+            "Some regime categories are small (military 44 disputes, dynastic monarchy 15, hybrid 9), which makes their estimates uncertain.",
+            "Capability data may be less accurate for secretive regimes (the author tests this and finds it does not drive results)."
+        ],
+        "open_questions": [
+            "Does regime type affect war initiation, war success, and the credibility of treaty commitments?",
+            "What do elite audiences in autocracies care about, and when will they punish leaders?",
+            "Does promoting democracy actually ease the security dilemma, given that new democracies signal poorly?"
+        ],
+        "related": [
+            {
+                "id": "fearon_1994",
+                "relation": "challenges its claim that democracies have an audience cost advantage"
+            },
+            {
+                "id": "tang_2026",
+                "relation": "later review that cites this paper on autocratic audience costs"
+            },
+            {
+                "id": "slantchev_2005",
+                "relation": "also questions whether regime type should drive crisis signaling"
+            },
+            {
+                "id": "kinsella_2002",
+                "relation": "both examine how democracy affects conflict at different stages"
+            }
+        ]
+    }
+]

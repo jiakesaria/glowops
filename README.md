@@ -141,8 +141,19 @@ fallbacks or suggest that unfinished scripts work.
 ├── run_tests.py                    D / Amitej; planned
 ├── run_rounds.py                   D; planned
 ├── data/
-    ├──/papers_original             B: Original papers in .pdf format
-│   ├── papers.txt                  B / Jerry; planned
+|   ├──/papers_original             B: Original papers in .pdf format (10 papers, named lastname_year_short-title.pdf)
+|   |   ├── braithwaite_2011_unpacking-escalation.pdf                    Braithwaite & Lemke 2011: statistical analysis
+|   |   ├── carlson_1995_theory-escalation-international-conflict.pdf    Carlson 1995: game theory model + statistical test
+|   |   ├── fearon_1994_domestic-political-audiences.pdf                 Fearon 1994: game theory model
+|   |   ├── fearon_1995_rationalist-explanations-war.pdf                 Fearon 1995: theory paper
+|   |   ├── gartzke_2007_capitalist-peace.pdf                            Gartzke 2007: statistical analysis
+|   |   ├── kinsella_2002_conflict-emergence-escalation-dyads.pdf        Kinsella & Russett 2002: statistical analysis
+|   |   ├── quek_2016_costly-signals-credible.pdf                        Quek 2016: lab experiments
+|   |   ├── slantchev_2005_military-coercion-interstate-crises.pdf       Slantchev 2005: game theory model
+|   |   ├── tang_2026_audience-costs-quasi-meta-analysis.pdf             Tang 2026: review of case studies
+|   |   └── weeks_2008_autocratic-audience-costs.pdf                     Weeks 2008: theory + statistical analysis
+│   ├── papers.json                 B / Jerry; planned
+|   ├── schema.md                   B Explains the schema and structure of the papers.json file
 │   ├── cow_vars.txt                C; planned
 │   ├── tests.json                  D; planned
 │   ├── lessons.json                C; planned
