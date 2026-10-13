@@ -52,15 +52,11 @@ def _input_path(root: Path, real_name: str, sample_name: str) -> tuple[Path, boo
     return (real, False) if real.exists() else (root / "contracts" / sample_name, True)
 
 
-def _load(path: Path, model, *, json_lines: bool):
+def _load(path: Path, model):
     try:
-        text = path.read_text(encoding="utf-8")
-        if json_lines:
-            values = [json.loads(line) for line in text.splitlines() if line.strip()]
-        else:
-            values = json.loads(text)
-            if not isinstance(values, list):
-                raise ValueError("expected a JSON array")
+        values = json.loads(path.read_text(encoding="utf-8"))
+        if not isinstance(values, list):
+            raise ValueError("expected a JSON array")
         rows = [model.model_validate(value) for value in values]
         if len({row.id for row in rows}) != len(rows):
             raise ValueError("duplicate record IDs")
@@ -77,13 +73,13 @@ def _load(path: Path, model, *, json_lines: bool):
 def load_inputs(settings: Settings, *, round: int = 0):
     """Real files replace fixtures without code changes; malformed files fail loudly."""
     paper_path, sample_papers = _input_path(settings.root, "papers.json", "sample_papers.json")
-    data_path, sample_data = _input_path(settings.root, "cow_vars.txt", "sample_cow_vars.txt")
-    papers = _load(paper_path, Paper, json_lines=False)
-    datasets = _load(data_path, Dataset, json_lines=True)
+    data_path, sample_data = _input_path(settings.root, "cow_vars.json", "sample_cow_vars.json")
+    papers = _load(paper_path, Paper)
+    datasets = _load(data_path, Dataset)
     lessons = []
     if round > 0 and settings.max_approved_lessons:
         lesson_path, sample_lessons = _input_path(settings.root, "lessons.json", "sample_lessons.json")
-        all_lessons = _load(lesson_path, Lesson, json_lines=False)
+        all_lessons = _load(lesson_path, Lesson)
         # Fixture lessons can guide sample runs but must not influence a real corpus.
         allow_fixtures = sample_papers and sample_data
         if not sample_lessons or allow_fixtures:

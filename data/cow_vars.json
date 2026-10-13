@@ -1,0 +1,2789 @@
+[
+  {
+    "id": "cow-country-codes",
+    "name": "COW Country Codes",
+    "version": "current list",
+    "source_url": "https://correlatesofwar.org/data-sets/cow-country-codes-2/",
+    "unit_of_analysis": "country code list (a lookup table, one row per code and name)",
+    "years": {
+      "start": 1816,
+      "end": 2024
+    },
+    "variables": [
+      {
+        "name": "StateAbb",
+        "description": "Three-letter COW state abbreviation."
+      },
+      {
+        "name": "CCode",
+        "description": "COW numeric country code used as the join key in every other CoW file."
+      },
+      {
+        "name": "StateNme",
+        "description": "State name."
+      }
+    ],
+    "limitations": [
+      "Lookup table only. It has no year column, so it does not say when a state was in the system; use cow-states-2024 for dates.",
+      "Some codes repeat on consecutive rows (for example CUB, HAI, DOM); drop duplicates before joining.",
+      "The file uses old Mac (CR) line endings."
+    ],
+    "is_sample": false
+  },
+  {
+    "id": "cow-states-2024",
+    "name": "COW State System Membership: state list",
+    "version": "v2024",
+    "source_url": "https://correlatesofwar.org/data-sets/state-system-membership/",
+    "unit_of_analysis": "state membership spell (one row per state)",
+    "years": {
+      "start": 1816,
+      "end": 2024
+    },
+    "variables": [
+      {
+        "name": "stateabb",
+        "description": "Three-letter state abbreviation."
+      },
+      {
+        "name": "ccode",
+        "description": "COW numeric country code."
+      },
+      {
+        "name": "statenme",
+        "description": "State name."
+      },
+      {
+        "name": "styear",
+        "description": "Year the state entered the system."
+      },
+      {
+        "name": "stmonth",
+        "description": "Month of entry."
+      },
+      {
+        "name": "stday",
+        "description": "Day of entry."
+      },
+      {
+        "name": "endyear",
+        "description": "Year the state left the system (2024 if still a member)."
+      },
+      {
+        "name": "endmonth",
+        "description": "Month of exit."
+      },
+      {
+        "name": "endday",
+        "description": "Day of exit."
+      },
+      {
+        "name": "version",
+        "description": "Data version."
+      }
+    ],
+    "limitations": [
+      "Gives entry and exit dates only; it has no yearly rows. Use cow-system-2024 for a country-year frame."
+    ],
+    "is_sample": false
+  },
+  {
+    "id": "cow-majors-2024",
+    "name": "COW State System Membership: major powers",
+    "version": "v2024",
+    "source_url": "https://correlatesofwar.org/data-sets/state-system-membership/",
+    "unit_of_analysis": "major power spell (one row per state)",
+    "years": {
+      "start": 1816,
+      "end": 2024
+    },
+    "variables": [
+      {
+        "name": "stateabb",
+        "description": "Three-letter state abbreviation."
+      },
+      {
+        "name": "ccode",
+        "description": "COW numeric country code."
+      },
+      {
+        "name": "styear",
+        "description": "Year the state became a major power."
+      },
+      {
+        "name": "stmonth",
+        "description": "Month it became a major power."
+      },
+      {
+        "name": "stday",
+        "description": "Day it became a major power."
+      },
+      {
+        "name": "endyear",
+        "description": "Year major power status ended (2024 if still one)."
+      },
+      {
+        "name": "endmonth",
+        "description": "Month it ended."
+      },
+      {
+        "name": "endday",
+        "description": "Day it ended."
+      },
+      {
+        "name": "version",
+        "description": "Data version."
+      }
+    ],
+    "limitations": [
+      "Only a handful of rows (the major powers). Dates are spells, not yearly rows."
+    ],
+    "is_sample": false
+  },
+  {
+    "id": "cow-system-2024",
+    "name": "COW State System Membership: country-year frame",
+    "version": "v2024",
+    "source_url": "https://correlatesofwar.org/data-sets/state-system-membership/",
+    "unit_of_analysis": "country-year (blank frame of all system members)",
+    "years": {
+      "start": 1816,
+      "end": 2024
+    },
+    "variables": [
+      {
+        "name": "ccode",
+        "description": "COW numeric country code."
+      },
+      {
+        "name": "stateabb",
+        "description": "Three-letter state abbreviation."
+      },
+      {
+        "name": "statenme",
+        "description": "State name."
+      },
+      {
+        "name": "year",
+        "description": "Calendar year."
+      }
+    ],
+    "limitations": [
+      "A blank frame with no outcome variables. Merge other CoW data onto it by ccode and year."
+    ],
+    "is_sample": false
+  },
+  {
+    "id": "cow-nondirected-dyad-year-2024",
+    "name": "COW State System Membership: non-directed dyad-year frame",
+    "version": "v2024",
+    "source_url": "https://correlatesofwar.org/data-sets/state-system-membership/",
+    "unit_of_analysis": "non-directed dyad-year (blank frame of all pairs of system members)",
+    "years": {
+      "start": 1816,
+      "end": 2024
+    },
+    "variables": [
+      {
+        "name": "ccode1",
+        "description": "COW code of the first state (the lower code)."
+      },
+      {
+        "name": "ccode2",
+        "description": "COW code of the second state."
+      },
+      {
+        "name": "year",
+        "description": "Calendar year."
+      },
+      {
+        "name": "ccode1abb",
+        "description": "Abbreviation of the first state."
+      },
+      {
+        "name": "ccode1name",
+        "description": "Name of the first state."
+      },
+      {
+        "name": "ccode2abb",
+        "description": "Abbreviation of the second state."
+      },
+      {
+        "name": "ccode2name",
+        "description": "Name of the second state."
+      }
+    ],
+    "limitations": [
+      "Use this as the base for war-versus-no-war analysis: every dyad-year in the system is a row, so dyads without disputes or wars are present.",
+      "It contains no outcome variables; merge MID, war, alliance, trade and capability data onto it.",
+      "About 44 MB as CSV (a few million rows)."
+    ],
+    "is_sample": false
+  },
+  {
+    "id": "cow-directed-dyad-year-2024",
+    "name": "COW State System Membership: directed dyad-year frame",
+    "version": "v2024",
+    "source_url": "https://correlatesofwar.org/data-sets/state-system-membership/",
+    "unit_of_analysis": "directed dyad-year (blank frame, both orderings of each pair)",
+    "years": {
+      "start": 1816,
+      "end": 2024
+    },
+    "variables": [
+      {
+        "name": "ccode1",
+        "description": "COW code of the first state."
+      },
+      {
+        "name": "ccode2",
+        "description": "COW code of the second state."
+      },
+      {
+        "name": "year",
+        "description": "Calendar year."
+      },
+      {
+        "name": "ccode1abb",
+        "description": "Abbreviation of the first state."
+      },
+      {
+        "name": "ccode1name",
+        "description": "Name of the first state."
+      },
+      {
+        "name": "ccode2abb",
+        "description": "Abbreviation of the second state."
+      },
+      {
+        "name": "ccode2name",
+        "description": "Name of the second state."
+      }
+    ],
+    "limitations": [
+      "Blank frame with no outcome variables, twice the size of the non-directed frame.",
+      "About 88 MB as CSV."
+    ],
+    "is_sample": false
+  },
+  {
+    "id": "cow-mida-5.0",
+    "name": "COW Militarized Interstate Disputes (MID) v5.0: disputes (MIDA)",
+    "version": "5.0",
+    "source_url": "https://correlatesofwar.org/data-sets/mids/",
+    "unit_of_analysis": "militarized interstate dispute (one row per dispute)",
+    "years": {
+      "start": 1816,
+      "end": 2014
+    },
+    "variables": [
+      {
+        "name": "dispnum",
+        "description": "Dispute number (join key to MIDB)."
+      },
+      {
+        "name": "stday",
+        "description": "Start day (-9 missing)."
+      },
+      {
+        "name": "stmon",
+        "description": "Start month (-9 missing)."
+      },
+      {
+        "name": "styear",
+        "description": "Start year."
+      },
+      {
+        "name": "endday",
+        "description": "End day (-9 missing)."
+      },
+      {
+        "name": "endmon",
+        "description": "End month (-9 missing)."
+      },
+      {
+        "name": "endyear",
+        "description": "End year."
+      },
+      {
+        "name": "outcome",
+        "description": "Outcome: 1 victory A, 2 victory B, 3 yield A, 4 yield B, 5 stalemate, 6 compromise, 7 released, 8 unclear, 9 joins ongoing war, -9 missing."
+      },
+      {
+        "name": "settle",
+        "description": "Settlement: 1 negotiated, 2 imposed, 3 none, 4 unclear, -9 missing."
+      },
+      {
+        "name": "fatality",
+        "description": "Fatality level: 0 none, 1 = 1-25, 2 = 26-100, 3 = 101-250, 4 = 251-500, 5 = 501-999, 6 = more than 999 deaths, -9 missing."
+      },
+      {
+        "name": "fatalpre",
+        "description": "Precise fatalities if known (-9 missing)."
+      },
+      {
+        "name": "maxdur",
+        "description": "Maximum duration of the dispute in days."
+      },
+      {
+        "name": "mindur",
+        "description": "Minimum duration of the dispute in days."
+      },
+      {
+        "name": "hiact",
+        "description": "Highest action: 0 none, 1-6 threats, 7-12 displays of force, 13-19 uses of force, 20-21 interstate war, -9 missing."
+      },
+      {
+        "name": "hostlev",
+        "description": "Hostility level: 1 no militarized action, 2 threat, 3 display of force, 4 use of force, 5 war."
+      },
+      {
+        "name": "recip",
+        "description": "Reciprocated dispute (1 yes, 0 no)."
+      },
+      {
+        "name": "numa",
+        "description": "Number of states on side A."
+      },
+      {
+        "name": "numb",
+        "description": "Number of states on side B."
+      },
+      {
+        "name": "ongo2014",
+        "description": "1 if still continuing at 6/30/2014."
+      },
+      {
+        "name": "version",
+        "description": "Data version."
+      }
+    ],
+    "limitations": [
+      "Event-only data: it lists only the dyads/states/years in which something happened. To compare war with no war, join it to a complete frame such as cow-nondirected-dyad-year-2024 and treat missing rows as 0.",
+      "MID 5.0 covers 1816-2014. Dyadic MID 4.03 mixes in MID 5.01 coding.",
+      "Missing-data codes (-9, -8, -7) are stored as numbers and must be recoded before analysis."
+    ],
+    "is_sample": false
+  },
+  {
+    "id": "cow-midb-5.0",
+    "name": "COW Militarized Interstate Disputes (MID) v5.0: participants (MIDB)",
+    "version": "5.0",
+    "source_url": "https://correlatesofwar.org/data-sets/mids/",
+    "unit_of_analysis": "dispute participant (one row per state per dispute)",
+    "years": {
+      "start": 1816,
+      "end": 2014
+    },
+    "variables": [
+      {
+        "name": "dispnum",
+        "description": "Dispute number (join key to MIDA)."
+      },
+      {
+        "name": "stabb",
+        "description": "State abbreviation."
+      },
+      {
+        "name": "ccode",
+        "description": "COW country code of the participant."
+      },
+      {
+        "name": "stday",
+        "description": "Start day of participation (-9 missing)."
+      },
+      {
+        "name": "stmon",
+        "description": "Start month of participation."
+      },
+      {
+        "name": "styear",
+        "description": "Start year of participation."
+      },
+      {
+        "name": "endday",
+        "description": "End day of participation."
+      },
+      {
+        "name": "endmon",
+        "description": "End month of participation."
+      },
+      {
+        "name": "endyear",
+        "description": "End year of participation."
+      },
+      {
+        "name": "sidea",
+        "description": "On side A (1 yes, 0 no)."
+      },
+      {
+        "name": "revstate",
+        "description": "Revisionist state (1 yes, 0 no)."
+      },
+      {
+        "name": "revtype1",
+        "description": "Revision sought: 0 not applicable, 1 territory, 2 policy, 3 regime/government, 4 other, -9 missing."
+      },
+      {
+        "name": "revtype2",
+        "description": "Second revision type, same codes as revtype1."
+      },
+      {
+        "name": "fatality",
+        "description": "Fatality level: 0 none, 1 = 1-25, 2 = 26-100, 3 = 101-250, 4 = 251-500, 5 = 501-999, 6 = more than 999 deaths, -9 missing."
+      },
+      {
+        "name": "fatalpre",
+        "description": "Precise fatalities if known."
+      },
+      {
+        "name": "hiact",
+        "description": "Highest action: 0 none, 1-6 threats, 7-12 displays of force, 13-19 uses of force, 20-21 interstate war, -9 missing."
+      },
+      {
+        "name": "hostlev",
+        "description": "Hostility level: 1 no militarized action, 2 threat, 3 display of force, 4 use of force, 5 war."
+      },
+      {
+        "name": "orig",
+        "description": "Originator of the dispute (1 yes, 0 no)."
+      },
+      {
+        "name": "version",
+        "description": "Data version."
+      }
+    ],
+    "limitations": [
+      "Event-only data: it lists only the dyads/states/years in which something happened. To compare war with no war, join it to a complete frame such as cow-nondirected-dyad-year-2024 and treat missing rows as 0.",
+      "MID 5.0 covers 1816-2014. Dyadic MID 4.03 mixes in MID 5.01 coding.",
+      "Missing-data codes (-9, -8, -7) are stored as numbers and must be recoded before analysis."
+    ],
+    "is_sample": false
+  },
+  {
+    "id": "cow-midi-5.01",
+    "name": "COW Militarized Interstate Disputes (MID) v5.01: incidents (MIDI)",
+    "version": "5.01",
+    "source_url": "https://correlatesofwar.org/data-sets/mids/",
+    "unit_of_analysis": "militarized incident within a dispute (one row per incident)",
+    "years": {
+      "start": 1992,
+      "end": 2014
+    },
+    "variables": [
+      {
+        "name": "dispnum",
+        "description": "Dispute number."
+      },
+      {
+        "name": "ord_incidnum",
+        "description": "Incident number in chronological order within the dispute (5.01 field, not described in the codebook text)."
+      },
+      {
+        "name": "stday",
+        "description": "Start day."
+      },
+      {
+        "name": "stmon",
+        "description": "Start month."
+      },
+      {
+        "name": "styear",
+        "description": "Start year."
+      },
+      {
+        "name": "endday",
+        "description": "End day."
+      },
+      {
+        "name": "endmon",
+        "description": "End month."
+      },
+      {
+        "name": "endyear",
+        "description": "End year."
+      },
+      {
+        "name": "duration",
+        "description": "Duration of the incident in days."
+      },
+      {
+        "name": "tbi",
+        "description": "Days between the start of consecutive incidents in the dispute."
+      },
+      {
+        "name": "fatality",
+        "description": "Fatality level: 0 none, 1 = 1-25, 2 = 26-100, 3 = 101-250, 4 = 251-500, 5 = 501-999, 6 = more than 999 deaths, -9 missing."
+      },
+      {
+        "name": "fatalpre",
+        "description": "Precise fatalities if known."
+      },
+      {
+        "name": "action",
+        "description": "Action in the incident, same 0-21 codes as hiact."
+      },
+      {
+        "name": "hostlev",
+        "description": "Hostility level: 1 no militarized action, 2 threat, 3 display of force, 4 use of force, 5 war."
+      },
+      {
+        "name": "numa",
+        "description": "Number of states on side A."
+      },
+      {
+        "name": "version",
+        "description": "Data version."
+      },
+      {
+        "name": "incidnum",
+        "description": "Incident number carried from the MID 5.0 data (5.01 field, not described in the codebook text)."
+      }
+    ],
+    "limitations": [
+      "Incident-level data exist only for disputes starting 1992-2014.",
+      "Event-only data: it lists only the dyads/states/years in which something happened. To compare war with no war, join it to a complete frame such as cow-nondirected-dyad-year-2024 and treat missing rows as 0.",
+      "This 5.01 file replaces MIDI from the MID 5.0 archive.",
+      "Missing-data codes (-9, -8, -7) are stored as numbers and must be recoded before analysis."
+    ],
+    "is_sample": false
+  },
+  {
+    "id": "cow-midip-5.01",
+    "name": "COW Militarized Interstate Disputes (MID) v5.01: incident participants (MIDIP)",
+    "version": "5.01",
+    "source_url": "https://correlatesofwar.org/data-sets/mids/",
+    "unit_of_analysis": "incident participant (one row per state per incident)",
+    "years": {
+      "start": 1992,
+      "end": 2014
+    },
+    "variables": [
+      {
+        "name": "dispnum",
+        "description": "Dispute number."
+      },
+      {
+        "name": "ord_incidnum",
+        "description": "Incident number in chronological order within the dispute (5.01 field, not described in the codebook text)."
+      },
+      {
+        "name": "stabb",
+        "description": "State abbreviation."
+      },
+      {
+        "name": "ccode",
+        "description": "COW country code of the participant."
+      },
+      {
+        "name": "stday",
+        "description": "Start day."
+      },
+      {
+        "name": "stmon",
+        "description": "Start month."
+      },
+      {
+        "name": "styear",
+        "description": "Start year."
+      },
+      {
+        "name": "endday",
+        "description": "End day."
+      },
+      {
+        "name": "endmon",
+        "description": "End month."
+      },
+      {
+        "name": "endyear",
+        "description": "End year."
+      },
+      {
+        "name": "insidea",
+        "description": "On side A of the incident (1 yes, 0 no)."
+      },
+      {
+        "name": "sidea",
+        "description": "On side A of the dispute (1 yes, 0 no)."
+      },
+      {
+        "name": "fatality",
+        "description": "Fatality level: 0 none, 1 = 1-25, 2 = 26-100, 3 = 101-250, 4 = 251-500, 5 = 501-999, 6 = more than 999 deaths, -9 missing."
+      },
+      {
+        "name": "fatalpre",
+        "description": "Precise fatalities if known."
+      },
+      {
+        "name": "action",
+        "description": "Action in the incident, same 0-21 codes as hiact."
+      },
+      {
+        "name": "hostlev",
+        "description": "Hostility level: 1 no militarized action, 2 threat, 3 display of force, 4 use of force, 5 war."
+      },
+      {
+        "name": "revtype1",
+        "description": "Revision sought: 0 not applicable, 1 territory, 2 policy, 3 regime/government, 4 other, -9 missing."
+      },
+      {
+        "name": "revtype2",
+        "description": "Second revision type, same codes as revtype1."
+      },
+      {
+        "name": "version",
+        "description": "Data version."
+      },
+      {
+        "name": "incidnum",
+        "description": "Incident number carried from the MID 5.0 data (5.01 field, not described in the codebook text)."
+      }
+    ],
+    "limitations": [
+      "Incident-level data exist only for disputes starting 1992-2014.",
+      "Event-only data: it lists only the dyads/states/years in which something happened. To compare war with no war, join it to a complete frame such as cow-nondirected-dyad-year-2024 and treat missing rows as 0.",
+      "This 5.01 file replaces MIDIP from the MID 5.0 archive.",
+      "Missing-data codes (-9, -8, -7) are stored as numbers and must be recoded before analysis."
+    ],
+    "is_sample": false
+  },
+  {
+    "id": "cow-dyadic-mid-4.03",
+    "name": "COW Dyadic MID v4.03 (Maoz et al.)",
+    "version": "4.03",
+    "source_url": "https://correlatesofwar.org/data-sets/mids/",
+    "unit_of_analysis": "directed dyad-year within a militarized dispute (only dyad-years inside a dispute)",
+    "years": {
+      "start": 1816,
+      "end": 2014
+    },
+    "variables": [
+      {
+        "name": "disno",
+        "description": "Dispute number (matches MID dispnum)."
+      },
+      {
+        "name": "dyindex",
+        "description": "Dyadic index; for a bilateral dispute it is the dispute number plus .001."
+      },
+      {
+        "name": "statea",
+        "description": "COW code of state A."
+      },
+      {
+        "name": "namea",
+        "description": "Abbreviation of state A."
+      },
+      {
+        "name": "stateb",
+        "description": "COW code of state B."
+      },
+      {
+        "name": "nameb",
+        "description": "Abbreviation of state B."
+      },
+      {
+        "name": "year",
+        "description": "Year of the dyad-year row."
+      },
+      {
+        "name": "strtday",
+        "description": "Dispute start day."
+      },
+      {
+        "name": "strtmnth",
+        "description": "Dispute start month."
+      },
+      {
+        "name": "strtyr",
+        "description": "Dispute start year."
+      },
+      {
+        "name": "endday",
+        "description": "Dispute end day."
+      },
+      {
+        "name": "endmnth",
+        "description": "Dispute end month."
+      },
+      {
+        "name": "endyear",
+        "description": "Dispute end year."
+      },
+      {
+        "name": "outcome",
+        "description": "Dyadic outcome, listed only for the last year of the dispute (0 ongoing, 1 victory A, 2 victory B, and so on)."
+      },
+      {
+        "name": "settlmnt",
+        "description": "Dyadic settlement type, listed only for the last year."
+      },
+      {
+        "name": "fatlev",
+        "description": "Dyadic fatality level, listed only for the last year."
+      },
+      {
+        "name": "hihost",
+        "description": "Highest hostility level in the dyadic dispute (1-5)."
+      },
+      {
+        "name": "recip",
+        "description": "Reciprocated dyadic dispute (1 yes, 0 no)."
+      },
+      {
+        "name": "sideaa",
+        "description": "State A on the initiator side (1 yes, 0 no)."
+      },
+      {
+        "name": "revstata",
+        "description": "State A revisionist (1 yes, 0 no)."
+      },
+      {
+        "name": "revtypea",
+        "description": "Revision sought: 0 not applicable, 1 territory, 2 policy, 3 regime/government, 4 other, -9 missing."
+      },
+      {
+        "name": "sideab",
+        "description": "State B on the initiator side (1 yes, 0 no)."
+      },
+      {
+        "name": "revstatb",
+        "description": "State B revisionist (1 yes, 0 no)."
+      },
+      {
+        "name": "revtypeb",
+        "description": "State B revision type, same codes as revtypea."
+      },
+      {
+        "name": "rolea",
+        "description": "Role of state A in the dispute: 1 primary initiator, 2 joiner on initiator side, 3 primary target, 4 joiner on target side."
+      },
+      {
+        "name": "roleb",
+        "description": "Role of state B in the dispute, same codes."
+      },
+      {
+        "name": "dyad_rolea",
+        "description": "Role of state A in the dyadic MID: 1 initiator, 2 simultaneous first action, 3 target."
+      },
+      {
+        "name": "dyad_roleb",
+        "description": "Role of state B in the dyadic MID, same codes."
+      },
+      {
+        "name": "war",
+        "description": "1 if the dyad was a COW war dyad that year."
+      },
+      {
+        "name": "durindx",
+        "description": "Year of the dispute (1 = first year, 2 = second, and so on)."
+      },
+      {
+        "name": "duration",
+        "description": "Dispute days during this year."
+      },
+      {
+        "name": "cumdurat",
+        "description": "Cumulative days from the dispute start to the end of this year."
+      },
+      {
+        "name": "mid5hiact",
+        "description": "Highest action in the dyad using MID 5.01 coding."
+      },
+      {
+        "name": "severity",
+        "description": "Severity score of the highest action in the dyadic MID (0-100)."
+      },
+      {
+        "name": "ongo2014",
+        "description": "1 if the MID was ongoing at the end of the data."
+      }
+    ],
+    "limitations": [
+      "Lists only dyad-years inside a dispute, so it cannot show peace by itself. Event-only data: it lists only the dyads/states/years in which something happened. To compare war with no war, join it to a complete frame such as cow-nondirected-dyad-year-2024 and treat missing rows as 0.",
+      "Only a selection of the file's 56 columns is declared here (it also holds state-level fatality, severity and change-tracking columns).",
+      "It is built on MID 4.x with MID 5.01 fields added, and is not identical to MID 5.0."
+    ],
+    "is_sample": false
+  },
+  {
+    "id": "cow-midloca-2.1",
+    "name": "COW MID Locations v2.1: disputes (MIDLOC-A)",
+    "version": "2.1",
+    "source_url": "https://correlatesofwar.org/data-sets/midloc/",
+    "unit_of_analysis": "militarized dispute location (one row per dispute)",
+    "years": {
+      "start": 1816,
+      "end": 2010
+    },
+    "variables": [
+      {
+        "name": "year",
+        "description": "Year of the dispute."
+      },
+      {
+        "name": "dispnum",
+        "description": "Dispute number (join key to MID)."
+      },
+      {
+        "name": "midloc2_location",
+        "description": "Text description of the location."
+      },
+      {
+        "name": "midloc2_xlongitude",
+        "description": "Longitude (decimal degrees)."
+      },
+      {
+        "name": "midloc2_ylatitude",
+        "description": "Latitude (decimal degrees)."
+      },
+      {
+        "name": "midloc2_precision",
+        "description": "Precision code of the coordinates (higher means a coarser estimate)."
+      },
+      {
+        "name": "priogrid_cell",
+        "description": "PRIO-GRID cell containing the point."
+      }
+    ],
+    "limitations": [
+      "Locations are approximate (often the midpoint of a border); check midloc2_precision before using coordinates.",
+      "Only some of the file's 16 columns are declared (the MIDLOC 1.1 comparison columns are omitted).",
+      "Event data only: no rows for places without disputes."
+    ],
+    "is_sample": false
+  },
+  {
+    "id": "cow-midloci-2.1",
+    "name": "COW MID Locations v2.1: incidents (MIDLOC-I)",
+    "version": "2.1",
+    "source_url": "https://correlatesofwar.org/data-sets/midloc/",
+    "unit_of_analysis": "militarized incident location (one row per incident)",
+    "years": {
+      "start": 1992,
+      "end": 2010
+    },
+    "variables": [
+      {
+        "name": "year",
+        "description": "Year of the incident."
+      },
+      {
+        "name": "dispnum",
+        "description": "Dispute number."
+      },
+      {
+        "name": "incidnum",
+        "description": "Incident number (matches MID incident files)."
+      },
+      {
+        "name": "midloc2_location",
+        "description": "Text description of the location."
+      },
+      {
+        "name": "midloc2_xlongitude",
+        "description": "Longitude (decimal degrees)."
+      },
+      {
+        "name": "midloc2_ylatitude",
+        "description": "Latitude (decimal degrees)."
+      },
+      {
+        "name": "midloc2_precision",
+        "description": "Precision code of the coordinates."
+      },
+      {
+        "name": "onset",
+        "description": "1 if this incident started the dispute."
+      },
+      {
+        "name": "priogrid_cell",
+        "description": "PRIO-GRID cell containing the point."
+      }
+    ],
+    "limitations": [
+      "Locations are approximate (often the midpoint of a border); check midloc2_precision before using coordinates.",
+      "Covers incidents of disputes 1992-2010 only.",
+      "Only some of the file's 18 columns are declared."
+    ],
+    "is_sample": false
+  },
+  {
+    "id": "cow-interstate-war-4.0",
+    "name": "COW Inter-State War Data v4.0 (state participants)",
+    "version": "4.0",
+    "source_url": "https://correlatesofwar.org/data-sets/cow-war/",
+    "unit_of_analysis": "war participant (one row per state per inter-state war)",
+    "years": {
+      "start": 1823,
+      "end": 2003
+    },
+    "variables": [
+      {
+        "name": "WarNum",
+        "description": "War number."
+      },
+      {
+        "name": "WarName",
+        "description": "War name."
+      },
+      {
+        "name": "WarType",
+        "description": "Type of war (1 = inter-state)."
+      },
+      {
+        "name": "ccode",
+        "description": "COW country code of the participant."
+      },
+      {
+        "name": "StateName",
+        "description": "Name of the participant state."
+      },
+      {
+        "name": "Side",
+        "description": "Side of the war the participant fought on (codes 1 and 2; not defined in the codebook text)."
+      },
+      {
+        "name": "StartMonth1",
+        "description": "The month the first period of sustained combat began (-9 unknown, -8 not applicable, -7 ongoing)."
+      },
+      {
+        "name": "StartDay1",
+        "description": "The day the first period of sustained combat began (-9 unknown, -8 not applicable, -7 ongoing)."
+      },
+      {
+        "name": "StartYear1",
+        "description": "The year the first period of sustained combat began (-9 unknown, -8 not applicable, -7 ongoing)."
+      },
+      {
+        "name": "EndMonth1",
+        "description": "The month the first period of sustained combat ended (-9 unknown, -8 not applicable, -7 ongoing)."
+      },
+      {
+        "name": "EndDay1",
+        "description": "The day the first period of sustained combat ended (-9 unknown, -8 not applicable, -7 ongoing)."
+      },
+      {
+        "name": "EndYear1",
+        "description": "The year the first period of sustained combat ended (-9 unknown, -8 not applicable, -7 ongoing)."
+      },
+      {
+        "name": "StartMonth2",
+        "description": "The month the after a break in fighting began (-9 unknown, -8 not applicable, -7 ongoing)."
+      },
+      {
+        "name": "StartDay2",
+        "description": "The day the after a break in fighting began (-9 unknown, -8 not applicable, -7 ongoing)."
+      },
+      {
+        "name": "StartYear2",
+        "description": "The year the after a break in fighting began (-9 unknown, -8 not applicable, -7 ongoing)."
+      },
+      {
+        "name": "EndMonth2",
+        "description": "The month the after a break in fighting ended (-9 unknown, -8 not applicable, -7 ongoing)."
+      },
+      {
+        "name": "EndDay2",
+        "description": "The day the after a break in fighting ended (-9 unknown, -8 not applicable, -7 ongoing)."
+      },
+      {
+        "name": "EndYear2",
+        "description": "The year the after a break in fighting ended (-9 unknown, -8 not applicable, -7 ongoing)."
+      },
+      {
+        "name": "TransFrom",
+        "description": "Number of an earlier war that was transformed into this one (-8 not applicable)."
+      },
+      {
+        "name": "WhereFought",
+        "description": "Region where the state fought (1 W. Hemisphere, 2 Europe, 4 Africa, 6 Middle East, 7 Asia, 9 Oceania, 11+ combinations)."
+      },
+      {
+        "name": "Initiator",
+        "description": "Whether the state initiated the war (1 yes, 2 no)."
+      },
+      {
+        "name": "Outcome",
+        "description": "Outcome for the state: 1 winner, 2 loser, 3 compromise/tied, 4 transformed, 5 ongoing, 6 stalemate, 7 continues below war level, 8 changed sides."
+      },
+      {
+        "name": "TransTo",
+        "description": "Number of the war this one transformed into (-8 not applicable)."
+      },
+      {
+        "name": "BatDeath",
+        "description": "Battle-related combatant deaths suffered by the state (-9 unknown)."
+      },
+      {
+        "name": "Version",
+        "description": "Data version."
+      }
+    ],
+    "limitations": [
+      "A war needs 1,000 battle deaths in a year, so this holds wars only. Event-only data: it lists only the dyads/states/years in which something happened. To compare war with no war, join it to a complete frame such as cow-nondirected-dyad-year-2024 and treat missing rows as 0.",
+      "Header uses old Mac (CR) line endings and some files are ISO-8859 text.",
+      "Missing-data codes (-9, -8, -7) are stored as numbers and must be recoded before analysis.",
+      "Covers 1816-2007."
+    ],
+    "is_sample": false
+  },
+  {
+    "id": "cow-intrastate-war-5.1",
+    "name": "COW Intra-State War Data v5.1 (wars)",
+    "version": "5.1",
+    "source_url": "https://correlatesofwar.org/data-sets/cow-war/",
+    "unit_of_analysis": "intra-state war (one row per war)",
+    "years": {
+      "start": 1818,
+      "end": 2014
+    },
+    "variables": [
+      {
+        "name": "WarNum",
+        "description": "War number."
+      },
+      {
+        "name": "WarName",
+        "description": "War name."
+      },
+      {
+        "name": "V5RegionNum",
+        "description": "Region of combat: 1 N. America, 2 S. America, 3 Europe, 4 Sub-Saharan Africa, 5 Middle East and N. Africa, 6 Asia and Oceania."
+      },
+      {
+        "name": "WarType",
+        "description": "4 civil war for central control, 5 civil war over local issues, 6 regional internal, 7 intercommunal."
+      },
+      {
+        "name": "CcodeA",
+        "description": "COW code of the primary state on side A (-8 if not a state)."
+      },
+      {
+        "name": "SideA",
+        "description": "Name of the primary participant on side A."
+      },
+      {
+        "name": "SideB",
+        "description": "Name of the primary participant(s) on side B."
+      },
+      {
+        "name": "Intnl",
+        "description": "1 if the war was internationalized."
+      },
+      {
+        "name": "StartYr1",
+        "description": "Year sustained combat began."
+      },
+      {
+        "name": "EndYr1",
+        "description": "Year sustained combat ended (-7 ongoing, -9 unknown)."
+      },
+      {
+        "name": "WDuratDays",
+        "description": "War duration in days."
+      },
+      {
+        "name": "WDuratMo",
+        "description": "War duration in months."
+      },
+      {
+        "name": "TotNatMonWar",
+        "description": "Total months of war."
+      },
+      {
+        "name": "TransFrom",
+        "description": "Earlier war transformed into this one (-8 not applicable)."
+      },
+      {
+        "name": "Initiator",
+        "description": "Name of the participant that began the war."
+      },
+      {
+        "name": "Outcome",
+        "description": "1 side A wins, 2 side B wins, 3 compromise, 4 transformed, 5 ongoing, 6 stalemate, 7 continues below war level."
+      },
+      {
+        "name": "TransTo",
+        "description": "War this one transformed into (-8 not applicable)."
+      },
+      {
+        "name": "DeathsSideA",
+        "description": "Battle deaths of side A (-8 not applicable, -9 unknown)."
+      },
+      {
+        "name": "DeathsSideB",
+        "description": "Battle deaths of side B."
+      },
+      {
+        "name": "TotalBDeaths",
+        "description": "Total battle deaths of both sides."
+      },
+      {
+        "name": "Version",
+        "description": "Data version."
+      }
+    ],
+    "limitations": [
+      "A war needs 1,000 battle deaths in a year, so this holds wars only. Event-only data: it lists only the dyads/states/years in which something happened. To compare war with no war, join it to a complete frame such as cow-nondirected-dyad-year-2024 and treat missing rows as 0.",
+      "Header uses old Mac (CR) line endings and some files are ISO-8859 text.",
+      "Missing-data codes (-9, -8, -7) are stored as numbers and must be recoded before analysis.",
+      "Covers 1816-2014.",
+      "Only the first period's year columns and the main outcome columns are declared; the file also has day/month columns and up to four fighting periods."
+    ],
+    "is_sample": false
+  },
+  {
+    "id": "cow-intrastate-war-participants-5.1",
+    "name": "COW Intra-State War Data v5.1 (state participants)",
+    "version": "5.1",
+    "source_url": "https://correlatesofwar.org/data-sets/cow-war/",
+    "unit_of_analysis": "intra-state war with state participants (one row per war or state participant)",
+    "years": {
+      "start": 1818,
+      "end": 2015
+    },
+    "variables": [
+      {
+        "name": "WarNum",
+        "description": "War number (decimal numbers mark added records)."
+      },
+      {
+        "name": "WarName",
+        "description": "War name."
+      },
+      {
+        "name": "V5Region",
+        "description": "Region of combat (see the intra-state war file)."
+      },
+      {
+        "name": "WarType",
+        "description": "4 civil war for central control, 5 civil war over local issues, 6 regional internal, 7 intercommunal."
+      },
+      {
+        "name": "CcodeA",
+        "description": "COW code of the state on side A (-8 if not a state)."
+      },
+      {
+        "name": "SideA",
+        "description": "Name of the side A participant."
+      },
+      {
+        "name": "CcodeB",
+        "description": "COW code of the participant on side B (-8 if not a state)."
+      },
+      {
+        "name": "SideB",
+        "description": "Name of the side B participant(s)."
+      },
+      {
+        "name": "Intnl",
+        "description": "1 if the war was internationalized."
+      },
+      {
+        "name": "StartYr1",
+        "description": "Year sustained combat began."
+      },
+      {
+        "name": "EndYr1",
+        "description": "Year sustained combat ended."
+      },
+      {
+        "name": "Initiator",
+        "description": "Name of the participant that began the war."
+      },
+      {
+        "name": "Outcome",
+        "description": "1 side A wins, 2 side B wins, 3 compromise, and so on (same as the wars file)."
+      },
+      {
+        "name": "Deaths A",
+        "description": "Battle deaths of the side A participant."
+      },
+      {
+        "name": "Deaths B",
+        "description": "Battle deaths of the side B participant."
+      },
+      {
+        "name": "TotalBDeaths",
+        "description": "Total battle deaths of both sides."
+      },
+      {
+        "name": "SideAPeakTotForces",
+        "description": "Peak total military forces of side A."
+      },
+      {
+        "name": "SideBPeakTotForces",
+        "description": "Peak total military forces of side B."
+      },
+      {
+        "name": "Version",
+        "description": "Data version."
+      }
+    ],
+    "limitations": [
+      "A war needs 1,000 battle deaths in a year, so this holds wars only. Event-only data: it lists only the dyads/states/years in which something happened. To compare war with no war, join it to a complete frame such as cow-nondirected-dyad-year-2024 and treat missing rows as 0.",
+      "Header uses old Mac (CR) line endings and some files are ISO-8859 text.",
+      "Missing-data codes (-9, -8, -7) are stored as numbers and must be recoded before analysis.",
+      "Covers 1816-2014. Column names 'Deaths A' and 'Deaths B' contain a space, exactly as in the file.",
+      "Only some of the 47 columns are declared."
+    ],
+    "is_sample": false
+  },
+  {
+    "id": "cow-extrastate-war-4.0",
+    "name": "COW Extra-State War Data v4.0",
+    "version": "4.0",
+    "source_url": "https://correlatesofwar.org/data-sets/cow-war/",
+    "unit_of_analysis": "extra-state (colonial or imperial) war, state versus non-state entity",
+    "years": {
+      "start": 1816,
+      "end": 2006
+    },
+    "variables": [
+      {
+        "name": "WarNum",
+        "description": "War number."
+      },
+      {
+        "name": "WarName",
+        "description": "War name."
+      },
+      {
+        "name": "WarType",
+        "description": "2 colonial war, 3 imperial war."
+      },
+      {
+        "name": "ccode1",
+        "description": "COW code of the participant on side A (-8 if not a state)."
+      },
+      {
+        "name": "SideA",
+        "description": "Name of the side A participant."
+      },
+      {
+        "name": "ccode2",
+        "description": "COW code of the participant on side B (-8 if not a state)."
+      },
+      {
+        "name": "SideB",
+        "description": "Name of the side B participant(s)."
+      },
+      {
+        "name": "StartYear1",
+        "description": "Year sustained combat began."
+      },
+      {
+        "name": "EndYear1",
+        "description": "Year sustained combat ended (-7 ongoing, -9 unknown)."
+      },
+      {
+        "name": "Initiator",
+        "description": "Did the side A participant initiate the war (0 no, 1 yes)."
+      },
+      {
+        "name": "Interven",
+        "description": "Did an additional state intervene (0 no, 1 yes)."
+      },
+      {
+        "name": "TransFrom",
+        "description": "Earlier war transformed into this one (-8 not applicable)."
+      },
+      {
+        "name": "Outcome",
+        "description": "1 side A wins, 2 side B wins, 3 compromise, 4 transformed, 5 ongoing, 6 stalemate, 7 continues below war level."
+      },
+      {
+        "name": "TransTo",
+        "description": "War this one transformed into (-8 not applicable)."
+      },
+      {
+        "name": "WhereFought",
+        "description": "Region where combat occurred."
+      },
+      {
+        "name": "BatDeath",
+        "description": "Battle deaths of the state side (-9 unknown)."
+      },
+      {
+        "name": "NonStateDeaths",
+        "description": "Battle deaths of the non-state side (-9 unknown)."
+      },
+      {
+        "name": "Version",
+        "description": "Data version."
+      }
+    ],
+    "limitations": [
+      "A war needs 1,000 battle deaths in a year, so this holds wars only. Event-only data: it lists only the dyads/states/years in which something happened. To compare war with no war, join it to a complete frame such as cow-nondirected-dyad-year-2024 and treat missing rows as 0.",
+      "Header uses old Mac (CR) line endings and some files are ISO-8859 text.",
+      "Missing-data codes (-9, -8, -7) are stored as numbers and must be recoded before analysis.",
+      "Covers 1816-2007.",
+      "Only some columns are declared (month, day and second-period columns omitted). The header contains the name 'EndDay2 ' with a trailing space."
+    ],
+    "is_sample": false
+  },
+  {
+    "id": "cow-nonstate-war-4.0",
+    "name": "COW Non-State War Data v4.0",
+    "version": "4.0",
+    "source_url": "https://correlatesofwar.org/data-sets/cow-war/",
+    "unit_of_analysis": "non-state war (between non-state armed groups)",
+    "years": {
+      "start": 1818,
+      "end": 2005
+    },
+    "variables": [
+      {
+        "name": "WarNum",
+        "description": "War number."
+      },
+      {
+        "name": "WarName",
+        "description": "War name."
+      },
+      {
+        "name": "WarType",
+        "description": "8 between non-state entities in non-state territory, 9 across state borders."
+      },
+      {
+        "name": "WhereFought",
+        "description": "Region where combat occurred."
+      },
+      {
+        "name": "SideA1",
+        "description": "First armed group on side A."
+      },
+      {
+        "name": "SideB1",
+        "description": "First armed group on side B."
+      },
+      {
+        "name": "StartYear",
+        "description": "Year combat began."
+      },
+      {
+        "name": "EndYear",
+        "description": "Year combat ended."
+      },
+      {
+        "name": "Initiator",
+        "description": "Side that began combat (A or B)."
+      },
+      {
+        "name": "Outcome",
+        "description": "1 side A wins, 2 side B wins, 3 compromise, 4 transformed, 5 ongoing, 6 stalemate, 7 continues below war level."
+      },
+      {
+        "name": "SideADeaths",
+        "description": "Battle deaths of side A (-9 unknown)."
+      },
+      {
+        "name": "SideBDeaths",
+        "description": "Battle deaths of side B (-9 unknown)."
+      },
+      {
+        "name": "TotalCombatDeaths",
+        "description": "Total combatant deaths."
+      },
+      {
+        "name": "Version",
+        "description": "Data version."
+      }
+    ],
+    "limitations": [
+      "A war needs 1,000 battle deaths in a year, so this holds wars only. Event-only data: it lists only the dyads/states/years in which something happened. To compare war with no war, join it to a complete frame such as cow-nondirected-dyad-year-2024 and treat missing rows as 0.",
+      "Header uses old Mac (CR) line endings and some files are ISO-8859 text.",
+      "Missing-data codes (-9, -8, -7) are stored as numbers and must be recoded before analysis.",
+      "Covers 1816-2007; only 62 wars. States are not coded, so it cannot be merged by ccode.",
+      "Only some columns are declared (more side and month/day columns exist)."
+    ],
+    "is_sample": false
+  },
+  {
+    "id": "cow-dyadic-interstate-war",
+    "name": "COW Directed Dyadic Interstate War Dataset (Maoz)",
+    "version": "May 2018",
+    "source_url": "https://correlatesofwar.org/data-sets/cow-war/",
+    "unit_of_analysis": "directed dyad-year within an inter-state war",
+    "years": {
+      "start": 1823,
+      "end": 2003
+    },
+    "variables": [
+      {
+        "name": "warnum",
+        "description": "COW war number."
+      },
+      {
+        "name": "disno",
+        "description": "MID 4.2 dispute number."
+      },
+      {
+        "name": "dyindex",
+        "description": "Dyadic MID index number."
+      },
+      {
+        "name": "statea",
+        "description": "COW code of state A."
+      },
+      {
+        "name": "stateb",
+        "description": "COW code of state B."
+      },
+      {
+        "name": "warstrtyr",
+        "description": "War start year."
+      },
+      {
+        "name": "warendyr",
+        "description": "War end year."
+      },
+      {
+        "name": "year",
+        "description": "Year of the row."
+      },
+      {
+        "name": "warolea",
+        "description": "Role of state A in the war: 1 primary initiator, 2 joiner on initiator side, 3 primary target, 4 joiner on target side."
+      },
+      {
+        "name": "waroleb",
+        "description": "Role of state B in the war, same codes."
+      },
+      {
+        "name": "wardyadrolea",
+        "description": "Role of state A in the dyadic war: 1 initiator, 3 target."
+      },
+      {
+        "name": "wardyadroleb",
+        "description": "Role of state B in the dyadic war."
+      },
+      {
+        "name": "outcomea",
+        "description": "Outcome for state A: 1 win, 2 draw, 3 lose."
+      },
+      {
+        "name": "batdtha",
+        "description": "Battle deaths of state A (may be below 100)."
+      },
+      {
+        "name": "batdthb",
+        "description": "Battle deaths of state B."
+      },
+      {
+        "name": "batdths",
+        "description": "Total battle deaths."
+      },
+      {
+        "name": "durindx",
+        "description": "Year of the ongoing war (1 = first year)."
+      }
+    ],
+    "limitations": [
+      "Wars only (1816-2010), at dyad level: Event-only data: it lists only the dyads/states/years in which something happened. To compare war with no war, join it to a complete frame such as cow-nondirected-dyad-year-2024 and treat missing rows as 0.",
+      "Compatible with dyadic MID but built by a different author than the COW war files; numbers may differ from them.",
+      "Only some columns are declared (month and day columns omitted)."
+    ],
+    "is_sample": false
+  },
+  {
+    "id": "cow-nmc-7.0",
+    "name": "COW National Material Capabilities v7.0 (abridged)",
+    "version": "7.0",
+    "source_url": "https://correlatesofwar.org/data-sets/national-material-capabilities/",
+    "unit_of_analysis": "country-year",
+    "years": {
+      "start": 1816,
+      "end": 2022
+    },
+    "variables": [
+      {
+        "name": "stateabb",
+        "description": "State abbreviation."
+      },
+      {
+        "name": "ccode",
+        "description": "COW country code."
+      },
+      {
+        "name": "year",
+        "description": "Calendar year."
+      },
+      {
+        "name": "milex",
+        "description": "Military expenditures in thousands of current US dollars (British pounds for 1816-1913)."
+      },
+      {
+        "name": "milper",
+        "description": "Military personnel in thousands."
+      },
+      {
+        "name": "irst",
+        "description": "Iron and steel production in thousands of tons."
+      },
+      {
+        "name": "pec",
+        "description": "Primary energy consumption in thousands of coal-ton equivalents."
+      },
+      {
+        "name": "tpop",
+        "description": "Total population in thousands."
+      },
+      {
+        "name": "upop",
+        "description": "Urban population (cities over 100,000) in thousands."
+      },
+      {
+        "name": "cinc",
+        "description": "Composite Index of National Capability: the state's share of world capabilities, between 0 and 1."
+      },
+      {
+        "name": "version",
+        "description": "Data version."
+      }
+    ],
+    "limitations": [
+      "Covers 1816-2022. Values are yearly state totals, not shares of any dyad.",
+      "Some components are missing for some states and years (coded as missing or negative codes); CINC averages only the non-missing shares."
+    ],
+    "is_sample": false
+  },
+  {
+    "id": "cow-nmc-7.0-supplemental",
+    "name": "COW National Material Capabilities v7.0 (with sources and notes)",
+    "version": "7.0",
+    "source_url": "https://correlatesofwar.org/data-sets/national-material-capabilities/",
+    "unit_of_analysis": "country-year",
+    "years": {
+      "start": 1816,
+      "end": 2022
+    },
+    "variables": [
+      {
+        "name": "statenme",
+        "description": "State name."
+      },
+      {
+        "name": "stateabb",
+        "description": "State abbreviation."
+      },
+      {
+        "name": "ccode",
+        "description": "COW country code."
+      },
+      {
+        "name": "year",
+        "description": "Calendar year."
+      },
+      {
+        "name": "milex",
+        "description": "Military expenditures in thousands of current US dollars (British pounds for 1816-1913)."
+      },
+      {
+        "name": "milper",
+        "description": "Military personnel in thousands."
+      },
+      {
+        "name": "irst",
+        "description": "Iron and steel production in thousands of tons."
+      },
+      {
+        "name": "pec",
+        "description": "Primary energy consumption in thousands of coal-ton equivalents."
+      },
+      {
+        "name": "tpop",
+        "description": "Total population in thousands."
+      },
+      {
+        "name": "upop",
+        "description": "Urban population (cities over 100,000) in thousands."
+      },
+      {
+        "name": "cinc",
+        "description": "Composite Index of National Capability: the state's share of world capabilities, between 0 and 1."
+      },
+      {
+        "name": "milexsource",
+        "description": "Source of the military expenditure value."
+      },
+      {
+        "name": "milexnote",
+        "description": "Coder note on military expenditure."
+      },
+      {
+        "name": "milpersource",
+        "description": "Source of the military personnel value."
+      },
+      {
+        "name": "milpernote",
+        "description": "Coder note on military personnel."
+      },
+      {
+        "name": "irstqualitycode",
+        "description": "Quality code for iron and steel data."
+      },
+      {
+        "name": "pecqualitycode",
+        "description": "Quality code for energy data."
+      },
+      {
+        "name": "tpopqualitycode",
+        "description": "Quality code for total population."
+      },
+      {
+        "name": "upopqualitycode",
+        "description": "Quality code for urban population."
+      },
+      {
+        "name": "version",
+        "description": "Data version."
+      }
+    ],
+    "limitations": [
+      "Covers 1816-2022. Values are yearly state totals, not shares of any dyad.",
+      "Some components are missing for some states and years (coded as missing or negative codes); CINC averages only the non-missing shares.",
+      "Has the abridged file's columns plus source and note columns; only some of the extra columns are declared."
+    ],
+    "is_sample": false
+  },
+  {
+    "id": "cow-alliance-4.1-dyad",
+    "name": "COW Formal Interstate Alliance Dataset v4.1: dyad (alliance spells)",
+    "version": "4.1",
+    "source_url": "https://correlatesofwar.org/data-sets/formal-alliances/",
+    "unit_of_analysis": "alliance dyad spell (one row per dyad per alliance)",
+    "years": {
+      "start": 1816,
+      "end": 2012
+    },
+    "variables": [
+      {
+        "name": "version4id",
+        "description": "Alliance ID."
+      },
+      {
+        "name": "ccode1",
+        "description": "COW code of the first state."
+      },
+      {
+        "name": "state_name1",
+        "description": "Name of the first state."
+      },
+      {
+        "name": "ccode2",
+        "description": "COW code of the second state."
+      },
+      {
+        "name": "state_name2",
+        "description": "Name of the second state."
+      },
+      {
+        "name": "dyad_st_year",
+        "description": "Year the dyadic alliance began."
+      },
+      {
+        "name": "dyad_end_year",
+        "description": "Year the dyadic alliance ended (empty if still in effect)."
+      },
+      {
+        "name": "left_censor",
+        "description": "1 if it began before 1816."
+      },
+      {
+        "name": "right_censor",
+        "description": "1 if still in effect at the end of 2012."
+      },
+      {
+        "name": "defense",
+        "description": "1 if the member signed terms including defense of one or more allies."
+      },
+      {
+        "name": "neutrality",
+        "description": "1 if the terms include neutrality toward allies."
+      },
+      {
+        "name": "nonaggression",
+        "description": "1 if the terms include a promise of non-aggression."
+      },
+      {
+        "name": "entente",
+        "description": "1 if the terms include an understanding to consult in a crisis."
+      },
+      {
+        "name": "asymmetric",
+        "description": "1 if some terms apply to only some members."
+      },
+      {
+        "name": "version",
+        "description": "Data version."
+      }
+    ],
+    "limitations": [
+      "Lists alliances only, so state pairs with no alliance have no rows. Join to a dyad-year frame and treat missing rows as 0.",
+      "Covers 1816-2012."
+    ],
+    "is_sample": false
+  },
+  {
+    "id": "cow-alliance-4.1-dyad-yearly",
+    "name": "COW Formal Interstate Alliance Dataset v4.1: dyad-year",
+    "version": "4.1",
+    "source_url": "https://correlatesofwar.org/data-sets/formal-alliances/",
+    "unit_of_analysis": "alliance dyad-year (one row per allied dyad per year)",
+    "years": {
+      "start": 1816,
+      "end": 2012
+    },
+    "variables": [
+      {
+        "name": "version4id",
+        "description": "Alliance ID."
+      },
+      {
+        "name": "ccode1",
+        "description": "COW code of the first state."
+      },
+      {
+        "name": "ccode2",
+        "description": "COW code of the second state."
+      },
+      {
+        "name": "dyad_st_year",
+        "description": "Year the dyadic alliance began."
+      },
+      {
+        "name": "dyad_end_year",
+        "description": "Year the dyadic alliance ended."
+      },
+      {
+        "name": "year",
+        "description": "Observation year."
+      },
+      {
+        "name": "defense",
+        "description": "1 if the member signed terms including defense of one or more allies."
+      },
+      {
+        "name": "neutrality",
+        "description": "1 if the terms include neutrality toward allies."
+      },
+      {
+        "name": "nonaggression",
+        "description": "1 if the terms include a promise of non-aggression."
+      },
+      {
+        "name": "entente",
+        "description": "1 if the terms include an understanding to consult in a crisis."
+      },
+      {
+        "name": "version",
+        "description": "Data version."
+      }
+    ],
+    "limitations": [
+      "Lists alliances only, so state pairs with no alliance have no rows. Join to a dyad-year frame and treat missing rows as 0.",
+      "Covers 1816-2012.",
+      "Rows exist only for allied dyad-years; this is the file to merge onto a dyad-year frame."
+    ],
+    "is_sample": false
+  },
+  {
+    "id": "cow-alliance-4.1-directed-yearly",
+    "name": "COW Formal Interstate Alliance Dataset v4.1: directed dyad-year",
+    "version": "4.1",
+    "source_url": "https://correlatesofwar.org/data-sets/formal-alliances/",
+    "unit_of_analysis": "alliance directed dyad-year (both orderings of each allied pair)",
+    "years": {
+      "start": 1816,
+      "end": 2012
+    },
+    "variables": [
+      {
+        "name": "version4id",
+        "description": "Alliance ID."
+      },
+      {
+        "name": "ccode1",
+        "description": "COW code of the first state."
+      },
+      {
+        "name": "ccode2",
+        "description": "COW code of the second state."
+      },
+      {
+        "name": "dyad_st_year",
+        "description": "Year the dyadic alliance began."
+      },
+      {
+        "name": "dyad_end_year",
+        "description": "Year the dyadic alliance ended."
+      },
+      {
+        "name": "year",
+        "description": "Observation year."
+      },
+      {
+        "name": "defense",
+        "description": "1 if the member signed terms including defense of one or more allies."
+      },
+      {
+        "name": "neutrality",
+        "description": "1 if the terms include neutrality toward allies."
+      },
+      {
+        "name": "nonaggression",
+        "description": "1 if the terms include a promise of non-aggression."
+      },
+      {
+        "name": "entente",
+        "description": "1 if the terms include an understanding to consult in a crisis."
+      },
+      {
+        "name": "version",
+        "description": "Data version."
+      }
+    ],
+    "limitations": [
+      "Lists alliances only, so state pairs with no alliance have no rows. Join to a dyad-year frame and treat missing rows as 0.",
+      "Covers 1816-2012.",
+      "Terms are specific to the direction (what state 1 committed to toward state 2)."
+    ],
+    "is_sample": false
+  },
+  {
+    "id": "cow-alliance-4.1-member-yearly",
+    "name": "COW Formal Interstate Alliance Dataset v4.1: member-year",
+    "version": "4.1",
+    "source_url": "https://correlatesofwar.org/data-sets/formal-alliances/",
+    "unit_of_analysis": "alliance member-year (one row per state per alliance per year)",
+    "years": {
+      "start": 1816,
+      "end": 2012
+    },
+    "variables": [
+      {
+        "name": "version4id",
+        "description": "Alliance ID."
+      },
+      {
+        "name": "ccode",
+        "description": "COW code of the member."
+      },
+      {
+        "name": "state_name",
+        "description": "Member name."
+      },
+      {
+        "name": "ss_type",
+        "description": "Singer and Small alliance type that best matches the alliance."
+      },
+      {
+        "name": "mem_st_year",
+        "description": "Year the member entered the alliance."
+      },
+      {
+        "name": "mem_end_year",
+        "description": "Year the member left (empty if still in)."
+      },
+      {
+        "name": "year",
+        "description": "Observation year."
+      },
+      {
+        "name": "defense",
+        "description": "1 if the member signed terms including defense of one or more allies."
+      },
+      {
+        "name": "neutrality",
+        "description": "1 if the terms include neutrality toward allies."
+      },
+      {
+        "name": "nonaggression",
+        "description": "1 if the terms include a promise of non-aggression."
+      },
+      {
+        "name": "entente",
+        "description": "1 if the terms include an understanding to consult in a crisis."
+      },
+      {
+        "name": "version",
+        "description": "Data version."
+      }
+    ],
+    "limitations": [
+      "Lists alliances only, so state pairs with no alliance have no rows. Join to a dyad-year frame and treat missing rows as 0.",
+      "Covers 1816-2012."
+    ],
+    "is_sample": false
+  },
+  {
+    "id": "cow-direct-contiguity-3.2-master",
+    "name": "COW Direct Contiguity v3.2: master (relationship spells)",
+    "version": "3.2",
+    "source_url": "https://correlatesofwar.org/data-sets/direct-contiguity/",
+    "unit_of_analysis": "contiguity relationship spell (one row per relationship)",
+    "years": {
+      "start": 1816,
+      "end": 2016
+    },
+    "variables": [
+      {
+        "name": "dyad",
+        "description": "Dyad ID: lower code then higher code (AAABBB)."
+      },
+      {
+        "name": "statelno",
+        "description": "COW code of the lower-numbered state."
+      },
+      {
+        "name": "statelab",
+        "description": "Abbreviation of the lower-numbered state."
+      },
+      {
+        "name": "statehno",
+        "description": "COW code of the higher-numbered state."
+      },
+      {
+        "name": "statehab",
+        "description": "Abbreviation of the higher-numbered state."
+      },
+      {
+        "name": "conttype",
+        "description": "Contiguity type: 1 land or river border, 2 within 12 miles of water, 3 within 24, 4 within 150, 5 within 400 miles."
+      },
+      {
+        "name": "begin",
+        "description": "Year and month the relationship began (YYYYMM)."
+      },
+      {
+        "name": "end",
+        "description": "Year and month it ended (YYYYMM)."
+      },
+      {
+        "name": "notes",
+        "description": "Details such as the body of water crossed."
+      },
+      {
+        "name": "version",
+        "description": "Data version."
+      }
+    ],
+    "limitations": [
+      "Lists only contiguous pairs; absence of a row means no contiguity that year (the codebook says to treat it as 0).",
+      "Covers 1816-2016."
+    ],
+    "is_sample": false
+  },
+  {
+    "id": "cow-direct-contiguity-3.2-dyad-year",
+    "name": "COW Direct Contiguity v3.2: dyad-year",
+    "version": "3.2",
+    "source_url": "https://correlatesofwar.org/data-sets/direct-contiguity/",
+    "unit_of_analysis": "contiguous dyad-year",
+    "years": {
+      "start": 1816,
+      "end": 2016
+    },
+    "variables": [
+      {
+        "name": "dyad",
+        "description": "Dyad ID (AAABBB)."
+      },
+      {
+        "name": "state1no",
+        "description": "COW code of the first state."
+      },
+      {
+        "name": "state1ab",
+        "description": "Abbreviation of the first state."
+      },
+      {
+        "name": "state2no",
+        "description": "COW code of the second state."
+      },
+      {
+        "name": "state2ab",
+        "description": "Abbreviation of the second state."
+      },
+      {
+        "name": "year",
+        "description": "Calendar year."
+      },
+      {
+        "name": "conttype",
+        "description": "Contiguity type: 1 land or river border, 2 within 12 miles of water, 3 within 24, 4 within 150, 5 within 400 miles."
+      },
+      {
+        "name": "version",
+        "description": "Data version."
+      }
+    ],
+    "limitations": [
+      "Lists only contiguous pairs; absence of a row means no contiguity that year (the codebook says to treat it as 0).",
+      "Covers 1816-2016."
+    ],
+    "is_sample": false
+  },
+  {
+    "id": "cow-direct-contiguity-3.2-state-year",
+    "name": "COW Direct Contiguity v3.2: state-year",
+    "version": "3.2",
+    "source_url": "https://correlatesofwar.org/data-sets/direct-contiguity/",
+    "unit_of_analysis": "country-year",
+    "years": {
+      "start": 1816,
+      "end": 2016
+    },
+    "variables": [
+      {
+        "name": "stateno",
+        "description": "COW country code."
+      },
+      {
+        "name": "stateab",
+        "description": "State abbreviation."
+      },
+      {
+        "name": "year",
+        "description": "Calendar year."
+      },
+      {
+        "name": "total",
+        "description": "Number of direct contiguities (land or sea)."
+      },
+      {
+        "name": "land",
+        "description": "Number of land contiguities."
+      },
+      {
+        "name": "sea",
+        "description": "Number of sea contiguities."
+      },
+      {
+        "name": "version",
+        "description": "Data version."
+      }
+    ],
+    "limitations": [
+      "Covers 1816-2016. All states in the system have rows."
+    ],
+    "is_sample": false
+  },
+  {
+    "id": "cow-colonial-contiguity-3.1-master",
+    "name": "COW Colonial/Dependency Contiguity v3.1: master (relationship spells)",
+    "version": "3.1",
+    "source_url": "https://correlatesofwar.org/data-sets/colonial-dependency-contiguity/",
+    "unit_of_analysis": "colonial contiguity relationship spell",
+    "years": {
+      "start": 1816,
+      "end": 2016
+    },
+    "variables": [
+      {
+        "name": "dyad",
+        "description": "Dyad ID (AAABBB)."
+      },
+      {
+        "name": "statelno",
+        "description": "COW code of the lower-numbered state."
+      },
+      {
+        "name": "statelab",
+        "description": "Abbreviation of the lower-numbered state."
+      },
+      {
+        "name": "dependl",
+        "description": "COW code of the lower state's dependency (0 none)."
+      },
+      {
+        "name": "conttype",
+        "description": "Contiguity type: 1 land or river border, 2 within 12 miles of water, 3 within 24, 4 within 150, 5 within 400 miles."
+      },
+      {
+        "name": "statehno",
+        "description": "COW code of the higher-numbered state."
+      },
+      {
+        "name": "statehab",
+        "description": "Abbreviation of the higher-numbered state."
+      },
+      {
+        "name": "dependh",
+        "description": "COW code of the higher state's dependency (0 none)."
+      },
+      {
+        "name": "begin",
+        "description": "Year the relationship began."
+      },
+      {
+        "name": "end",
+        "description": "Year it ended."
+      },
+      {
+        "name": "version",
+        "description": "Data version."
+      }
+    ],
+    "limitations": [
+      "Lists only contiguous pairs; absence of a row means no contiguity that year (the codebook says to treat it as 0).",
+      "Covers 1816-2016.",
+      "Here begin and end are years, not YYYYMM as in the direct contiguity master file."
+    ],
+    "is_sample": false
+  },
+  {
+    "id": "cow-colonial-contiguity-3.1-dyad-year",
+    "name": "COW Colonial/Dependency Contiguity v3.1: dyad-year",
+    "version": "3.1",
+    "source_url": "https://correlatesofwar.org/data-sets/colonial-dependency-contiguity/",
+    "unit_of_analysis": "colonial-contiguous dyad-year",
+    "years": {
+      "start": 1816,
+      "end": 2016
+    },
+    "variables": [
+      {
+        "name": "dyad",
+        "description": "Dyad ID (AAABBB)."
+      },
+      {
+        "name": "statelno",
+        "description": "COW code of the lower-numbered state."
+      },
+      {
+        "name": "statelab",
+        "description": "Abbreviation of the lower-numbered state."
+      },
+      {
+        "name": "statehno",
+        "description": "COW code of the higher-numbered state."
+      },
+      {
+        "name": "statehab",
+        "description": "Abbreviation of the higher-numbered state."
+      },
+      {
+        "name": "year",
+        "description": "Calendar year."
+      },
+      {
+        "name": "land",
+        "description": "Number of colonial land borders."
+      },
+      {
+        "name": "sea",
+        "description": "Number of colonial sea borders."
+      },
+      {
+        "name": "total",
+        "description": "Total colonial borders."
+      },
+      {
+        "name": "version",
+        "description": "Data version."
+      }
+    ],
+    "limitations": [
+      "Lists only contiguous pairs; absence of a row means no contiguity that year (the codebook says to treat it as 0).",
+      "Covers 1816-2016."
+    ],
+    "is_sample": false
+  },
+  {
+    "id": "cow-colonial-contiguity-3.1-state-year",
+    "name": "COW Colonial/Dependency Contiguity v3.1: state-year",
+    "version": "3.1",
+    "source_url": "https://correlatesofwar.org/data-sets/colonial-dependency-contiguity/",
+    "unit_of_analysis": "country-year",
+    "years": {
+      "start": 1816,
+      "end": 2016
+    },
+    "variables": [
+      {
+        "name": "stateno",
+        "description": "COW country code."
+      },
+      {
+        "name": "stateab",
+        "description": "State abbreviation."
+      },
+      {
+        "name": "year",
+        "description": "Calendar year."
+      },
+      {
+        "name": "total",
+        "description": "Total colonial borders."
+      },
+      {
+        "name": "land",
+        "description": "Colonial land borders."
+      },
+      {
+        "name": "sea",
+        "description": "Colonial sea borders."
+      },
+      {
+        "name": "version",
+        "description": "Data version."
+      }
+    ],
+    "limitations": [
+      "Covers 1816-2016. All states have rows."
+    ],
+    "is_sample": false
+  },
+  {
+    "id": "cow-trade-4.0-dyadic",
+    "name": "COW Bilateral Trade v4.0: dyadic",
+    "version": "4.0",
+    "source_url": "https://correlatesofwar.org/data-sets/bilateral-trade/",
+    "unit_of_analysis": "non-directed dyad-year (two trade flows per row)",
+    "years": {
+      "start": 1870,
+      "end": 2014
+    },
+    "variables": [
+      {
+        "name": "ccode1",
+        "description": "COW code of state A."
+      },
+      {
+        "name": "ccode2",
+        "description": "COW code of state B."
+      },
+      {
+        "name": "year",
+        "description": "Calendar year."
+      },
+      {
+        "name": "importer1",
+        "description": "Name of country A."
+      },
+      {
+        "name": "importer2",
+        "description": "Name of country B."
+      },
+      {
+        "name": "flow1",
+        "description": "Imports of A from B in millions of current US dollars (-9 missing)."
+      },
+      {
+        "name": "flow2",
+        "description": "Imports of B from A in millions of current US dollars (-9 missing)."
+      },
+      {
+        "name": "smoothflow1",
+        "description": "Smoothed flow1."
+      },
+      {
+        "name": "smoothflow2",
+        "description": "Smoothed flow2."
+      },
+      {
+        "name": "smoothtotrade",
+        "description": "Smoothed total trade (flow1 plus flow2, then smoothed)."
+      },
+      {
+        "name": "spike1",
+        "description": "1 if flow1 rose by more than 50% in the following year."
+      },
+      {
+        "name": "dip1",
+        "description": "1 if flow1 fell by more than 50% in the following year."
+      },
+      {
+        "name": "trdspike",
+        "description": "1 if total trade rose by more than 50% in the following year."
+      },
+      {
+        "name": "tradedip",
+        "description": "1 if total trade fell by more than 50% in the following year."
+      },
+      {
+        "name": "source1",
+        "description": "Source code for flow1."
+      },
+      {
+        "name": "source2",
+        "description": "Source code for flow2."
+      },
+      {
+        "name": "version",
+        "description": "Data version."
+      }
+    ],
+    "limitations": [
+      "Covers 1870-2014 but begins in 1920 for many dyads (early rows are sparse).",
+      "Flows are IMF-based reports; missing values are coded -9, so recode before summing.",
+      "Do not sum dyadic trade to get national totals (the codebook warns against it); use the national file.",
+      "About 82 MB as CSV."
+    ],
+    "is_sample": false
+  },
+  {
+    "id": "cow-trade-4.0-national",
+    "name": "COW Bilateral Trade v4.0: national",
+    "version": "4.0",
+    "source_url": "https://correlatesofwar.org/data-sets/bilateral-trade/",
+    "unit_of_analysis": "country-year",
+    "years": {
+      "start": 1870,
+      "end": 2014
+    },
+    "variables": [
+      {
+        "name": "ccode",
+        "description": "COW country code."
+      },
+      {
+        "name": "statename",
+        "description": "State name."
+      },
+      {
+        "name": "stateabb",
+        "description": "State abbreviation."
+      },
+      {
+        "name": "year",
+        "description": "Calendar year."
+      },
+      {
+        "name": "imports",
+        "description": "Total imports in millions of current US dollars."
+      },
+      {
+        "name": "exports",
+        "description": "Total exports in millions of current US dollars."
+      },
+      {
+        "name": "alt_imports",
+        "description": "Alternative imports figure where the standard one is disputed."
+      },
+      {
+        "name": "alt_exports",
+        "description": "Alternative exports figure."
+      },
+      {
+        "name": "source1",
+        "description": "Source code for imports."
+      },
+      {
+        "name": "source2",
+        "description": "Source code for exports."
+      },
+      {
+        "name": "version",
+        "description": "Data version."
+      }
+    ],
+    "limitations": [
+      "Covers 1870-2014.",
+      "Missing values appear as blanks or -9."
+    ],
+    "is_sample": false
+  },
+  {
+    "id": "cow-territorial-change-6",
+    "name": "COW Territorial Change v6",
+    "version": "6",
+    "source_url": "https://correlatesofwar.org/data-sets/territorial-change/",
+    "unit_of_analysis": "territorial change event (one row per transfer of territory)",
+    "years": {
+      "start": 1816,
+      "end": 2015
+    },
+    "variables": [
+      {
+        "name": "year",
+        "description": "Year of the change."
+      },
+      {
+        "name": "month",
+        "description": "Month of the change (-9 unknown)."
+      },
+      {
+        "name": "gainer",
+        "description": "COW code of the gaining entity."
+      },
+      {
+        "name": "gaintype",
+        "description": "1 if the gained territory is homeland, 0 if dependent territory."
+      },
+      {
+        "name": "procedur",
+        "description": "Process: 1 conquest, 2 annexation, 3 cession, 4 secession, 5 unification, 6 mandated territory, -9 not applicable."
+      },
+      {
+        "name": "entity",
+        "description": "COW code of the territory exchanged."
+      },
+      {
+        "name": "contgain",
+        "description": "1 if the territory is contiguous to the gainer."
+      },
+      {
+        "name": "area",
+        "description": "Area exchanged in square kilometers."
+      },
+      {
+        "name": "pop",
+        "description": "Population exchanged ('.' if unknown)."
+      },
+      {
+        "name": "portion",
+        "description": "1 if the whole unit was exchanged, 0 if part, -9 unknown."
+      },
+      {
+        "name": "loser",
+        "description": "COW code of the losing entity."
+      },
+      {
+        "name": "losetype",
+        "description": "1 if the lost territory is homeland, 0 if dependent."
+      },
+      {
+        "name": "contlose",
+        "description": "1 if the territory is contiguous to the loser."
+      },
+      {
+        "name": "entry",
+        "description": "1 if the entity entered the state system with this change."
+      },
+      {
+        "name": "exit",
+        "description": "1 if the entity left the system."
+      },
+      {
+        "name": "number",
+        "description": "Territorial change number."
+      },
+      {
+        "name": "indep",
+        "description": "1 if the change is an independence."
+      },
+      {
+        "name": "conflict",
+        "description": "1 if organized military conflict was involved."
+      },
+      {
+        "name": "version",
+        "description": "Data version."
+      }
+    ],
+    "limitations": [
+      "Event-only data: it lists only the dyads/states/years in which something happened. To compare war with no war, join it to a complete frame such as cow-nondirected-dyad-year-2024 and treat missing rows as 0.",
+      "The rows run 1816-2015 although the file is named tc2018.csv and the landing page says 2018.",
+      "Unorganized violence (riots) is not coded as military conflict.",
+      "Missing values are -9 or '.'."
+    ],
+    "is_sample": false
+  },
+  {
+    "id": "cow-diplomatic-exchange-2006.1",
+    "name": "COW Diplomatic Exchange v2006.1",
+    "version": "2006.1",
+    "source_url": "https://correlatesofwar.org/data-sets/diplomatic-exchange/",
+    "unit_of_analysis": "directed dyad in selected years",
+    "years": {
+      "start": 1817,
+      "end": 2005
+    },
+    "variables": [
+      {
+        "name": "ccode1",
+        "description": "COW code of country 1."
+      },
+      {
+        "name": "ccode2",
+        "description": "COW code of country 2."
+      },
+      {
+        "name": "year",
+        "description": "Year of observation."
+      },
+      {
+        "name": "DR_at_1",
+        "description": "Diplomatic representation level of side 2 at side 1: 0 none, 1 charge d'affaires, 2 minister, 3 ambassador, 9 other."
+      },
+      {
+        "name": "DR_at_2",
+        "description": "Diplomatic representation level of side 1 at side 2, same codes."
+      },
+      {
+        "name": "DE",
+        "description": "Any diplomatic exchange between the two."
+      },
+      {
+        "name": "version",
+        "description": "Data version."
+      }
+    ],
+    "limitations": [
+      "Observed only in selected years (1817, 1824, 1827, 1832, 1836, 1840, then every five years up to 2005), not every year.",
+      "1950-1965 is coded 9 for every exchange, so representation levels are not available for those years.",
+      "After 1980 side accreditations are not recorded, so counts before and after 1980 are not comparable.",
+      "About 12 MB as CSV."
+    ],
+    "is_sample": false
+  },
+  {
+    "id": "cow-igo-3-state-year",
+    "name": "COW Intergovernmental Organizations v3: state-year",
+    "version": "3.0b",
+    "source_url": "https://correlatesofwar.org/data-sets/igos/",
+    "unit_of_analysis": "country-year (one column per IGO)",
+    "years": {
+      "start": 1816,
+      "end": 2014
+    },
+    "variables": [
+      {
+        "name": "ccode",
+        "description": "COW country code."
+      },
+      {
+        "name": "year",
+        "description": "Calendar year."
+      },
+      {
+        "name": "state",
+        "description": "Abbreviated state name."
+      },
+      {
+        "name": "UN",
+        "description": "Membership in the United Nations: 0 none, 1 full, 2 associate, 3 observer, -9 missing, -1 IGO not in existence."
+      },
+      {
+        "name": "NATO",
+        "description": "Membership in NATO, same codes as UN."
+      },
+      {
+        "name": "WTO",
+        "description": "Membership in the World Trade Organization, same codes as UN."
+      },
+      {
+        "name": "OAS",
+        "description": "Membership in the Organization of American States, same codes as UN."
+      },
+      {
+        "name": "AU",
+        "description": "Membership in the African Union, same codes as UN."
+      },
+      {
+        "name": "ASEAN",
+        "description": "Membership in ASEAN, same codes as UN."
+      },
+      {
+        "name": "WPact",
+        "description": "Membership in the Warsaw Pact, same codes as UN."
+      }
+    ],
+    "limitations": [
+      "The file has about 535 columns, one per IGO (for example ACPEU, ANZUS, ASEAN, NATO, UN). Only the identifier columns and seven well-known IGOs are declared here, so claims about other organizations cannot cite a variable.",
+      "Covers 1816-2014 for 534 IGOs; pre-1965 membership was partly imputed from five-year data.",
+      "Joint membership of a pair must be derived by comparing two states' rows."
+    ],
+    "is_sample": false
+  },
+  {
+    "id": "cow-igo-3-igo-year",
+    "name": "COW Intergovernmental Organizations v3: IGO-year",
+    "version": "3.0a",
+    "source_url": "https://correlatesofwar.org/data-sets/igos/",
+    "unit_of_analysis": "IGO-year (one column per state)",
+    "years": {
+      "start": 1816,
+      "end": 2014
+    },
+    "variables": [
+      {
+        "name": "ioname",
+        "description": "Short abbreviation of the IGO."
+      },
+      {
+        "name": "orgname",
+        "description": "Full name of the IGO."
+      },
+      {
+        "name": "year",
+        "description": "Calendar year."
+      },
+      {
+        "name": "longorgname",
+        "description": "Longer IGO name including earlier names."
+      },
+      {
+        "name": "ionum",
+        "description": "IGO ID number."
+      },
+      {
+        "name": "version",
+        "description": "Data version."
+      },
+      {
+        "name": "imputed",
+        "description": "1 if the pre-1965 observation was imputed."
+      },
+      {
+        "name": "political",
+        "description": "Flag for a political IGO."
+      },
+      {
+        "name": "social",
+        "description": "Flag for a social IGO."
+      },
+      {
+        "name": "economic",
+        "description": "Flag for an economic IGO."
+      }
+    ],
+    "limitations": [
+      "The file has about 235 columns, one per country with membership codes (0 none, 1 full, 2 associate, 3 observer, -9 missing, -1 state not in the system). Country columns are not declared here.",
+      "This is the only CoW file that is tab-delimited, not comma-delimited.",
+      "The three IGO-type flags (political, social, economic) are not documented in the codebook text I read."
+    ],
+    "is_sample": false
+  },
+  {
+    "id": "cow-dcad-1.0-dyadic",
+    "name": "COW Defense Cooperation Agreement Dataset v1.0: dyad-year",
+    "version": "1.0",
+    "source_url": "https://correlatesofwar.org/data-sets/defense-cooperation-agreement-dataset/",
+    "unit_of_analysis": "directed dyad-year",
+    "years": {
+      "start": 1980,
+      "end": 2010
+    },
+    "variables": [
+      {
+        "name": "ccode1",
+        "description": "COW code of state 1."
+      },
+      {
+        "name": "abbrev1",
+        "description": "Abbreviation of state 1."
+      },
+      {
+        "name": "ccode2",
+        "description": "COW code of state 2."
+      },
+      {
+        "name": "abbrev2",
+        "description": "Abbreviation of state 2."
+      },
+      {
+        "name": "year",
+        "description": "Calendar year."
+      },
+      {
+        "name": "dcaGeneralV1",
+        "description": "1 if a general defense cooperation agreement exists (medium or high confidence coding only)."
+      },
+      {
+        "name": "dcaGeneralV2",
+        "description": "1 if a general agreement exists, regardless of coding confidence."
+      },
+      {
+        "name": "dcaSectorV1",
+        "description": "1 if a sector agreement exists (medium or high confidence only)."
+      },
+      {
+        "name": "dcaSectorV2",
+        "description": "1 if a sector agreement exists, any confidence."
+      },
+      {
+        "name": "dcaAnyV1",
+        "description": "1 if any agreement exists (medium or high confidence only); the codebook's recommended version."
+      },
+      {
+        "name": "dcaAnyV2",
+        "description": "1 if any agreement exists, any confidence."
+      }
+    ],
+    "limitations": [
+      "Covers 1980-2010. Use only one of the V1/V2 versions at a time.",
+      "The dyad-year file lists dyads that signed at least one agreement, so absence of rows means no agreement."
+    ],
+    "is_sample": false
+  },
+  {
+    "id": "cow-dcad-1.0-main",
+    "name": "COW Defense Cooperation Agreement Dataset v1.0: agreements",
+    "version": "1.0",
+    "source_url": "https://correlatesofwar.org/data-sets/defense-cooperation-agreement-dataset/",
+    "unit_of_analysis": "defense cooperation agreement (one row per agreement)",
+    "years": {
+      "start": 1980,
+      "end": 2010
+    },
+    "variables": [
+      {
+        "name": "ccode1",
+        "description": "COW code of state 1."
+      },
+      {
+        "name": "cowName1",
+        "description": "Name of state 1."
+      },
+      {
+        "name": "ccode2",
+        "description": "COW code of state 2."
+      },
+      {
+        "name": "cowName2",
+        "description": "Name of state 2."
+      },
+      {
+        "name": "signYear",
+        "description": "Year of signature."
+      },
+      {
+        "name": "EIFYear",
+        "description": "Year the agreement entered into force."
+      },
+      {
+        "name": "type",
+        "description": "General or sector agreement."
+      },
+      {
+        "name": "category1",
+        "description": "Primary category, for example Full DCA or Procurement."
+      },
+      {
+        "name": "terminated",
+        "description": "0 still in force at 12/31/2010, 1 terminated, -88 unknown, -99 unclear."
+      },
+      {
+        "name": "durationActual",
+        "description": "Observed duration in years for terminated agreements."
+      },
+      {
+        "name": "endYearEstimate",
+        "description": "Estimated year the agreement ended."
+      },
+      {
+        "name": "asymmetry",
+        "description": "0 no evidence, 1 possible, 2 definite asymmetry in commitments."
+      },
+      {
+        "name": "categoryConf",
+        "description": "Coder confidence in the categories (high, medium, low)."
+      },
+      {
+        "name": "DCAid",
+        "description": "Unique agreement ID."
+      }
+    ],
+    "limitations": [
+      "Covers agreements signed 1980-2010 (some entered into force as late as 2013). Agreements only: join to a dyad-year frame for comparison with dyads without agreements.",
+      "Only some of the 30 columns are declared."
+    ],
+    "is_sample": false
+  }
+]

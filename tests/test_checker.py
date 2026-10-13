@@ -115,8 +115,8 @@ class CheckerTests(unittest.TestCase):
         self.assertFalse((self.root / "data/ledger.jsonl").exists())
 
     def test_existing_empty_real_files_do_not_fall_back(self):
-        for name in ("papers.json", "cow_vars.txt"):
-            (self.root / "data" / name).write_text("[]" if name.endswith(".json") else "")
+        for name in ("papers.json", "cow_vars.json"):
+            (self.root / "data" / name).write_text("[]")
         self.write_lessons([])
         papers, datasets, lessons, sample = load_inputs(self.settings, round=1)
         self.assertEqual((papers, datasets, lessons, sample), ([], [], [], False))
@@ -135,16 +135,11 @@ class CheckerTests(unittest.TestCase):
             load_inputs(self.settings)
 
     def test_real_files_replace_samples_without_code_changes(self):
-        for real, sample in (("papers.json", "sample_papers.json"), ("cow_vars.txt", "sample_cow_vars.txt")):
-            text = (self.root / "contracts" / sample).read_text()
-            if sample.endswith(".json"):
-                rows = json.loads(text)
-            else:
-                rows = [json.loads(line) for line in text.splitlines()]
+        for real, sample in (("papers.json", "sample_papers.json"), ("cow_vars.json", "sample_cow_vars.json")):
+            rows = json.loads((self.root / "contracts" / sample).read_text())
             for row in rows:
                 row["is_sample"] = False
-            output = json.dumps(rows) if real.endswith(".json") else "\n".join(json.dumps(row) for row in rows)
-            (self.root / "data" / real).write_text(output)
+            (self.root / "data" / real).write_text(json.dumps(rows))
         # Fictional contents here exercise loading; they do not become real evidence.
         self.assertFalse(load_inputs(self.settings)[3])
 

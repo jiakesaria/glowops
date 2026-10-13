@@ -129,7 +129,7 @@ fallbacks or suggest that unfinished scripts work.
 │   ├── validate_samples.py
 │   ├── sample_verdict.json
 │   ├── sample_papers.json
-│   ├── sample_cow_vars.txt
+│   ├── sample_cow_vars.json
 │   ├── sample_tests.json
 │   ├── sample_failures.json
 │   └── sample_lessons.json
@@ -155,7 +155,7 @@ fallbacks or suggest that unfinished scripts work.
 |   |   └── weeks_2008_autocratic-audience-costs.pdf                     Weeks 2008: theory + statistical analysis
 │   ├── papers.json                 B / Jerry
 |   ├── schema.md                   B Explains the schema and structure of the papers.json file
-│   ├── cow_vars.txt                C / Sylvia; 39 CoW file entries
+│   ├── cow_vars.json                C / Sylvia; 39 CoW file entries
 │   ├── cow_files.json              C; download URL, zip member, delimiter per entry
 │   ├── cow_samples/                C; 5-row sample of every entry (committed)
 │   ├── cow_full/                   C; full downloads, ignored
@@ -184,13 +184,13 @@ IDs must be unique within each file; citations and lessons refer to stable IDs.
 | Real input/output | Format | Sample / model |
 | --- | --- | --- |
 | `data/papers.json` | UTF-8 JSON array of paper objects (fields explained in `data/schema.md`) | `sample_papers.json` / `Paper` |
-| `data/cow_vars.txt` | UTF-8 JSON Lines; one dataset object per nonblank line, no comments | `sample_cow_vars.txt` / `Dataset` |
+| `data/cow_vars.json` | UTF-8 JSON array of dataset objects | `sample_cow_vars.json` / `Dataset` |
 | `data/tests.json` | JSON array of cases | `sample_tests.json` / `TestCase` |
 | `data/failures.json` | JSON array of wrong verdicts from the learning split | `sample_failures.json` / `Failure` |
 | `data/lessons.json` | JSON array of reviewed or pending lessons | `sample_lessons.json` / `Lesson` |
 | `data/ledger.jsonl` | JSON Lines; one metadata envelope and verdict per call | `LedgerRecord`, containing `Verdict` |
 
-`cow_vars.txt` uses JSON Lines and the other files use JSON arrays; the sample files are the
+Every input file is a JSON array (only `ledger.jsonl` is JSON Lines); the sample files are the
 exact formatting templates. Use `is_sample: false` on real papers and datasets.
 Include actual source links, peer-review status, codebook variable names,
 units, years, and known limitations.
@@ -226,7 +226,7 @@ in `config.py` are available for Sylvia's `improve.py` to reuse.
 
 ## CoW data inventory and on-demand download
 
-`data/cow_vars.txt` describes 39 Correlates of War files (latest version of each dataset that
+`data/cow_vars.json` describes 39 Correlates of War files (latest version of each dataset that
 suits conflict research, with each file format listed separately). Each entry was written from
 the official codebook and checked against the real file header. Older versions (for example
 MID 4.x, Trade 3.0, NMC 5.0, IGO 2.3) are superseded and left out. World Religion, Arms
@@ -241,7 +241,7 @@ python cow_data.py full cow-mida-5.0     # full file into data/cow_full/ (ignore
 python cow_data.py full --all            # everything, roughly 0.3 GB
 ```
 
-`full` refuses any entry whose sample is missing or does not match `cow_vars.txt`, and removes
+`full` refuses any entry whose sample is missing or does not match `cow_vars.json`, and removes
 a download whose header differs from the sample. Full files are saved unchanged: several war
 files use old Mac (CR) line endings or ISO-8859 text, and `igo_year` is tab-delimited
 (`cow_files.json` records the delimiter and encoding). The samples are normalized to UTF-8.

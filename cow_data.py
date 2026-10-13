@@ -1,4 +1,4 @@
-"""Download Correlates of War files on demand, checking each one against data/cow_vars.txt.
+"""Download Correlates of War files on demand, checking each one against data/cow_vars.json.
 
     python cow_data.py list                 # every dataset entry and whether its sample exists
     python cow_data.py sample --all         # download 5-row samples into data/cow_samples/
@@ -6,7 +6,7 @@
     python cow_data.py full cow-mida-5.0    # full file into data/cow_full/ (needs a passing sample)
 
 Standard library only. data/cow_files.json holds the download URL, zip member, delimiter and
-encoding for every id in data/cow_vars.txt.
+encoding for every id in data/cow_vars.json.
 """
 
 import argparse
@@ -36,17 +36,14 @@ class CowDataError(Exception):
 def load_catalog(root: Path = ROOT):
     """Return (datasets by id, file manifest by id); both files must list the same ids."""
     try:
-        lines = (root / "data" / "cow_vars.txt").read_text(encoding="utf-8").splitlines()
-        datasets = {}
-        for line in filter(str.strip, lines):
-            row = json.loads(line)
-            datasets[row["id"]] = row
+        rows = json.loads((root / "data" / "cow_vars.json").read_text(encoding="utf-8"))
+        datasets = {row["id"]: row for row in rows}
         manifest = json.loads((root / "data" / "cow_files.json").read_text(encoding="utf-8"))
     except (OSError, ValueError, KeyError) as exc:
         raise CowDataError(f"cannot read the CoW catalog: {exc}") from exc
     if set(datasets) != set(manifest):
         diff = sorted(set(datasets) ^ set(manifest))
-        raise CowDataError(f"cow_vars.txt and cow_files.json disagree on ids: {diff}")
+        raise CowDataError(f"cow_vars.json and cow_files.json disagree on ids: {diff}")
     return datasets, manifest
 
 
@@ -182,7 +179,7 @@ def cmd_check(args, datasets, manifest):
         if problems:
             failures += 1
             print(f"FAIL {dataset_id}: " + "; ".join(problems))
-    print(f"{failures} dataset(s) failed" if failures else f"PASS: {len(pick_ids(args, datasets))} samples match cow_vars.txt")
+    print(f"{failures} dataset(s) failed" if failures else f"PASS: {len(pick_ids(args, datasets))} samples match cow_vars.json")
     return 1 if failures else 0
 
 
@@ -241,7 +238,7 @@ def main(argv=None) -> int:
         p.set_defaults(func=func)
     args = parser.parse_args(argv)
     if args.command == "full" and not args.ids and not args.all:
-        parser.error("full needs dataset ids or --all (some files are large; see data/cow_vars.txt limitations)")
+        parser.error("full needs dataset ids or --all (some files are large; see data/cow_vars.json limitations)")
     try:
         datasets, manifest = load_catalog()
         return args.func(args, datasets, manifest)
