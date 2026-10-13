@@ -92,25 +92,32 @@ def load_inputs(settings: Settings, *, round: int = 0):
 
 
 def validate_evidence(verdict: Verdict, hypothesis: str, papers, datasets) -> None:
+    """Reject invented evidence. Messages name the valid choices, since a retry sees only the message."""
     if verdict.hypothesis != hypothesis:
         raise ValueError("hypothesis must match the original input")
     paper_ids = {paper.id for paper in papers}
     dataset_by_id = {dataset.id: dataset for dataset in datasets}
     for citation in verdict.already_tested.citations:
         if citation.paper_id not in paper_ids:
-            raise ValueError(f"unknown corpus paper ID: {citation.paper_id}")
+            raise ValueError(f"unknown corpus paper ID: {citation.paper_id}; valid IDs: {sorted(paper_ids)}")
     coverage = verdict.testable_with_available_data
     for match in coverage.matches:
         dataset = dataset_by_id.get(match.dataset_id)
         if dataset is None:
-            raise ValueError(f"unknown dataset ID: {match.dataset_id}")
-        names = {variable.name for variable in dataset.variables}
-        if not set(match.variable_names) <= names:
-            raise ValueError(f"unknown variable in dataset {match.dataset_id}")
+            raise ValueError(f"unknown dataset ID: {match.dataset_id}; valid IDs: {sorted(dataset_by_id)}")
+        names = [variable.name for variable in dataset.variables]
+        unknown = sorted(set(match.variable_names) - set(names))
+        if unknown:
+            raise ValueError(f"unknown variable(s) {unknown} in dataset {match.dataset_id}; "
+                             f"its variables are {names}")
         years = coverage.required_years
         if coverage.status == "available" and years is not None:
             if dataset.years.start > years.start or dataset.years.end < years.end:
-                raise ValueError(f"dataset {match.dataset_id} does not cover required years")
+                raise ValueError(
+                    f"dataset {match.dataset_id} covers {dataset.years.start}-{dataset.years.end} but "
+                    f"required_years is {years.start}-{years.end}. Narrow required_years to years every "
+                    f"matched dataset covers, drop this dataset from matches, or use status partial and "
+                    f"list the uncovered years in missing_requirements")
 
 
 def _metadata(*, round: int, split: Split | None, test_id: str | None):

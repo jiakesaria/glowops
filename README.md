@@ -75,7 +75,9 @@ verdict = fake_check("Democracies are peaceful.")
 ```
 
 Retries repair malformed JSON, schema inconsistencies, invented evidence IDs,
-and insufficient declared year coverage. `MAX_JSON_RETRIES=2` allows up to three
+and insufficient declared year coverage. The error sent back to the model names what
+is valid: the corpus paper IDs, the dataset IDs, the variables of the named dataset, and the years
+that dataset actually covers, because a retry sees only that message. `MAX_JSON_RETRIES=2` allows up to three
 model responses. Transport retries are handled separately by the SDK. Invalid
 verdicts are not logged as successful outcomes. Factual support for a cited
 paraphrase and appropriate measurement/join choices still need research review;
