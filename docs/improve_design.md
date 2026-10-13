@@ -1,6 +1,8 @@
 # Design: `improve.py`, the lesson generator
 
-Owner: Sylvia (C). Status: draft for team review, written 2026-10-13.
+Owner: Sylvia (C). Status: implemented in `improve.py` and `tests/test_improve.py`; updated 2026-10-13
+to match the code. The offline tests pass. The first run against a real model is still pending,
+because no API key or model ID is configured yet.
 Related files: `contracts/schema.py` (`Failure`, `Lesson`), `checker.py` (lesson selection),
 `run_tests.py` and `run_rounds.py` (Amitej), README "Evaluation and improvement protocol".
 
@@ -35,8 +37,8 @@ flowchart TD
 ## 2. Decision: one mode, pattern-level with incremental edits
 
 We implement a single generation mode. Each round, all learning-split failures for one model
-go to the LLM in one call, together with that model's current lessons. For each failure the LLM
-chooses one operation:
+go to the LLM in one call, together with that model's current lessons (approved and pending).
+For each failure the LLM chooses one operation:
 
 - **ADD**: propose a new lesson.
 - **EDIT**: propose a revised version of an existing lesson that also covers the new failure.
@@ -74,92 +76,111 @@ needs a way to select a lessons file per mode, which `checker.py` does not have.
 - The README protocol: learning split first, failures to `improve.py`, manual review, then the
   holdout split with approved lessons. Holdout results must never reach `improve.py`.
 
-Consequences:
+Consequences, all implemented:
 
 1. A lesson's `round` is the round of the failures that produced it. The checker then makes it
    available for that round's holdout run and every later round.
-2. IDs are `<model>-r<round>-<nn>` with `nn` zero-padded to two digits, so sorting by id is
-   stable. The model part is a short slug of the configured model ID.
-3. Because the checker silently drops everything past ten, `improve.py` warns whenever approved
-   plus newly proposed lessons for a model would exceed ten, and the reviewer decides what to
-   merge or retire. Silent truncation would hide which lessons were actually in force.
+2. IDs are `<slug>-r<round>-<nn>`. The slug is the model ID lowercased with every run of
+   non-alphanumeric characters turned into a hyphen (`fake` in fake mode), and `nn` counts up
+   from the highest existing number for that model and round, zero-padded to two digits, so
+   sorting by id is stable.
+3. Because the checker silently drops everything past ten, `improve.py` prints a warning whenever
+   approved plus newly proposed lessons for a model would exceed `MAX_APPROVED_LESSONS`, and
+   `approve` warns when the approved count passes it. The reviewer decides what to merge or
+   retire. Silent truncation would hide which lessons were actually in force.
 4. `Failure` has no field for the expected data or prior-research status, so the generator
    sees only the expected decision and the rationale.
 
 ## 4. Command line
 
 ```
-python improve.py [FAILURES_PATH] --round N [--model deepseek|qwen] [--fake] [--dry-run] [--force]
-python improve.py list    [--model M] [--round N] [--pending]
-python improve.py approve ID [ID ...]
+python improve.py [FAILURES_PATH] --round N [--model deepseek|qwen | --fake] [--dry-run] [--force]
+python improve.py list      [--model M | --fake] [--round N] [--pending]
+python improve.py approve   ID [ID ...]
 python improve.py unapprove ID [ID ...]
-python improve.py reject  ID [ID ...]      # deletes a pending proposal
-python improve.py status  --round N [--model M]   # exit 3 when proposals still await review
+python improve.py reject    ID [ID ...]
+python improve.py status    --round N (--model M | --fake)
 ```
+
+Exit codes: 0 success, 1 error (a one-line message, no traceback), 2 usage error, 3 from
+`status` when proposals still await review.
 
 - `FAILURES_PATH` defaults to `data/failures.json`, falling back to
   `contracts/sample_failures.json` only if the real file does not exist (the repo's usual
   rule). A malformed file is an error, never a fallback.
-- `--model` picks the provider through `config.get_config()`. The model being improved and the
-  model doing the extraction are the same by default; this is what keeps DeepSeek and Qwen
-  lesson histories separate (README requires separate histories).
+- `--round` is required: it must equal the round recorded in every failure.
+- `--model` picks the provider through `config.get_config()`; without it the `MODEL` setting in
+  `.env` applies. The model being improved and the model doing the extraction are the same, which
+  keeps DeepSeek and Qwen lesson histories separate (the README requires separate histories).
 - `--fake` uses a deterministic offline generator so Amitej can run `run_rounds.py` end to end
-  without API keys. It writes lessons with `model: "fake"` and never touches a real model.
-- `--dry-run` prints the proposals and writes nothing.
+  without API keys. The failures file must then be for model `fake`, as in
+  `contracts/sample_failures.json`; lessons are written with `model: "fake"`. No model, key or
+  network is needed.
+- `--dry-run` prints the proposals and writes nothing, not even the log.
+- `--force` proposes again for failures that were already processed (section 5, step 4).
+- `list` shows id, status, round, tag, model, text and source test ids; with no filter it shows
+  every model.
 - `status` is the hook for `run_rounds.py`: it exits 3 while any proposal for that model and
   round is unreviewed, so the runner can pause instead of auto-approving.
+- `reject` deletes a pending proposal only. An approved lesson must be unapproved first, so one
+  mistyped id cannot delete a lesson that is already in force.
 
-`approve`, `unapprove` and `reject` exist so review does not require editing JSON by hand.
-Editing the JSON directly stays valid; the next run validates the whole file.
+Editing `data/lessons.json` by hand stays valid; the next command validates the whole file.
 
 ## 5. Processing steps
 
-1. **Load and validate.** Parse failures as `Failure`; parse existing lessons as `Lesson`.
-2. **Learn-only guard.** Refuse any failure whose `split` is not `learn`. Refuse failures whose
-   `model` differs from the configured model, or whose `round` differs from `--round`. If
-   `data/tests.json` exists, also check every `test_id` is a learning-split test.
-3. **Idempotency guard.** If pending or approved lessons already cite the same failures for
-   this model and round, stop unless `--force` is given. This prevents a rerun from stacking
-   duplicates.
-4. **Build the prompt** (section 6) and make one LLM call with JSON output, temperature 0.
-5. **Validate the response** (section 7). On failure, retry with the error message appended, up
-   to `MAX_JSON_RETRIES`, the same way `checker.py` does.
-6. **Write.** Convert accepted operations to `Lesson` records (`approved: false`), validate the
-   whole list, and replace `data/lessons.json` atomically (write a temporary file, then rename).
-7. **Log.** Append one record to `data/improve_log.jsonl` (section 8).
-8. **Report.** Print the proposals, the count that await review, and any cap warning.
+1. **Load and validate.** Parse failures as `Failure` (a repeated `test_id` is an error) and
+   existing lessons as `Lesson` (a missing lessons file means no lessons).
+2. **Guards.** Refuse any failure whose `split` is not `learn`, whose `model` differs from the
+   model being improved, or whose `round` differs from `--round`. If `data/tests.json` exists,
+   every failure's `test_id` must be in it and must be a learning-split test.
+3. **Empty input.** With no failures, print a message and stop without a model call.
+4. **Idempotency guard.** Stop unless `--force` is given when either (a) a lesson for this model
+   and round already cites any of these failures, or (b) the log holds a `propose` run with the
+   same failures hash, model and round. This prevents a rerun from stacking duplicates, and
+   check (b) also covers runs where every operation was a NOOP and so left no lesson behind.
+5. **Operations.** Real mode: one model call with JSON output at the configured temperature,
+   with up to `MAX_JSON_RETRIES` corrections (section 7). Fake mode: one ADD per pair of
+   (expected decision, decision the checker gave) from a fixed table, passed through the same
+   validation as a real reply.
+6. **Convert.** ADD, EDIT and NOOP become `Lesson` records or log notes (section 7).
+7. **Report.** Print each proposal with its source tests, each NOOP and EDIT note, and the cap
+   warning if it applies. With `--dry-run`, stop here.
+8. **Write and log.** Validate the whole lessons list, replace `data/lessons.json` atomically
+   (write a temporary file in the same folder, then rename), and append to the log (section 8).
 
 ## 6. Prompt
 
-The system message fixes the task and the rules. The user message carries the data. All
-failure content is data, not instructions, as in `checker.py`.
+The system message fixes the task and the rules. The user message is one JSON object. All
+failure and lesson content is treated as data, not instructions, as in `checker.py`.
 
-System message (wording to be tuned during testing):
+System message, summarized (wording is in `SYSTEM_PROMPT` and will be tuned on real output):
 
 - You maintain a short list of lessons that help a checker judge research hypotheses. Return
   one JSON object and nothing else.
 - Each lesson is one sentence of at most 30 words, usable on any hypothesis in the same
   situation. It must not mention the example's hypothesis, countries, papers, or variables
-  that appear only in the example. General concepts are allowed, for example "event-only
-  data lacks non-event cases".
+  that appear only in the example, and must not state the correct decision for a specific
+  example. General concepts are allowed, for example "event-only data lacks non-event cases".
 - Pick the tag of the step that went wrong: `falsifiability`, `prior_research`,
   `data_coverage`, or `decision`.
-- Do not state the correct decision for a specific example. State the principle.
-- Prefer EDIT or NOOP over ADD when an existing lesson already covers the situation.
+- Prefer EDIT or NOOP over ADD when a current lesson already covers the situation. EDIT gives
+  the full improved sentence; NOOP leaves tag and text null.
 - Cover every failure exactly once.
 
-User message sections:
+User message keys:
 
-1. The decision rubric (the README table, version 1.0), so the model knows what `proceed`,
-   `revise` and `reject` mean.
-2. Current lessons for this model, with ids and status (`approved` or `pending`), so it can
-   EDIT or NOOP instead of duplicating.
-3. The failures. For each: `test_id`, hypothesis, expected decision, the human rationale, and
-   the checker's answer reduced to decision, decision reason, falsifiable status, prior
-   research status, data coverage status and suggested rewording. The full verdict is not
-   sent, to save tokens.
+1. `decision_rubric`: a condensed paragraph of the README rubric (version 1.0), so the model knows
+   what `proceed`, `revise` and `reject` mean.
+2. `current_lessons`: this model's lessons with id, status (`approved` or `pending`), tag and
+   text, so it can EDIT or NOOP instead of duplicating.
+3. `failures`: for each, `test_id`, hypothesis, expected decision, the human rationale, and the
+   checker's answer reduced to decision, decision reason, falsifiable status, prior-research
+   status, data-coverage status, missing requirements and suggested rewording. The full verdict
+   is not sent, to save tokens.
+4. `response_format`: an example of the three operation shapes, and `prompt_version`.
 
-Required response shape:
+Required response shape (`tag` and `text` are null for NOOP; `target_id` is null for ADD):
 
 ```json
 {"operations": [
@@ -167,30 +188,34 @@ Required response shape:
    "tag": "data_coverage", "text": "..."},
   {"op": "EDIT", "failure_ids": ["t-05"], "target_id": "deepseek-r1-02",
    "tag": "decision", "text": "..."},
-  {"op": "NOOP", "failure_ids": ["t-09"], "target_id": "deepseek-r1-01",
-   "tag": null, "text": null}
+  {"op": "NOOP", "failure_ids": ["t-09"], "target_id": "deepseek-r1-01", "tag": null, "text": null}
 ]}
 ```
 
 ## 7. Validation of the model's response
 
-Rejected and retried when any rule fails:
+A reply is rejected, and the model gets the error and another try, when any rule fails:
 
-- Not valid JSON, or not this shape.
+- It is not valid JSON, not an object with a nonempty `operations` list, or its output did not
+  finish normally (possible truncation).
+- An operation is not ADD, EDIT or NOOP, or `failure_ids` is not a nonempty list of known test ids.
 - The `failure_ids` across all operations are not exactly the input failures, each once.
-- `tag` is not one of the four values (ADD and EDIT only).
-- `target_id` is missing for EDIT or NOOP, or names a lesson that does not exist for this model.
-- `text` is empty, spans several sentences or lines, or exceeds the word limit.
-- **Leak check:** `text` shares any run of five consecutive words with a failure's hypothesis
-  or rationale (after lowercasing and removing punctuation), or contains a test ID.
+- For EDIT and NOOP, `target_id` does not name one of this model's lessons. For ADD it is not null.
+- For ADD and EDIT, `tag` is not one of the four values.
+- For ADD and EDIT, `text` is empty, is more than one line, looks like several sentences,
+  has more than 30 words, or contains a test id.
+- **Leak check:** `text` shares any run of five consecutive words with the hypothesis or
+  rationale of any failure in the batch (compared after lowercasing and removing punctuation).
+
+After `MAX_JSON_RETRIES` corrections the command fails and writes nothing.
 
 How operations become records:
 
-| Operation | Result in `data/lessons.json` |
+| Operation | Result |
 |---|---|
-| ADD | New `Lesson`: new id, the given tag and text, `source_test_ids` = the covered failures, `round` = this round, `approved: false`. |
-| EDIT | A new pending `Lesson` with a new id and `source_test_ids` = the old lesson's sources plus the new failures. The old lesson is left unchanged. The log records that the new one is meant to replace it; the reviewer approves the new one and runs `unapprove` on the old one. |
-| NOOP | No new record. The log records that the cited lesson did not prevent this failure, which is a useful signal about that lesson. |
+| ADD | New pending `Lesson`: new id, the given tag and text, `source_test_ids` = the covered failures, `round` = this round. |
+| EDIT | A new pending `Lesson` with a new id and `source_test_ids` = the old lesson's sources plus the new failures. The old lesson is left unchanged. The run prints `after approving it, run: python improve.py unapprove <old id>` and the log records which lesson it replaces. The reviewer does both steps; nothing is unapproved automatically. |
+| NOOP | No new record. The run prints that the cited lesson did not prevent these errors, which is a useful signal about that lesson, and the log records it. |
 
 EDIT creates a new record rather than rewriting the old one because the contract has no
 "superseded" field, and an in-place rewrite would silently change a lesson that was already
@@ -198,16 +223,17 @@ approved and already used in earlier runs.
 
 ## 8. Audit log
 
-`data/improve_log.jsonl` gets one line per run:
+`data/improve_log.jsonl` is ignored by git (like `data/ledger.jsonl`); commit selected final
+logs if they belong in the report. Each non-dry `propose` run appends one line:
 
-- UTC timestamp, model ID, extractor model ID, round, prompt version, mode `"real"` or `"fake"`.
-- The input failure IDs and a hash of the failures file.
-- The raw model response and the accepted operations, including NOOPs and EDIT targets.
-- IDs of lessons created.
+- `event: "propose"`, UTC timestamp, `mode` (`real` or `fake`), `model`, `extractor` (the same
+  as `model` for now), `round`, `prompt_version`.
+- `failures_hash` and `failure_ids` for the input.
+- `raw_response` (null in fake mode), the accepted `operations` including NOOPs and EDIT
+  targets, and the ids in `created`.
 
-This is an audit trail like `data/ledger.jsonl` and should be ignored by git by default (a
-one-line `.gitignore` addition for Jia). Commit selected final logs if they belong in the
-report.
+Each `approve`, `unapprove` and `reject` appends an `event: "review"` line with the action and
+ids; `reject` also records the deleted text so a discarded proposal can still be audited.
 
 ## 9. Review procedure (Sylvia)
 
@@ -220,43 +246,51 @@ A proposal is approved only if all of these hold:
 4. It would change a verdict in a real, plausible case, not just restate the rubric.
 5. The model has at most ten approved lessons after this change.
 
-Optional check, not required for the first build: run the candidate on the learning split only
-and see whether the failures it targets improve. Never run it on the holdout before approving.
+Optional check, not built: run the candidate on the learning split only and see whether the
+failures it targets improve. Never run it on the holdout before approving.
 
 Holdout results, errors and rationales are never shown to `improve.py` or used when choosing
 which lessons to approve.
 
-## 10. Testing and acceptance
+## 10. Testing and status
 
-Offline tests in `tests/test_improve.py`, using a fake client in the style of
-`tests/test_checker.py`:
+`tests/test_improve.py` holds 17 offline tests with a fake chat client and a temporary copy of
+`contracts/`. They cover:
 
-- ADD, EDIT and NOOP each produce the right records, ids and `source_test_ids`.
-- Holdout failures, a wrong model, a wrong round and a missing operation for a failure are all refused.
-- A response that repeats a hypothesis phrase fails the leak check and triggers a retry.
-- A rerun without `--force` adds nothing.
-- Lessons generated for one model are not visible to another in `list` and in `checker.load_inputs`.
-- The written `lessons.json` loads through `checker.load_inputs` and respects the ten-lesson cap.
-- `status` returns 3 while proposals await review and 0 afterwards.
-- `--fake` on `contracts/sample_failures.json` works with no key and no network.
+- ADD creating pending lessons with the right ids, models, rounds and sources; EDIT creating a
+  new lesson while leaving the approved one alone and printing the unapprove hint; NOOP adding
+  nothing but being reported.
+- Retry after an invalid reply (with the error in the retry message), giving up after the retry
+  limit and writing nothing, and the leak check triggering a retry.
+- The text rules (empty, several lines, several sentences, too long, a test id).
+- Refusal of holdout failures, of the wrong model or round, and of a test id that `tests.json`
+  marks as holdout, all before any model call.
+- Rerun blocked without `--force`, numbering continuing with it, and `--dry-run` writing nothing.
+- `--fake` working with no model or key.
+- The review commands, `status` exit codes, and the cap warning.
+- `checker.load_inputs` seeing only approved lessons of its own model.
 
-Done when:
+Status against the original acceptance criteria:
 
 1. `python improve.py contracts/sample_failures.json --round 0 --fake` works and
-   `python -m unittest discover -s tests` passes.
-2. One real run against sample failures produces sensible, general lessons for the configured model.
-3. Amitej's runner can call `status` and pause for review.
+   `python -m unittest discover -s tests` passes: **done** (39 tests pass).
+2. One real run against sample failures produces sensible, general lessons: **pending**, needs a
+   provider key, endpoint and model ID in `.env`.
+3. Amitej's runner can call `status` and pause for review: **interface ready**, not yet wired
+   into `run_rounds.py`.
 
 ## 11. Open questions for the team
 
 - **Amitej:** `run_rounds.py` should call `improve.py` between the learning and holdout runs and
   pause while `status` exits 3. Is that acceptable, and does `failures.json` hold only the
   current round's failures (we assume it is overwritten each round)?
-- **Jia:** may we add `data/improve_log.jsonl` to `.gitignore`? A per-mode lessons file would
-  also need a `checker.py` change; we are not asking for that now.
+- **Jia:** `.gitignore` now lists `data/improve_log.jsonl`; please confirm. A per-mode lessons
+  file would need a `checker.py` change; we are not asking for that now.
 - **Extractor model:** the default is the model being improved. A stronger extractor (as ExpeL
   used) might write better lessons, but then a lesson is no longer the model's own correction.
   Keep the default unless the first real run produces poor lessons.
+- **Prompt and limits:** the 30-word limit, the five-word leak check and the single-sentence
+  heuristic are untested against a real model and may be too strict or too loose.
 - **Sample size:** with about ten learning and ten holdout cases, one changed answer moves
   holdout accuracy by ten points. Results will be reported as counts and treated as a small
   demonstration, as the README already states.
@@ -285,6 +319,9 @@ not been through peer review as far as we could confirm.
 |---|---|---|
 | 2026-10-13 | One generation mode: pattern-level ADD/EDIT/NOOP, human approval | Ten-lesson cap; avoids full rewrites; fits the existing contracts |
 | 2026-10-13 | No change to `contracts/` | Keeps ownership rules and avoids a coordination cost the day before the demo |
-| 2026-10-13 | EDIT creates a new pending lesson | The contract has no "superseded" field and approved lessons should not change silently |
+| 2026-10-13 | EDIT creates a new pending lesson; the reviewer unapproves the old one | The contract has no "superseded" field and approved lessons should not change silently |
 | 2026-10-13 | Extractor model equals the model being improved | Keeps lesson histories separate per model, as the README requires |
 | 2026-10-13 | Per-failure mode, hand-written baseline and multi-mode comparison deferred | Evaluation cost, small sample, and `checker.py` cannot select a lessons file per mode |
+| 2026-10-13 | `reject` deletes only pending proposals; the log keeps the deleted text | One wrong id must not remove a lesson already in force, and discarded proposals stay auditable |
+| 2026-10-13 | Idempotency checks both lessons and the log | NOOP-only runs leave no lesson, so the lessons file alone cannot detect a rerun |
+| 2026-10-13 | Fake mode requires failures for model `fake` | Keeps offline lessons from mixing with a real model's lesson history |

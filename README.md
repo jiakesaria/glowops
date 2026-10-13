@@ -9,9 +9,12 @@ record the result. Prototype due **Tuesday, October 13, 2026**; demo
 
 Shared contracts, model configuration, checker, fake mode, and verdict logging
 are implemented. The team can build against `check()` and `fake_check()` now.
-The evaluation runner and improvement loop remain assigned to Amitej and Sylvia.
+The real paper corpus (`data/papers.json`), the CoW file inventory
+(`data/cow_vars.json`) and the lesson generator (`improve.py`) are in place.
+The evaluation runner and benchmark remain assigned to Amitej.
 
-The sample papers and dataset are **fictional format fixtures**. They are not
+The files in `contracts/sample_*` are **fictional format fixtures** and are used
+only when the matching real file in `data/` does not exist. They are not
 research evidence or actual CoW data. Fake-mode scores demonstrate plumbing,
 not hypothesis-checking accuracy.
 
@@ -165,8 +168,9 @@ fallbacks or suggest that unfinished scripts work.
 │   ├── failures.json               D; generated, ignored
 │   └── ledger.jsonl                A; generated, ignored
 ├── docs/
-│   ├── sources.md                  B; planned
-│   └── suggested_tests.md          B; optional, planned
+│   ├── improve_design.md           C; design of improve.py and the papers it draws on
+│   ├── sources.md                  B
+│   └── suggested_tests.md          B; optional
 └── results/                        D; generated results ignored
 ```
 
