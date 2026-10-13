@@ -128,7 +128,7 @@ fallbacks or suggest that unfinished scripts work.
 │   ├── schema.py
 │   ├── validate_samples.py
 │   ├── sample_verdict.json
-│   ├── sample_papers.txt
+│   ├── sample_papers.json
 │   ├── sample_cow_vars.txt
 │   ├── sample_tests.json
 │   ├── sample_failures.json
@@ -152,7 +152,7 @@ fallbacks or suggest that unfinished scripts work.
 |   |   ├── slantchev_2005_military-coercion-interstate-crises.pdf       Slantchev 2005: game theory model
 |   |   ├── tang_2026_audience-costs-quasi-meta-analysis.pdf             Tang 2026: review of case studies
 |   |   └── weeks_2008_autocratic-audience-costs.pdf                     Weeks 2008: theory + statistical analysis
-│   ├── papers.json                 B / Jerry; planned
+│   ├── papers.json                 B / Jerry
 |   ├── schema.md                   B Explains the schema and structure of the papers.json file
 │   ├── cow_vars.txt                C; planned
 │   ├── tests.json                  D; planned
@@ -179,14 +179,14 @@ IDs must be unique within each file; citations and lessons refer to stable IDs.
 
 | Real input/output | Format | Sample / model |
 | --- | --- | --- |
-| `data/papers.txt` | UTF-8 JSON Lines; one JSON object per nonblank line, no comments | `sample_papers.txt` / `Paper` |
+| `data/papers.json` | UTF-8 JSON array of paper objects (fields explained in `data/schema.md`) | `sample_papers.json` / `Paper` |
 | `data/cow_vars.txt` | UTF-8 JSON Lines; one dataset object per nonblank line, no comments | `sample_cow_vars.txt` / `Dataset` |
 | `data/tests.json` | JSON array of cases | `sample_tests.json` / `TestCase` |
 | `data/failures.json` | JSON array of wrong verdicts from the learning split | `sample_failures.json` / `Failure` |
 | `data/lessons.json` | JSON array of reviewed or pending lessons | `sample_lessons.json` / `Lesson` |
 | `data/ledger.jsonl` | JSON Lines; one metadata envelope and verdict per call | `LedgerRecord`, containing `Verdict` |
 
-The `.txt` files use JSON Lines for reliable parsing; the sample files are the
+`cow_vars.txt` uses JSON Lines and the other files use JSON arrays; the sample files are the
 exact formatting templates. Use `is_sample: false` on real papers and datasets.
 Include actual source links, peer-review status, codebook variable names,
 units, years, and known limitations.

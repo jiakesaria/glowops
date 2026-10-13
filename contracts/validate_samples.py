@@ -36,7 +36,7 @@ def unique_ids(items):
 
 
 def main():
-    papers = read_lines("sample_papers.txt", Paper)
+    papers = [Paper.model_validate(x) for x in read_json("sample_papers.json")]
     datasets = read_lines("sample_cow_vars.txt", Dataset)
     tests = [TestCase.model_validate(x) for x in read_json("sample_tests.json")]
     failures = [Failure.model_validate(x) for x in read_json("sample_failures.json")]

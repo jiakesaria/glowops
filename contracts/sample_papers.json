@@ -1,0 +1,102 @@
+[
+  {
+    "id": "sample-paper-001",
+    "title": "FICTIONAL: Trade and conflict in Sampleland",
+    "authors": [
+      "Sample Author"
+    ],
+    "year": 2020,
+    "journal": null,
+    "volume": null,
+    "issue": null,
+    "pages": null,
+    "doi": null,
+    "url": null,
+    "peer_reviewed": false,
+    "study_type": "statistical_analysis",
+    "uses_real_world_data": false,
+    "method_summary": "Fixture only: examines bilateral trade and conflict onset in imaginary countries.",
+    "tags": [
+      "fixture"
+    ],
+    "research_question": "Fixture only: examines bilateral trade and conflict onset in imaginary countries.",
+    "main_finding": "Fixture only: greater prior-year trade is associated with lower conflict onset.",
+    "key_findings": [
+      "Fixture only: greater prior-year trade is associated with lower conflict onset."
+    ],
+    "claims_tested_with_data": [],
+    "predictions_not_tested_in_this_paper": [],
+    "variables": {
+      "outcome": [
+        "conflict_onset"
+      ],
+      "explanatory": [],
+      "controls": []
+    },
+    "data": {
+      "sources": [
+        "Fictional Sampleland dyad-year panel"
+      ],
+      "years": "2000-2010",
+      "unit": "imaginary country dyad-year",
+      "sample_size": "100 imaginary dyad-years",
+      "notes": "Fictional format fixture, not real data."
+    },
+    "limitations": [
+      "Fictional fixture; not research evidence."
+    ],
+    "open_questions": [],
+    "related": [],
+    "is_sample": true
+  },
+  {
+    "id": "sample-paper-002",
+    "title": "FICTIONAL: Democracy and peace in Sampleland",
+    "authors": [
+      "Example Researcher"
+    ],
+    "year": 2021,
+    "journal": null,
+    "volume": null,
+    "issue": null,
+    "pages": null,
+    "doi": null,
+    "url": null,
+    "peer_reviewed": false,
+    "study_type": "statistical_analysis",
+    "uses_real_world_data": false,
+    "method_summary": "Fixture only: examines joint democracy and interstate conflict.",
+    "tags": [
+      "fixture"
+    ],
+    "research_question": "Fixture only: examines joint democracy and interstate conflict.",
+    "main_finding": "Fixture only: jointly democratic dyads have fewer conflict onsets.",
+    "key_findings": [
+      "Fixture only: jointly democratic dyads have fewer conflict onsets."
+    ],
+    "claims_tested_with_data": [],
+    "predictions_not_tested_in_this_paper": [],
+    "variables": {
+      "outcome": [
+        "conflict_onset"
+      ],
+      "explanatory": [],
+      "controls": []
+    },
+    "data": {
+      "sources": [
+        "Fictional Sampleland dyad-year panel"
+      ],
+      "years": "2000-2010",
+      "unit": "imaginary country dyad-year",
+      "sample_size": "80 imaginary dyad-years",
+      "notes": "Fictional format fixture, not real data."
+    },
+    "limitations": [
+      "Fictional fixture; not research evidence."
+    ],
+    "open_questions": [],
+    "related": [],
+    "is_sample": true
+  }
+]

@@ -24,19 +24,54 @@ class YearRange(Contract):
         return self
 
 
+class PaperVariables(Contract):
+    outcome: list[Text]
+    explanatory: list[Text]
+    controls: list[Text]
+
+
+class PaperData(Contract):
+    sources: list[Text]
+    years: Text | None  # Free text because papers report ranges and caveats.
+    unit: Text
+    sample_size: Text | None
+    notes: str
+
+
+class RelatedPaper(Contract):
+    id: Text
+    relation: Text
+
+
 class Paper(Contract):
+    """One entry of data/papers.json; see data/schema.md for field meanings."""
+
     id: Text
     title: Text
     authors: list[Text] = Field(min_length=1)
     year: int
-    source_url: Text | None
+    journal: Text | None
+    volume: int | None
+    issue: int | None
+    pages: Text | None
+    doi: Text | None
+    url: Text | None
     peer_reviewed: bool | None
     study_type: Text
-    abstract: Text
+    uses_real_world_data: bool
+    method_summary: Text
+    tags: list[Text]
+    research_question: Text
     main_finding: Text
-    sample_size: Text
-    years: YearRange | None
-    is_sample: bool
+    key_findings: list[Text]
+    claims_tested_with_data: list[Text]
+    predictions_not_tested_in_this_paper: list[Text]
+    variables: PaperVariables
+    data: PaperData
+    limitations: list[Text]
+    open_questions: list[Text]
+    related: list[RelatedPaper]
+    is_sample: bool = False  # Only the fictional fixtures set this to true.
 
 
 class Variable(Contract):

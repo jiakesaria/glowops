@@ -1,4 +1,4 @@
-# papers.txt Schema
+# papers.json Schema
 
 `papers.json` is a JSON list. Each JSON entry represents one papers. There are currently 10 papers in the corpus. This is meant to serve as the corpus for the recursive-training loop. If a value is unknown we default to `null` (`[]` for lists). No field is left out so we will not have missing fields.
 
@@ -100,4 +100,4 @@
 
 - Write in plain language. A non-expert should understand every line.
 - Only state what the paper says. No guesses.
-- Run `python -m json.tool data/papers.txt` before pushing. One missing comma breaks the whole file.
+- Run `python -m json.tool data/papers.json` before pushing. One missing comma breaks the whole file.

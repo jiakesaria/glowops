@@ -76,9 +76,9 @@ def _load(path: Path, model, *, json_lines: bool):
 
 def load_inputs(settings: Settings, *, round: int = 0):
     """Real files replace fixtures without code changes; malformed files fail loudly."""
-    paper_path, sample_papers = _input_path(settings.root, "papers.txt", "sample_papers.txt")
+    paper_path, sample_papers = _input_path(settings.root, "papers.json", "sample_papers.json")
     data_path, sample_data = _input_path(settings.root, "cow_vars.txt", "sample_cow_vars.txt")
-    papers = _load(paper_path, Paper, json_lines=True)
+    papers = _load(paper_path, Paper, json_lines=False)
     datasets = _load(data_path, Dataset, json_lines=True)
     lessons = []
     if round > 0 and settings.max_approved_lessons:

@@ -115,31 +115,36 @@ class CheckerTests(unittest.TestCase):
         self.assertFalse((self.root / "data/ledger.jsonl").exists())
 
     def test_existing_empty_real_files_do_not_fall_back(self):
-        for name in ("papers.txt", "cow_vars.txt"):
-            (self.root / "data" / name).write_text("")
+        for name in ("papers.json", "cow_vars.txt"):
+            (self.root / "data" / name).write_text("[]" if name.endswith(".json") else "")
         self.write_lessons([])
         papers, datasets, lessons, sample = load_inputs(self.settings, round=1)
         self.assertEqual((papers, datasets, lessons, sample), ([], [], [], False))
 
     def test_malformed_real_file_fails_without_model_call(self):
-        (self.root / "data/papers.txt").write_text("not JSON")
+        (self.root / "data/papers.json").write_text("not JSON")
         client = SequenceClient([])
         with self.assertRaises(InputDataError):
             check(self.hypothesis, settings=self.settings, client=client)
         self.assertEqual(client.calls, [])
 
     def test_duplicate_ids_fail(self):
-        line = (self.root / "contracts/sample_papers.txt").read_text().splitlines()[0]
-        (self.root / "data/papers.txt").write_text(line + "\n" + line + "\n")
+        row = json.loads((self.root / "contracts/sample_papers.json").read_text())[0]
+        (self.root / "data/papers.json").write_text(json.dumps([row, row]))
         with self.assertRaises(InputDataError):
             load_inputs(self.settings)
 
     def test_real_files_replace_samples_without_code_changes(self):
-        for real, sample in (("papers.txt", "sample_papers.txt"), ("cow_vars.txt", "sample_cow_vars.txt")):
-            rows = [json.loads(line) for line in (self.root / "contracts" / sample).read_text().splitlines()]
+        for real, sample in (("papers.json", "sample_papers.json"), ("cow_vars.txt", "sample_cow_vars.txt")):
+            text = (self.root / "contracts" / sample).read_text()
+            if sample.endswith(".json"):
+                rows = json.loads(text)
+            else:
+                rows = [json.loads(line) for line in text.splitlines()]
             for row in rows:
                 row["is_sample"] = False
-            (self.root / "data" / real).write_text("\n".join(json.dumps(row) for row in rows))
+            output = json.dumps(rows) if real.endswith(".json") else "\n".join(json.dumps(row) for row in rows)
+            (self.root / "data" / real).write_text(output)
         # Fictional contents here exercise loading; they do not become real evidence.
         self.assertFalse(load_inputs(self.settings)[3])
 
