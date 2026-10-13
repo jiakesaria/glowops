@@ -12,3 +12,4 @@ data/failures.json
 results/*
 !results/.gitkeep
 data/cow_full/
+data/improve_log.jsonl

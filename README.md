@@ -138,7 +138,7 @@ fallbacks or suggest that unfinished scripts work.
 ├── ledger.py                       A
 ├── tests/test_checker.py           A; offline core integration checks
 ├── cow_data.py                     C / Sylvia; sample, check and full-download command
-├── improve.py                      C / Sylvia; planned
+├── improve.py                      C / Sylvia; failures -> proposed lessons (docs/improve_design.md)
 ├── run_tests.py                    D / Amitej; planned
 ├── run_rounds.py                   D; planned
 ├── data/
@@ -160,7 +160,8 @@ fallbacks or suggest that unfinished scripts work.
 │   ├── cow_samples/                C; 5-row sample of every entry (committed)
 │   ├── cow_full/                   C; full downloads, ignored
 │   ├── tests.json                  D; planned
-│   ├── lessons.json                C; planned
+│   ├── lessons.json                C; created by improve.py, approved by hand
+│   ├── improve_log.jsonl           C; generated, ignored
 │   ├── failures.json               D; generated, ignored
 │   └── ledger.jsonl                A; generated, ignored
 ├── docs/
@@ -246,6 +247,24 @@ a download whose header differs from the sample. Full files are saved unchanged:
 files use old Mac (CR) line endings or ISO-8859 text, and `igo_year` is tab-delimited
 (`cow_files.json` records the delimiter and encoding). The samples are normalized to UTF-8.
 Declared variables are sometimes a subset of a wide file; each entry's `limitations` says so.
+
+## Lessons: propose, review, approve
+
+`improve.py` turns learning-split failures into one-sentence lessons; the design and its sources
+are in [docs/improve_design.md](docs/improve_design.md). Proposals are saved with `approved: false`
+and the checker ignores them until you approve them.
+
+```sh
+python improve.py data/failures.json --round 1 --model deepseek   # propose (one model call)
+python improve.py contracts/sample_failures.json --round 0 --fake # offline, no key (failures must be for model "fake")
+python improve.py list --pending                                  # what awaits review
+python improve.py approve deepseek-r1-01                          # also: unapprove, reject (deletes a pending proposal)
+python improve.py status --round 1 --model deepseek               # exit code 3 while proposals are unreviewed
+```
+
+Only failures from the learning split, for the selected model and round, are accepted. If
+`data/tests.json` exists, each failure must belong to a learning test. `--dry-run` prints without writing;
+`--force` proposes again for failures already processed. `data/improve_log.jsonl` records each run.
 
 ## Evaluation and improvement protocol
 
