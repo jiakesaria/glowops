@@ -171,6 +171,7 @@ fallbacks or suggest that unfinished scripts work.
 │   └── ledger.jsonl                A; generated, ignored
 ├── docs/
 │   ├── improve_design.md           C; design of improve.py and the papers it draws on
+│   ├── observations.md             C; findings from real runs that affect the build
 │   ├── sources.md                  B
 │   └── suggested_tests.md          B; optional
 └── results/                        D; generated results ignored
