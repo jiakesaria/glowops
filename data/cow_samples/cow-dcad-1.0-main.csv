@@ -1,0 +1,6 @@
+ccode1,cowName1,ccode2,cowName2,signDay,signMonth,signYear,EIFDay,EIFMonth,EIFYear,type,category1,category2,category3,span,renewType,renewYears,terminated,durationActual,endYearEstimate,asymmetry,categoryConf,UNTS,fullText,sourceType,source,factivaConf,factivaSign,factivaEIF,DCAid
+2,USA,20,CAN,1,4,1984,1,4,1984,sector,PROCUREMENT,,,,,,0,,2010,1,atypical,,Y,treaty,US DOD,,,,DCADv1.0-0001
+2,USA,20,CAN,19,8,1994,19,8,1994,general,DCA,,,-77,-77,-77,0,,2010,1,atypical,,Y,treaty,TIAS,,,,DCADv1.0-0002
+2,USA,20,CAN,8,6,1996,8,6,1996,sector,PROCUREMENT,,,-77,-77,-77,0,,2010,1,atypical,,Y,treaty,US DOD,,,,DCADv1.0-0003
+2,USA,20,CAN,29,8,1996,29,8,1996,sector,RESEARCH,,,25,-57,25,0,,2010,0,high,,Y,treaty,TIAS,,,,DCADv1.0-0004
+2,USA,20,CAN,,,1999,,,,sector,PROCUREMENT,,,,,,-88,,2005,0,low,,,factiva,"Wires, newspapers, transcripts",1,-99,,DCADv1.0-0005

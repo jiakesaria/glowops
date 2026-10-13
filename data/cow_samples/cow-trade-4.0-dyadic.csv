@@ -1,0 +1,6 @@
+ccode1,ccode2,year,importer1,importer2,flow1,flow2,smoothflow1,smoothflow2,smoothtotrade,spike1,spike2,dip1,dip2,trdspike,tradedip,bel_lux_alt_flow1,bel_lux_alt_flow2,china_alt_flow1,china_alt_flow2,source1,source2,version
+2,20,1920,United States of America,Canada,611.85999,735.47998,611.85999,735.47998,1347.34,0,0,0,0,0,0,-9,-9,-9,-9,1,1,4
+2,20,1921,United States of America,Canada,335.44,442.98999,335.44,442.98999,778.42999,0,0,0,0,0,0,-9,-9,-9,-9,1,1,4
+2,20,1922,United States of America,Canada,364.01999,502.84,364.01999,502.84,866.85999,0,0,0,0,0,0,-9,-9,-9,-9,1,1,4
+2,20,1923,United States of America,Canada,416,598.14001,416,598.14001,1014.14,0,0,0,0,0,0,-9,-9,-9,-9,1,1,4
+2,20,1924,United States of America,Canada,399.14001,496.32001,399.14001,496.32001,895.46002,0,0,0,0,0,0,-9,-9,-9,-9,1,1,4

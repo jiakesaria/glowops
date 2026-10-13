@@ -1,0 +1,6 @@
+disno,dyindex,statea,namea,stateb,nameb,year,strtday,strtmnth,strtyr,endday,endmnth,endyear,outcome,settlmnt,fatlev,highact,hihost,recip,noinit,notarg,sideaa,revstata,revtypea,fatleva,highmcaa,hihosta,orignata,sideab,revstatb,revtypeb,fatlevb,highmcab,hihostb,orignatb,rolea,roleb,dyad_rolea,dyad_roleb,war,durindx,duration,cumdurat,mid5hiact,mid5hiacta,mid5hiactb,severity,severitya,severityb,ongo2014,new,change,changetype_1,changetype_2
+2,2,2,USA,200,UKG,1902,1,7,1902,24,1,1903,0,0,0,7,3,0,1,1,1,1,1,0,7,3,1,0,1,1,0,0,1,1,1,3,1,3,0,1,184,184,7,7,0,49,49,0,0,0,0,0,0
+2,2,2,USA,200,UKG,1903,1,7,1902,24,1,1903,6,1,0,7,3,0,1,1,1,1,1,0,7,3,1,0,1,1,0,0,1,1,1,3,1,3,0,2,25,209,7,7,0,49,49,0,0,0,0,0,0
+2,2,200,UKG,2,USA,1902,1,7,1902,24,1,1903,0,0,0,7,3,0,1,1,0,1,1,0,0,1,1,1,1,1,0,7,3,1,3,1,3,1,0,1,184,184,7,0,7,49,0,49,0,0,0,0,0
+2,2,200,UKG,2,USA,1903,1,7,1902,24,1,1903,6,1,0,7,3,0,1,1,0,1,1,0,0,1,1,1,1,1,0,7,3,1,3,1,3,1,0,2,25,209,7,0,7,49,0,49,0,0,0,0,0
+3,3,300,AUH,345,YUG,1913,2,5,1913,25,10,1913,4,3,0,10,3,0,1,1,1,1,2,0,10,3,1,0,0,0,0,0,1,1,1,3,1,3,0,1,177,177,8,8,0,20,20,0,0,0,0,0,0

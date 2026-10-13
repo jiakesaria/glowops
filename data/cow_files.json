@@ -1,0 +1,236 @@
+{
+  "cow-country-codes": {
+    "url": "https://correlatesofwar.org/wp-content/uploads/COW-country-codes.csv",
+    "member": null,
+    "delimiter": ",",
+    "encoding": "utf-8"
+  },
+  "cow-states-2024": {
+    "url": "https://correlatesofwar.org/wp-content/uploads/States2024.zip",
+    "member": "States2024/statelist2024.csv",
+    "delimiter": ",",
+    "encoding": "utf-8"
+  },
+  "cow-majors-2024": {
+    "url": "https://correlatesofwar.org/wp-content/uploads/MajorPowers2024.zip",
+    "member": "MajorPowers2024/majors2024.csv",
+    "delimiter": ",",
+    "encoding": "utf-8"
+  },
+  "cow-system-2024": {
+    "url": "https://correlatesofwar.org/wp-content/uploads/System2024.zip",
+    "member": "System2024/system2024.csv",
+    "delimiter": ",",
+    "encoding": "utf-8"
+  },
+  "cow-nondirected-dyad-year-2024": {
+    "url": "https://correlatesofwar.org/wp-content/uploads/NonDirectedDyadYear2024.zip",
+    "member": "NonDirectedDyadYear/nondirecteddyadyear2024.csv",
+    "delimiter": ",",
+    "encoding": "utf-8"
+  },
+  "cow-directed-dyad-year-2024": {
+    "url": "https://correlatesofwar.org/wp-content/uploads/DirectedDyadYear2024.zip",
+    "member": "DirectedDyadYear/directeddyadyear2024.csv",
+    "delimiter": ",",
+    "encoding": "utf-8"
+  },
+  "cow-mida-5.0": {
+    "url": "https://correlatesofwar.org/wp-content/uploads/MID-5-Data-and-Supporting-Materials.zip",
+    "member": "MIDA 5.0.csv",
+    "delimiter": ",",
+    "encoding": "utf-8"
+  },
+  "cow-midb-5.0": {
+    "url": "https://correlatesofwar.org/wp-content/uploads/MID-5-Data-and-Supporting-Materials.zip",
+    "member": "MIDB 5.0.csv",
+    "delimiter": ",",
+    "encoding": "utf-8"
+  },
+  "cow-midi-5.01": {
+    "url": "https://correlatesofwar.org/wp-content/uploads/Incident_Level_5.01.zip",
+    "member": "MIDI_5.01.csv",
+    "delimiter": ",",
+    "encoding": "utf-8"
+  },
+  "cow-midip-5.01": {
+    "url": "https://correlatesofwar.org/wp-content/uploads/Incident_Level_5.01.zip",
+    "member": "MIDIP_5.01.csv",
+    "delimiter": ",",
+    "encoding": "utf-8"
+  },
+  "cow-dyadic-mid-4.03": {
+    "url": "https://correlatesofwar.org/wp-content/uploads/dyadic_mid_4.03_update.zip",
+    "member": "dyadic_mid_4.03_update/dyadic_mid_4.03.csv",
+    "delimiter": ",",
+    "encoding": "utf-8"
+  },
+  "cow-midloca-2.1": {
+    "url": "https://correlatesofwar.org/wp-content/uploads/MIDLOC_2.1.zip",
+    "member": "MIDLOCA_2.1.csv",
+    "delimiter": ",",
+    "encoding": "utf-8"
+  },
+  "cow-midloci-2.1": {
+    "url": "https://correlatesofwar.org/wp-content/uploads/MIDLOC_2.1.zip",
+    "member": "MIDLOCI_2.1.csv",
+    "delimiter": ",",
+    "encoding": "utf-8"
+  },
+  "cow-interstate-war-4.0": {
+    "url": "https://correlatesofwar.org/wp-content/uploads/Inter-StateWarData_v4.0.csv",
+    "member": null,
+    "delimiter": ",",
+    "encoding": "utf-8"
+  },
+  "cow-intrastate-war-5.1": {
+    "url": "https://correlatesofwar.org/wp-content/uploads/Intra-State-Wars-v5.1.zip",
+    "member": "INTRA-STATE WARS v5.1 CSV.csv",
+    "delimiter": ",",
+    "encoding": "latin-1"
+  },
+  "cow-intrastate-war-participants-5.1": {
+    "url": "https://correlatesofwar.org/wp-content/uploads/Intra-State-Wars-v5.1.zip",
+    "member": "INTRA-STATE_State_participants v5.1 CSV.csv",
+    "delimiter": ",",
+    "encoding": "latin-1"
+  },
+  "cow-extrastate-war-4.0": {
+    "url": "https://correlatesofwar.org/wp-content/uploads/Extra-StateWarData_v4.0.csv",
+    "member": null,
+    "delimiter": ",",
+    "encoding": "utf-8"
+  },
+  "cow-nonstate-war-4.0": {
+    "url": "https://correlatesofwar.org/wp-content/uploads/Non-StateWarData_v4.0.csv",
+    "member": null,
+    "delimiter": ",",
+    "encoding": "utf-8"
+  },
+  "cow-dyadic-interstate-war": {
+    "url": "https://correlatesofwar.org/wp-content/uploads/Dyadic-Interstate-War-Dataset.zip",
+    "member": "directed_dyadic_war.csv",
+    "delimiter": ",",
+    "encoding": "utf-8"
+  },
+  "cow-nmc-7.0": {
+    "url": "https://correlatesofwar.org/wp-content/uploads/NMCv7.zip",
+    "member": "NMCv7/NMC-v7-abridged.zip!NMC-70-abridged.csv",
+    "delimiter": ",",
+    "encoding": "utf-8"
+  },
+  "cow-nmc-7.0-supplemental": {
+    "url": "https://correlatesofwar.org/wp-content/uploads/NMCv7.zip",
+    "member": "NMCv7/NMC-v7-supplemental.zip!NMC-70-wsupplementary.csv",
+    "delimiter": ",",
+    "encoding": "utf-8"
+  },
+  "cow-alliance-4.1-dyad": {
+    "url": "https://correlatesofwar.org/wp-content/uploads/version4.1_csv.zip",
+    "member": "version4.1_csv/alliance_v4.1_by_dyad.csv",
+    "delimiter": ",",
+    "encoding": "utf-8"
+  },
+  "cow-alliance-4.1-dyad-yearly": {
+    "url": "https://correlatesofwar.org/wp-content/uploads/version4.1_csv.zip",
+    "member": "version4.1_csv/alliance_v4.1_by_dyad_yearly.csv",
+    "delimiter": ",",
+    "encoding": "utf-8"
+  },
+  "cow-alliance-4.1-directed-yearly": {
+    "url": "https://correlatesofwar.org/wp-content/uploads/version4.1_csv.zip",
+    "member": "version4.1_csv/alliance_v4.1_by_directed_yearly.csv",
+    "delimiter": ",",
+    "encoding": "utf-8"
+  },
+  "cow-alliance-4.1-member-yearly": {
+    "url": "https://correlatesofwar.org/wp-content/uploads/version4.1_csv.zip",
+    "member": "version4.1_csv/alliance_v4.1_by_member_yearly.csv",
+    "delimiter": ",",
+    "encoding": "utf-8"
+  },
+  "cow-direct-contiguity-3.2-master": {
+    "url": "https://correlatesofwar.org/wp-content/uploads/DirectContiguity320.zip",
+    "member": "DirectContiguity320/contdir.csv",
+    "delimiter": ",",
+    "encoding": "utf-8"
+  },
+  "cow-direct-contiguity-3.2-dyad-year": {
+    "url": "https://correlatesofwar.org/wp-content/uploads/DirectContiguity320.zip",
+    "member": "DirectContiguity320/contdird.csv",
+    "delimiter": ",",
+    "encoding": "utf-8"
+  },
+  "cow-direct-contiguity-3.2-state-year": {
+    "url": "https://correlatesofwar.org/wp-content/uploads/DirectContiguity320.zip",
+    "member": "DirectContiguity320/contdirs.csv",
+    "delimiter": ",",
+    "encoding": "utf-8"
+  },
+  "cow-colonial-contiguity-3.1-master": {
+    "url": "https://correlatesofwar.org/wp-content/uploads/ColonialContiguity310.zip",
+    "member": "ColonialContiguity310/contcol.csv",
+    "delimiter": ",",
+    "encoding": "utf-8"
+  },
+  "cow-colonial-contiguity-3.1-dyad-year": {
+    "url": "https://correlatesofwar.org/wp-content/uploads/ColonialContiguity310.zip",
+    "member": "ColonialContiguity310/contcold.csv",
+    "delimiter": ",",
+    "encoding": "utf-8"
+  },
+  "cow-colonial-contiguity-3.1-state-year": {
+    "url": "https://correlatesofwar.org/wp-content/uploads/ColonialContiguity310.zip",
+    "member": "ColonialContiguity310/contcols.csv",
+    "delimiter": ",",
+    "encoding": "utf-8"
+  },
+  "cow-trade-4.0-dyadic": {
+    "url": "https://correlatesofwar.org/wp-content/uploads/COW_Trade_4.0.zip",
+    "member": "COW_Trade_4.0/Dyadic_COW_4.0.csv",
+    "delimiter": ",",
+    "encoding": "utf-8"
+  },
+  "cow-trade-4.0-national": {
+    "url": "https://correlatesofwar.org/wp-content/uploads/COW_Trade_4.0.zip",
+    "member": "COW_Trade_4.0/National_COW_4.0.csv",
+    "delimiter": ",",
+    "encoding": "utf-8"
+  },
+  "cow-territorial-change-6": {
+    "url": "https://correlatesofwar.org/wp-content/uploads/terr-changes-v6.zip",
+    "member": "tc2018.csv",
+    "delimiter": ",",
+    "encoding": "utf-8"
+  },
+  "cow-diplomatic-exchange-2006.1": {
+    "url": "https://correlatesofwar.org/wp-content/uploads/Diplomatic_Exchange_2006v1.csv",
+    "member": null,
+    "delimiter": ",",
+    "encoding": "utf-8"
+  },
+  "cow-igo-3-state-year": {
+    "url": "https://correlatesofwar.org/wp-content/uploads/state_year_formatv3.zip",
+    "member": "state_year_formatv3.csv",
+    "delimiter": ",",
+    "encoding": "utf-8"
+  },
+  "cow-igo-3-igo-year": {
+    "url": "https://correlatesofwar.org/wp-content/uploads/igo_year_formatv3.zip",
+    "member": "igo_year_formatv3.csv",
+    "delimiter": "\t",
+    "encoding": "utf-8"
+  },
+  "cow-dcad-1.0-dyadic": {
+    "url": "https://correlatesofwar.org/wp-content/uploads/kinne_dca.zip",
+    "member": "kinne_dca/DCAD-v1.0-dyadic.csv",
+    "delimiter": ",",
+    "encoding": "utf-8"
+  },
+  "cow-dcad-1.0-main": {
+    "url": "https://correlatesofwar.org/wp-content/uploads/kinne_dca.zip",
+    "member": "kinne_dca/DCAD-v1.0-main.csv",
+    "delimiter": ",",
+    "encoding": "utf-8"
+  }
+}

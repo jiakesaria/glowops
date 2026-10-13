@@ -1,0 +1,6 @@
+WarNum,WarName,WarType,WhereFought,SideA1,SideA2,SideB1,SideB2,SideB3,SideB4,SideB5,StartYear,StartMonth,StartDay,EndYear,EndMonth,EndDay,Initiator,TransFrom,TransTo,Outcome,SideADeaths,SideBDeaths,TotalCombatDeaths,Version
+1500,First Maori Tribal War,8,9,Te Rauparaha's Ngati Toa,-8,Taranaki,Ngai Tahu,Waikato, Ngati Ira,Rangitikei,1818,-9,-9,1824,-9,-9,A,-8,-8,1,1500,6000,7500,4
+1501,Shaka Zulu-Bantu War,8,4,Shaka Zulu,-8,Bantu,-8,-8,-8,-8,1819,-9,-9,1828,9,24,A,-8,-8,1,20000,40000,60000,4
+1502,Burma-Assam War,8,7,Burma,-8,Assam,-8,-8,-8,-8,1819,-9,-9,1822,-9,-9,A,-8,-8,1,-9,-9,-9,4
+1503,Buenos Aires War,8,1,Buenos Aires,-8,Provinces,-8,-8,-8,-8,1820,1,8,1820,2,23,B,-8,-8,2,-9,-9,-9,4
+1505,Second Maori Tribal War,8,9,Hongi Hika's Nga Phuhi,-8,Ngati Paoa, Ngati Maru, Waikato River Maori, Te Arawa,-8,1821,9,-9,1823,-9,-9,A,-8,-8,1,500,2000,2500,4

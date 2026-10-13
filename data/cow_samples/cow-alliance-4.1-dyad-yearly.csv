@@ -1,0 +1,6 @@
+version4id,ccode1,state_name1,ccode2,state_name2,dyad_st_day,dyad_st_month,dyad_st_year,dyad_end_day,dyad_end_month,dyad_end_year,left_censor,right_censor,defense,neutrality,nonaggression,entente,year,version
+1,200,United Kingdom,235,Portugal,1,1,1816,,,2012,1,1,1,0,1,0,1816,4.1
+1,200,United Kingdom,235,Portugal,1,1,1816,,,2012,1,1,1,0,1,0,1817,4.1
+1,200,United Kingdom,235,Portugal,1,1,1816,,,2012,1,1,1,0,1,0,1818,4.1
+1,200,United Kingdom,235,Portugal,1,1,1816,,,2012,1,1,1,0,1,0,1819,4.1
+1,200,United Kingdom,235,Portugal,1,1,1816,,,2012,1,1,1,0,1,0,1820,4.1

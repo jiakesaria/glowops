@@ -1,0 +1,6 @@
+dyad,statelno,statelab,statehno,statehab,conttype,begin,end,notes,version
+2020,2,USA,20,CAN,1,192001,201612,Begins with CAN system entry,3.2
+2031,2,USA,31,BHM,4,197307,201612,Across Atlantic Ocean (closest=Florida-Bimini); begins with BHM system entry,3.2
+2040,2,USA,40,CUB,4,190205,190609,Across Florida Straits (closest=Key West); begins with CUB system entry; ends with USA occupation of CUB,3.2
+2040,2,USA,40,CUB,4,190901,201612,Across Florida Straits (closest=Key West); resumes after USA occupation of CUB ends,3.2
+2070,2,USA,70,MEX,1,183101,201612,Begins with MEX system entry,3.2

@@ -137,6 +137,7 @@ fallbacks or suggest that unfinished scripts work.
 ├── checker.py                      A
 ├── ledger.py                       A
 ├── tests/test_checker.py           A; offline core integration checks
+├── cow_data.py                     C / Sylvia; sample, check and full-download command
 ├── improve.py                      C / Sylvia; planned
 ├── run_tests.py                    D / Amitej; planned
 ├── run_rounds.py                   D; planned
@@ -154,7 +155,10 @@ fallbacks or suggest that unfinished scripts work.
 |   |   └── weeks_2008_autocratic-audience-costs.pdf                     Weeks 2008: theory + statistical analysis
 │   ├── papers.json                 B / Jerry
 |   ├── schema.md                   B Explains the schema and structure of the papers.json file
-│   ├── cow_vars.txt                C; planned
+│   ├── cow_vars.txt                C / Sylvia; 39 CoW file entries
+│   ├── cow_files.json              C; download URL, zip member, delimiter per entry
+│   ├── cow_samples/                C; 5-row sample of every entry (committed)
+│   ├── cow_full/                   C; full downloads, ignored
 │   ├── tests.json                  D; planned
 │   ├── lessons.json                C; planned
 │   ├── failures.json               D; generated, ignored
@@ -219,6 +223,29 @@ Lessons match the exact configured model ID and cannot come from a later round.
 Sample lessons are used only when both corpus files are sample fallbacks; no
 fixture lessons are applied to a real corpus. `create_client()` and `get_config()`
 in `config.py` are available for Sylvia's `improve.py` to reuse.
+
+## CoW data inventory and on-demand download
+
+`data/cow_vars.txt` describes 39 Correlates of War files (latest version of each dataset that
+suits conflict research, with each file format listed separately). Each entry was written from
+the official codebook and checked against the real file header. Older versions (for example
+MID 4.x, Trade 3.0, NMC 5.0, IGO 2.3) are superseded and left out. World Religion, Arms
+Technology and the 1.3 GB dyadic IGO file are not included; add an entry plus a line in
+`data/cow_files.json` if a hypothesis needs them.
+
+```sh
+python cow_data.py list                  # entries and whether each has a verified sample
+python cow_data.py sample --all          # download and write 5-row samples to data/cow_samples/
+python cow_data.py check                 # offline: samples agree with the declared variables
+python cow_data.py full cow-mida-5.0     # full file into data/cow_full/ (ignored by git)
+python cow_data.py full --all            # everything, roughly 0.3 GB
+```
+
+`full` refuses any entry whose sample is missing or does not match `cow_vars.txt`, and removes
+a download whose header differs from the sample. Full files are saved unchanged: several war
+files use old Mac (CR) line endings or ISO-8859 text, and `igo_year` is tab-delimited
+(`cow_files.json` records the delimiter and encoding). The samples are normalized to UTF-8.
+Declared variables are sometimes a subset of a wide file; each entry's `limitations` says so.
 
 ## Evaluation and improvement protocol
 

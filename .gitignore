@@ -11,3 +11,4 @@ data/ledger.jsonl
 data/failures.json
 results/*
 !results/.gitkeep
+data/cow_full/

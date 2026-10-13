@@ -1,0 +1,6 @@
+WarNum,WarName,WarType,ccode,StateName,Side,StartMonth1,StartDay1,StartYear1,EndMonth1,EndDay1,EndYear1,StartMonth2,StartDay2,StartYear2,EndMonth2,EndDay2,EndYear2,TransFrom,WhereFought,Initiator,Outcome,TransTo,BatDeath,Version
+1,Franco-Spanish War,1,230,Spain,2,4,7,1823,11,13,1823,-8,-8,-8,-8,-8,-8,503,2,2,2,-8,600,4
+1,Franco-Spanish War,1,220,France,1,4,7,1823,11,13,1823,-8,-8,-8,-8,-8,-8,503,2,1,1,-8,400,4
+4,First Russo-Turkish,1,640,Ottoman Empire,2,4,26,1828,9,14,1829,-8,-8,-8,-8,-8,-8,506,11,2,2,-8,80000,4
+4,First Russo-Turkish,1,365,Russia,1,4,26,1828,9,14,1829,-8,-8,-8,-8,-8,-8,506,11,1,1,-8,50000,4
+7,Mexican-American,1,70,Mexico,2,4,25,1846,9,14,1847,-8,-8,-8,-8,-8,-8,-8,1,2,2,-8,6000,4

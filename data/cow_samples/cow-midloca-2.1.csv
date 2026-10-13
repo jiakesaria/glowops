@@ -1,0 +1,6 @@
+year,dispnum,midloc2_location,midloc2_measuringpoint,midloc2_xlongitude,midloc2_ylatitude,midloc2_precision,midloc2_howobtained,midloc2_precision_comment,midloc2_general_comment,priogrid_cell,midloc11_location,midloc11_midlocmeasuringpoint,midloc11_latitude,midloc11_longitude,midloc11_precision
+1902,2,Canada-United States (Alaska [ADM1]) Border,Midpoint of shared (subnational) border,-138.67,59.8283,5,ArcGIS and GADM,Point along a line,,215363,Alaska-Canadian border,"Juneau, Alaska",58.5092,-134.689,4
+1913,3,Austria-Yugoslavia Border,Midpoint of shared (national) border,14.911,46.6223,5,ArcGIS and cShapes,Point along a line,Uses 1955 data,196950,Austria's border with Serbia,"Belgrade, Yug",44.8119,20.4656,4
+1946,4,Straits of Corfu,Straits of Corfu,19.97,39.77,3,latlong.net,Strait,,186880,Corfu Channel,"Kerkira, GRC",39.62,19.9197,4
+1951,7,Suez Canal,Timsah Lake,32.2909,30.5735,5,latlong.net,Point along a line,,173945,Suez canal zone,"Suez canal, UAR",29.9167,32.55,4
+1856,8,"Tehran, Iran","Tehran, Iran",51.389,35.6892,8,latlong.net,Capital,,181183,Iran,"Tehran, IRN",35.6719,51.4244,5

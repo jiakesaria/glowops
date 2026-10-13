@@ -1,0 +1,6 @@
+year,dispnum,incidnum,midloc2_location,midloc2_measuringpoint,midloc2_xlongitude,midloc2_ylatitude,midloc2_precision,onset,midloc2_howobtained,midloc2_precision_comment,midloc2_general_comment,priogrid_cell,midloc11_location,midloc11_midlocmeasuringpoint,midloc11_latitude,midloc11_longitude,midloc11_precision
+1995,4005,4005001,"Belonia, India","Belonia, India",91.4676,23.2505,1,1,latlong.net,Precise location text,,163263,Belonia subdivision of South Tripura; banks of Muhari River bordering India and,Belonia,23.25,91.5,3
+1993,4023,4023001,NA,Hsinshe,120.983,24.85,1,1,MIDLOC1.1,Precise location text,,165482,NA,hsinshe,24.85,120.983,1
+2000,4157,4156001,Corentyne River Mouth,Vassen Island,-57.1492,5.79306,2,1,Island,,,137766,In the disputed waters at the mouth of the Corentyne River between SUR and GUY.,corentyne river,5.95,-57.1,4
+2000,4157,4156002,Corentyne River,Midpoint of river,-57.9096,3.86172,5,0,ArcGIS and Natural Earth Data,Point along a line,,134885,Villages on the GUY side of the Corentyne River.,corentyne river,5.95,-57.1,4
+2000,4157,4156003,Corentyne River,Midpoint of river,-57.9096,3.86172,5,0,ArcGIS and Natural Earth Data,Point along a line,,134885,Along the Corentyne River which forms the border between GUY and SUR.,corentyne river,5.95,-57.1,4

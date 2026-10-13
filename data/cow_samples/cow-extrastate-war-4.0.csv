@@ -1,0 +1,6 @@
+WarNum,WarName,WarType,ccode1,SideA,ccode2,SideB,StartMonth1,StartDay1,StartYear1,EndMonth1,EndDay1,EndYear1,StartMonth2,StartDay2,StartYear2,EndMonth2,EndDay2 ,EndYear2,Initiator,Interven,TransFrom,Outcome,TransTo,WhereFought,BatDeath,NonStateDeaths,Version
+300,Allied Bombardment of Algiers,3,210,Netherlands,-8,-8,8,26,1816,8,30,1816,-8,-8,-8,-8,-8,-8,1,1,-8,1,-8,6,13,-8,4
+300,Allied Bombardment of Algiers,3,200,United Kingdom,-8,Algeria,8,26,1816,8,30,1816,-8,-8,-8,-8,-8,-8,1,1,-8,1,-8,6,129,6000,4
+301,Ottoman-Wahhabi,3,640,Ottoman Empire,-8,Saudi Wahhabis,9,-9,1816,9,11,1818,-8,-8,-8,-8,-8,-8,1,0,-8,1,-8,6,13500,14000,4
+302,Liberation of Chile,2,230,Spain,-8,San Martin revolutionaries,1,9,1817,4,5,1818,-8,-8,-8,-8,-8,-8,0,0,-8,2,-8,1,1700,1140,4
+303,First Bolivar Expedition,2,230,Spain,-8,New Granada,4,11,1817,8,10,1819,-8,-8,-8,-8,-8,-8,1,0,-8,2,-8,1,3000,2000,4
