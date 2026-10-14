@@ -7,6 +7,24 @@ reference, extension rationale, both assessments and the final decision. This is
 prototype output, not a verified scientific finding. Human review remains necessary;
 in particular, check the consistency of the proposed years and the claims about the paper.
 
+The real 20-case evaluation is summarized in `live_evaluation.json`:
+
+| Measurement | Matched draft answers | Execution errors |
+| --- | --- | --- |
+| Original full run | 10/20 (50%) | 4 |
+| After separately recorded retries of errors only | 13/20 (65%) | 0 |
+
+Seven decisions still differ from the draft answer key. These require review of the
+rubric, data coverage and model explanations; do not relabel them automatically to
+increase the score. The final retry used a 90-second provider timeout instead of 45.
+The original full-run report and failure handoff remain unchanged.
+
+One concrete source-review issue in the generated example: its rationale attributes
+the paper's fragile eight-case war result to territory, while the corpus summary
+attributes that result to joint democracy. Its hypothesis and extension rationale
+also specify different end years. The saved final decision is revise; these model
+outputs must not be presented as established facts about the paper.
+
 `fake_candidate.json` and `fake_evaluation.json` were produced in fake mode. They are
 connection examples, not live model performance. The fake checker always returns proceed.
 

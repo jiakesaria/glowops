@@ -14,6 +14,12 @@ from contracts.schema import Failure, TestCase, Verdict
 DECISIONS = ("proceed", "revise", "reject")
 
 
+class CheckerExecutionError(RuntimeError):
+    def __init__(self, error_type):
+        self.error_type = error_type
+        super().__init__(error_type)
+
+
 def input_hashes():
     names = ("data/papers.json", "data/cow_vars.json", "data/tests.json", "checker.py",
              "screening.py", "jev.py", "improve.py", "contracts/schema.py")
@@ -53,7 +59,7 @@ def call_checker(case, *, fake, with_jev, round_number, run_id, timeout):
         raise RuntimeError("Checker process failed; consult safe API telemetry.")
     value = json.loads(process.stdout)
     if not value["ok"]:
-        raise RuntimeError(value["error"])
+        raise CheckerExecutionError(value["error"])
     return Verdict.model_validate(value["response"])
 
 
@@ -68,7 +74,7 @@ def evaluate_case(case, call):
         row.update(response=verdict.model_dump(mode="json"), actual_decision=verdict.decision,
                    status="match" if verdict.decision == case.expected_decision else "mismatch")
     except Exception as exc:
-        row["error"] = type(exc).__name__
+        row["error"] = getattr(exc, "error_type", type(exc).__name__)
     return row
 
 
@@ -85,10 +91,14 @@ def run_evaluation(cases, output, *, fake=False, with_jev=False, round_number=0,
     output = Path(output)
     output.mkdir(parents=True, exist_ok=False)
     run_id = output.name
-    model = "fake" if fake else get_config().model_id
+    settings = get_config()
+    model = "fake" if fake else settings.model_id
     write_json(output / "tests_snapshot.json", [c.model_dump() for c in cases])
     write_json(output / "manifest.json", {"mode": "fake" if fake else "real", "model": model,
         "with_jev": with_jev, "round": round_number, "run_id": run_id,
+        "request_limits": {"provider_timeout_seconds": settings.timeout_seconds,
+            "case_timeout_seconds": timeout, "max_json_retries": settings.max_json_retries,
+            "max_output_tokens": settings.max_tokens},
         "input_sha256": input_hashes(),
         "lesson_file_sha256": hashlib.sha256((ROOT / "data/lessons.json").read_bytes()).hexdigest()
             if (ROOT / "data/lessons.json").exists() else None,
@@ -160,6 +170,7 @@ def main(argv=None):
     parser.add_argument('--limit', type=int, help='Small smoke evaluation; select first N cases')
     parser.add_argument('--timeout', type=float, default=150)
     parser.add_argument('--strict', action='store_true')
+    parser.add_argument('--retry-errors-from', type=Path, help='Retry only execution errors from a saved run; preserve its score and learning handoff')
     args = parser.parse_args(argv)
     if args.round < 0 or args.timeout <= 0 or (args.limit is not None and args.limit < 1):
         parser.error('Round must be nonnegative; timeout and limit must be positive.')
@@ -167,6 +178,22 @@ def main(argv=None):
     if path == ROOT / 'data/tests.json' and not path.exists():
         path = ROOT / 'contracts/sample_tests.json'
     cases = [c for c in load_cases(path) if args.split == 'all' or c.split == args.split]
+    if args.retry_errors_from:
+        prior = args.retry_errors_from
+        manifest = read_json(prior / 'manifest.json')
+        if manifest['mode'] != ('fake' if args.fake else 'real') or manifest['with_jev'] != args.with_jev:
+            parser.error('Retry mode must match the original --fake and --with-jev settings.')
+        if manifest['model'] != ('fake' if args.fake else get_config().model_id):
+            parser.error('Model changed; start a new benchmark rather than an error retry.')
+        if manifest['input_sha256'] != input_hashes():
+            parser.error('Benchmark, corpus or screening code changed; start a new benchmark.')
+        rows = [json.loads(line) for line in (prior / 'results.jsonl').read_text().splitlines()]
+        errors = {r['id'] for r in rows if r['status'] == 'error'}
+        cases = [c for c in load_cases(prior / 'tests_snapshot.json') if c.id in errors]
+        args.round = manifest['round']
+        if not cases:
+            print('No execution errors to retry.')
+            return 0
     if args.limit:
         cases = cases[:args.limit]
     if not cases:
@@ -174,8 +201,12 @@ def main(argv=None):
     output = ROOT / 'results' / ('tests_' + datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S%fZ'))
     summary = run_evaluation(cases, output, fake=args.fake, with_jev=args.with_jev,
                             round_number=args.round, timeout=args.timeout,
-                            failure_output=ROOT / 'data/failures.json')
-    write_json(ROOT / 'results/single_run_summary.json', summary)
+                            failure_output=None if args.retry_errors_from else ROOT / 'data/failures.json')
+    if args.retry_errors_from:
+        summary['retry_of'] = str(args.retry_errors_from.resolve())
+        write_json(output / 'summary.json', summary)
+    else:
+        write_json(ROOT / 'results/single_run_summary.json', summary)
     print_summary(summary)
     print('Draft answer key. Scores measure decision agreement, not scientific truth.')
     if args.fake:

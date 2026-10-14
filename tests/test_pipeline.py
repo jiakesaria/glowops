@@ -20,6 +20,7 @@ from screening import QUESTIONS, combine
 from telemetry import completion
 from run_rounds import continue_run
 from run_tests import input_hashes, write_json
+from run_tests import CheckerExecutionError, main as evaluation_main
 from generate import generate_candidates
 
 
@@ -80,6 +81,36 @@ class PipelineTests(unittest.TestCase):
         result = evaluate_case(self.case, broken)
         self.assertEqual(result['status'], 'error')
         self.assertNotIn('do-not-log-this-secret', json.dumps(result))
+
+    def test_worker_error_type_survives_without_provider_message(self):
+        def broken(_):
+            raise CheckerExecutionError('APITimeoutError')
+        row = evaluate_case(self.case, broken)
+        self.assertEqual(row['error'], 'APITimeoutError')
+        self.assertEqual(row['status'], 'error')
+
+    def test_error_retry_preserves_original_score_and_learning_handoff(self):
+        second = self.case.model_copy(update={'id': 'T2'})
+        cases = [self.case, second]
+        prior = self.root / 'results/prior'
+        write_json(self.root / 'data/tests.json', [c.model_dump() for c in cases])
+        write_json(prior / 'tests_snapshot.json', [c.model_dump() for c in cases])
+        (prior / 'results.jsonl').write_text(json.dumps({'id': 'T1', 'status': 'error'}) + '\n' +
+                                            json.dumps({'id': 'T2', 'status': 'mismatch'}) + '\n')
+        write_json(self.root / 'results/single_run_summary.json', {'original': True})
+        write_json(self.root / 'data/failures.json', ['preserve'])
+        score = summarize([evaluate_case(self.case, lambda _: self.verdict)])
+        with patch('run_tests.ROOT', self.root), patch('run_tests.input_hashes', return_value={}), \
+             patch('run_tests.run_evaluation', return_value=score) as evaluate:
+            write_json(prior / 'manifest.json', {'mode': 'fake', 'with_jev': False, 'model': 'fake',
+                'round': 0, 'input_sha256': {}})
+            result = evaluation_main(['--fake', '--tests', str(self.root / 'data/tests.json'),
+                                      '--retry-errors-from', str(prior)])
+        self.assertEqual(result, 0)
+        self.assertEqual([c.id for c in evaluate.call_args.args[0]], ['T1'])
+        self.assertIsNone(evaluate.call_args.kwargs['failure_output'])
+        self.assertEqual(json.loads((self.root / 'results/single_run_summary.json').read_text()), {'original': True})
+        self.assertEqual(json.loads((self.root / 'data/failures.json').read_text()), ['preserve'])
 
     def test_generator_rejects_unknown_references_and_duplicates(self):
         paper = SimpleNamespace(id='known')

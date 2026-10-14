@@ -57,6 +57,16 @@ python run_tests.py --with-jev --limit 1
 python run_tests.py --with-jev
 ```
 
+For an interrupted provider call, retry only execution errors using the original run
+directory printed by the runner:
+
+```sh
+python run_tests.py --with-jev --retry-errors-from results/tests_TIMESTAMP
+```
+
+Retries get a separate report and do not replace the original score or learning-failure
+file. Mismatched decisions are not retried by this option.
+
 `generate.py` uses Foundry to propose an extension with source references and a rationale.
 Jia's checker supplies the structured evidence assessment. Jev independently chooses a
 viability decision and a research-value category using typed questions. Agreement and the

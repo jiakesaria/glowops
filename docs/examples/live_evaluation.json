@@ -1,0 +1,264 @@
+{
+  "date": "2026-10-14",
+  "model": "DeepSeek-V4-Flash-2",
+  "jev_model": "jev-1.13.0",
+  "benchmark_status": "Draft answer key; decision agreement is not scientific truth.",
+  "original_run": "tests_20261014T204057300863Z",
+  "original_score": {
+    "assigned": 20,
+    "matched": 10,
+    "mismatched": 6,
+    "errors": 4,
+    "accuracy": 0.5,
+    "by_expected_category": {
+      "proceed": {
+        "assigned": 7,
+        "matched": 1,
+        "accuracy": 0.14285714285714285
+      },
+      "revise": {
+        "assigned": 7,
+        "matched": 5,
+        "accuracy": 0.7142857142857143
+      },
+      "reject": {
+        "assigned": 6,
+        "matched": 4,
+        "accuracy": 0.6666666666666666
+      }
+    },
+    "confusion_matrix": {
+      "proceed": {
+        "proceed": 1,
+        "revise": 5,
+        "reject": 0,
+        "error": 1
+      },
+      "revise": {
+        "proceed": 0,
+        "revise": 5,
+        "reject": 1,
+        "error": 1
+      },
+      "reject": {
+        "proceed": 0,
+        "revise": 0,
+        "reject": 4,
+        "error": 2
+      }
+    },
+    "scope": "Decision agreement only; citation and explanation correctness need separate review."
+  },
+  "retry_runs": [
+    "tests_20261014T204811785642Z",
+    "tests_20261014T204957391487Z"
+  ],
+  "retry_policy": "Only execution errors were retried. Original results and learning-failure handoff were preserved. The final V01 retry used a 90-second provider timeout instead of 45 seconds.",
+  "after_error_retries": {
+    "assigned": 20,
+    "matched": 13,
+    "mismatched": 7,
+    "errors": 0,
+    "accuracy": 0.65,
+    "by_expected_category": {
+      "proceed": {
+        "assigned": 7,
+        "matched": 1,
+        "accuracy": 0.14285714285714285
+      },
+      "revise": {
+        "assigned": 7,
+        "matched": 6,
+        "accuracy": 0.8571428571428571
+      },
+      "reject": {
+        "assigned": 6,
+        "matched": 6,
+        "accuracy": 1.0
+      }
+    },
+    "confusion_matrix": {
+      "proceed": {
+        "proceed": 1,
+        "revise": 6,
+        "reject": 0,
+        "error": 0
+      },
+      "revise": {
+        "proceed": 0,
+        "revise": 6,
+        "reject": 1,
+        "error": 0
+      },
+      "reject": {
+        "proceed": 0,
+        "revise": 0,
+        "reject": 6,
+        "error": 0
+      }
+    },
+    "scope": "Decision agreement only; citation and explanation correctness need separate review."
+  },
+  "case_results": [
+    {
+      "id": "P01",
+      "expected_decision": "proceed",
+      "actual_decision": "revise",
+      "status": "mismatch",
+      "error": null,
+      "source_run": "tests_20261014T204057300863Z"
+    },
+    {
+      "id": "P02",
+      "expected_decision": "proceed",
+      "actual_decision": "revise",
+      "status": "mismatch",
+      "error": null,
+      "source_run": "tests_20261014T204057300863Z"
+    },
+    {
+      "id": "P03",
+      "expected_decision": "proceed",
+      "actual_decision": "revise",
+      "status": "mismatch",
+      "error": null,
+      "source_run": "tests_20261014T204811785642Z"
+    },
+    {
+      "id": "P04",
+      "expected_decision": "proceed",
+      "actual_decision": "revise",
+      "status": "mismatch",
+      "error": null,
+      "source_run": "tests_20261014T204057300863Z"
+    },
+    {
+      "id": "P05",
+      "expected_decision": "proceed",
+      "actual_decision": "proceed",
+      "status": "match",
+      "error": null,
+      "source_run": "tests_20261014T204057300863Z"
+    },
+    {
+      "id": "P06",
+      "expected_decision": "proceed",
+      "actual_decision": "revise",
+      "status": "mismatch",
+      "error": null,
+      "source_run": "tests_20261014T204057300863Z"
+    },
+    {
+      "id": "P07",
+      "expected_decision": "proceed",
+      "actual_decision": "revise",
+      "status": "mismatch",
+      "error": null,
+      "source_run": "tests_20261014T204057300863Z"
+    },
+    {
+      "id": "V01",
+      "expected_decision": "revise",
+      "actual_decision": "revise",
+      "status": "match",
+      "error": null,
+      "source_run": "tests_20261014T204957391487Z"
+    },
+    {
+      "id": "V02",
+      "expected_decision": "revise",
+      "actual_decision": "revise",
+      "status": "match",
+      "error": null,
+      "source_run": "tests_20261014T204057300863Z"
+    },
+    {
+      "id": "V03",
+      "expected_decision": "revise",
+      "actual_decision": "reject",
+      "status": "mismatch",
+      "error": null,
+      "source_run": "tests_20261014T204057300863Z"
+    },
+    {
+      "id": "V04",
+      "expected_decision": "revise",
+      "actual_decision": "revise",
+      "status": "match",
+      "error": null,
+      "source_run": "tests_20261014T204057300863Z"
+    },
+    {
+      "id": "V05",
+      "expected_decision": "revise",
+      "actual_decision": "revise",
+      "status": "match",
+      "error": null,
+      "source_run": "tests_20261014T204057300863Z"
+    },
+    {
+      "id": "V06",
+      "expected_decision": "revise",
+      "actual_decision": "revise",
+      "status": "match",
+      "error": null,
+      "source_run": "tests_20261014T204057300863Z"
+    },
+    {
+      "id": "V07",
+      "expected_decision": "revise",
+      "actual_decision": "revise",
+      "status": "match",
+      "error": null,
+      "source_run": "tests_20261014T204057300863Z"
+    },
+    {
+      "id": "R01",
+      "expected_decision": "reject",
+      "actual_decision": "reject",
+      "status": "match",
+      "error": null,
+      "source_run": "tests_20261014T204057300863Z"
+    },
+    {
+      "id": "R02",
+      "expected_decision": "reject",
+      "actual_decision": "reject",
+      "status": "match",
+      "error": null,
+      "source_run": "tests_20261014T204057300863Z"
+    },
+    {
+      "id": "R03",
+      "expected_decision": "reject",
+      "actual_decision": "reject",
+      "status": "match",
+      "error": null,
+      "source_run": "tests_20261014T204057300863Z"
+    },
+    {
+      "id": "R04",
+      "expected_decision": "reject",
+      "actual_decision": "reject",
+      "status": "match",
+      "error": null,
+      "source_run": "tests_20261014T204057300863Z"
+    },
+    {
+      "id": "R05",
+      "expected_decision": "reject",
+      "actual_decision": "reject",
+      "status": "match",
+      "error": null,
+      "source_run": "tests_20261014T204811785642Z"
+    },
+    {
+      "id": "R06",
+      "expected_decision": "reject",
+      "actual_decision": "reject",
+      "status": "match",
+      "error": null,
+      "source_run": "tests_20261014T204811785642Z"
+    }
+  ]
+}
