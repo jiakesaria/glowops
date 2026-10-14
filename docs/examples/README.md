@@ -46,3 +46,55 @@ python run_rounds.py --fake
 
 The three-round chart appears at `results/accuracy_by_round.png`. Runtime outputs remain
 local under `results/` and `data/*ledger.jsonl`; review them before sharing.
+
+## Review of the seven disagreements
+
+The original benchmark rationales emphasize **testability and data coverage**. The new
+combined workflow also requires a research-value justification. Those are different
+criteria, so its lower score should not be presented as the original checker failing
+seven testability cases.
+
+Using the same saved responses after execution-error retries, without making new API calls:
+
+| Component | Agreement with the draft answer key |
+| --- | --- |
+| Original checker decision | 19/20 (95%) |
+| Jev viability decision | 18/20 (90%) |
+| Combined decision, including research-value gate | 13/20 (65%) |
+
+These scores are descriptive comparisons against a draft benchmark, not independently
+validated accuracy estimates. The combined workflow has an extra criterion that the
+current answer key does not consistently evaluate.
+
+- **P01, P02, P03, P06, P07:** both checker and Jev viability said proceed. The added
+  research-value gate changed the combined decision to revise because Jev selected
+  `needs_justification`.
+- **P04:** the checker said proceed; Jev viability said revise and also requested a
+  research-value justification. Its reported choice probabilities were close, so this
+  should not be treated as a decisive scientific assessment.
+- **V03:** both services rejected the unavailable historical years. The shared rubric
+  says repairable data gaps should normally receive revise. Keep this learning-case
+  disagreement for human review rather than changing the expected answer to match.
+
+**Recommended next step:** evaluate testability and research value separately. The team
+should agree on the final proceed/revise/reject policy and add independent expected
+research-value labels before claiming accuracy for the complete workflow. Keep the
+historical scores and labels unchanged. No lesson or screening-rule change was made
+as part of this review. Holdout cases remain excluded from the improvement handoff;
+a fresh final test is needed after any tuning informed by this review.
+
+## Existing files changed on Amitej's branch
+
+| Existing file | Change |
+| --- | --- |
+| `config.py` | Foundry support and default; automatic network retries disabled |
+| `checker.py` | Foundry selection, API usage logging, invalid-response diagnostics |
+| `improve.py` | Foundry selection and API usage logging; lesson and approval logic preserved |
+| `.env.example` | Blank Foundry/Jev variable names and configuration template |
+| `.gitignore` | Ignore new local logs and plotting cache |
+| `requirements.txt` | Explicit `httpx` dependency for Jev requests |
+| `README.md` | Integrated setup and run instructions |
+
+The shared contracts, paper/data inventory and pre-existing tests were not edited.
+The policy that combines checker and Jev judgments is in the new `screening.py` file.
+All changes are local on `amitej/evaluation-generation`; nothing has been pushed or merged.

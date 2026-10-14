@@ -106,7 +106,14 @@
       "actual_decision": "revise",
       "status": "mismatch",
       "error": null,
-      "source_run": "tests_20261014T204057300863Z"
+      "source_run": "tests_20261014T204057300863Z",
+      "component_decisions": {
+        "checker": "proceed",
+        "jev_viability": "proceed",
+        "combined": "revise"
+      },
+      "research_value": "needs_justification",
+      "split": "learn"
     },
     {
       "id": "P02",
@@ -114,7 +121,14 @@
       "actual_decision": "revise",
       "status": "mismatch",
       "error": null,
-      "source_run": "tests_20261014T204057300863Z"
+      "source_run": "tests_20261014T204057300863Z",
+      "component_decisions": {
+        "checker": "proceed",
+        "jev_viability": "proceed",
+        "combined": "revise"
+      },
+      "research_value": "needs_justification",
+      "split": "learn"
     },
     {
       "id": "P03",
@@ -122,7 +136,14 @@
       "actual_decision": "revise",
       "status": "mismatch",
       "error": null,
-      "source_run": "tests_20261014T204811785642Z"
+      "source_run": "tests_20261014T204811785642Z",
+      "component_decisions": {
+        "checker": "proceed",
+        "jev_viability": "proceed",
+        "combined": "revise"
+      },
+      "research_value": "needs_justification",
+      "split": "learn"
     },
     {
       "id": "P04",
@@ -130,7 +151,14 @@
       "actual_decision": "revise",
       "status": "mismatch",
       "error": null,
-      "source_run": "tests_20261014T204057300863Z"
+      "source_run": "tests_20261014T204057300863Z",
+      "component_decisions": {
+        "checker": "proceed",
+        "jev_viability": "revise",
+        "combined": "revise"
+      },
+      "research_value": "needs_justification",
+      "split": "learn"
     },
     {
       "id": "P05",
@@ -138,7 +166,14 @@
       "actual_decision": "proceed",
       "status": "match",
       "error": null,
-      "source_run": "tests_20261014T204057300863Z"
+      "source_run": "tests_20261014T204057300863Z",
+      "component_decisions": {
+        "checker": "proceed",
+        "jev_viability": "proceed",
+        "combined": "proceed"
+      },
+      "research_value": "worth_investigating",
+      "split": "holdout"
     },
     {
       "id": "P06",
@@ -146,7 +181,14 @@
       "actual_decision": "revise",
       "status": "mismatch",
       "error": null,
-      "source_run": "tests_20261014T204057300863Z"
+      "source_run": "tests_20261014T204057300863Z",
+      "component_decisions": {
+        "checker": "proceed",
+        "jev_viability": "proceed",
+        "combined": "revise"
+      },
+      "research_value": "needs_justification",
+      "split": "holdout"
     },
     {
       "id": "P07",
@@ -154,7 +196,14 @@
       "actual_decision": "revise",
       "status": "mismatch",
       "error": null,
-      "source_run": "tests_20261014T204057300863Z"
+      "source_run": "tests_20261014T204057300863Z",
+      "component_decisions": {
+        "checker": "proceed",
+        "jev_viability": "proceed",
+        "combined": "revise"
+      },
+      "research_value": "needs_justification",
+      "split": "holdout"
     },
     {
       "id": "V01",
@@ -162,7 +211,14 @@
       "actual_decision": "revise",
       "status": "match",
       "error": null,
-      "source_run": "tests_20261014T204957391487Z"
+      "source_run": "tests_20261014T204957391487Z",
+      "component_decisions": {
+        "checker": "revise",
+        "jev_viability": "revise",
+        "combined": "revise"
+      },
+      "research_value": "needs_justification",
+      "split": "learn"
     },
     {
       "id": "V02",
@@ -170,7 +226,14 @@
       "actual_decision": "revise",
       "status": "match",
       "error": null,
-      "source_run": "tests_20261014T204057300863Z"
+      "source_run": "tests_20261014T204057300863Z",
+      "component_decisions": {
+        "checker": "revise",
+        "jev_viability": "revise",
+        "combined": "revise"
+      },
+      "research_value": "needs_justification",
+      "split": "learn"
     },
     {
       "id": "V03",
@@ -178,7 +241,14 @@
       "actual_decision": "reject",
       "status": "mismatch",
       "error": null,
-      "source_run": "tests_20261014T204057300863Z"
+      "source_run": "tests_20261014T204057300863Z",
+      "component_decisions": {
+        "checker": "reject",
+        "jev_viability": "reject",
+        "combined": "reject"
+      },
+      "research_value": "needs_justification",
+      "split": "learn"
     },
     {
       "id": "V04",
@@ -186,7 +256,14 @@
       "actual_decision": "revise",
       "status": "match",
       "error": null,
-      "source_run": "tests_20261014T204057300863Z"
+      "source_run": "tests_20261014T204057300863Z",
+      "component_decisions": {
+        "checker": "revise",
+        "jev_viability": "revise",
+        "combined": "revise"
+      },
+      "research_value": "needs_justification",
+      "split": "holdout"
     },
     {
       "id": "V05",
@@ -194,7 +271,14 @@
       "actual_decision": "revise",
       "status": "match",
       "error": null,
-      "source_run": "tests_20261014T204057300863Z"
+      "source_run": "tests_20261014T204057300863Z",
+      "component_decisions": {
+        "checker": "revise",
+        "jev_viability": "revise",
+        "combined": "revise"
+      },
+      "research_value": "needs_justification",
+      "split": "holdout"
     },
     {
       "id": "V06",
@@ -202,7 +286,14 @@
       "actual_decision": "revise",
       "status": "match",
       "error": null,
-      "source_run": "tests_20261014T204057300863Z"
+      "source_run": "tests_20261014T204057300863Z",
+      "component_decisions": {
+        "checker": "revise",
+        "jev_viability": "revise",
+        "combined": "revise"
+      },
+      "research_value": "needs_justification",
+      "split": "holdout"
     },
     {
       "id": "V07",
@@ -210,7 +301,14 @@
       "actual_decision": "revise",
       "status": "match",
       "error": null,
-      "source_run": "tests_20261014T204057300863Z"
+      "source_run": "tests_20261014T204057300863Z",
+      "component_decisions": {
+        "checker": "revise",
+        "jev_viability": "revise",
+        "combined": "revise"
+      },
+      "research_value": "needs_justification",
+      "split": "holdout"
     },
     {
       "id": "R01",
@@ -218,7 +316,14 @@
       "actual_decision": "reject",
       "status": "match",
       "error": null,
-      "source_run": "tests_20261014T204057300863Z"
+      "source_run": "tests_20261014T204057300863Z",
+      "component_decisions": {
+        "checker": "reject",
+        "jev_viability": "reject",
+        "combined": "reject"
+      },
+      "research_value": "low_value",
+      "split": "learn"
     },
     {
       "id": "R02",
@@ -226,7 +331,14 @@
       "actual_decision": "reject",
       "status": "match",
       "error": null,
-      "source_run": "tests_20261014T204057300863Z"
+      "source_run": "tests_20261014T204057300863Z",
+      "component_decisions": {
+        "checker": "reject",
+        "jev_viability": "reject",
+        "combined": "reject"
+      },
+      "research_value": "low_value",
+      "split": "learn"
     },
     {
       "id": "R03",
@@ -234,7 +346,14 @@
       "actual_decision": "reject",
       "status": "match",
       "error": null,
-      "source_run": "tests_20261014T204057300863Z"
+      "source_run": "tests_20261014T204057300863Z",
+      "component_decisions": {
+        "checker": "reject",
+        "jev_viability": "reject",
+        "combined": "reject"
+      },
+      "research_value": "low_value",
+      "split": "learn"
     },
     {
       "id": "R04",
@@ -242,7 +361,14 @@
       "actual_decision": "reject",
       "status": "match",
       "error": null,
-      "source_run": "tests_20261014T204057300863Z"
+      "source_run": "tests_20261014T204057300863Z",
+      "component_decisions": {
+        "checker": "reject",
+        "jev_viability": "reject",
+        "combined": "reject"
+      },
+      "research_value": "low_value",
+      "split": "holdout"
     },
     {
       "id": "R05",
@@ -250,7 +376,14 @@
       "actual_decision": "reject",
       "status": "match",
       "error": null,
-      "source_run": "tests_20261014T204811785642Z"
+      "source_run": "tests_20261014T204811785642Z",
+      "component_decisions": {
+        "checker": "reject",
+        "jev_viability": "reject",
+        "combined": "reject"
+      },
+      "research_value": "low_value",
+      "split": "holdout"
     },
     {
       "id": "R06",
@@ -258,7 +391,160 @@
       "actual_decision": "reject",
       "status": "match",
       "error": null,
-      "source_run": "tests_20261014T204811785642Z"
+      "source_run": "tests_20261014T204811785642Z",
+      "component_decisions": {
+        "checker": "reject",
+        "jev_viability": "reject",
+        "combined": "reject"
+      },
+      "research_value": "low_value",
+      "split": "holdout"
     }
+  ],
+  "component_scores": {
+    "checker": {
+      "assigned": 20,
+      "matched": 19,
+      "mismatched": 1,
+      "errors": 0,
+      "accuracy": 0.95,
+      "by_expected_category": {
+        "proceed": {
+          "assigned": 7,
+          "matched": 7,
+          "accuracy": 1.0
+        },
+        "revise": {
+          "assigned": 7,
+          "matched": 6,
+          "accuracy": 0.8571428571428571
+        },
+        "reject": {
+          "assigned": 6,
+          "matched": 6,
+          "accuracy": 1.0
+        }
+      },
+      "confusion_matrix": {
+        "proceed": {
+          "proceed": 7,
+          "revise": 0,
+          "reject": 0,
+          "error": 0
+        },
+        "revise": {
+          "proceed": 0,
+          "revise": 6,
+          "reject": 1,
+          "error": 0
+        },
+        "reject": {
+          "proceed": 0,
+          "revise": 0,
+          "reject": 6,
+          "error": 0
+        }
+      },
+      "scope": "Decision agreement only; citation and explanation correctness need separate review."
+    },
+    "jev_viability": {
+      "assigned": 20,
+      "matched": 18,
+      "mismatched": 2,
+      "errors": 0,
+      "accuracy": 0.9,
+      "by_expected_category": {
+        "proceed": {
+          "assigned": 7,
+          "matched": 6,
+          "accuracy": 0.8571428571428571
+        },
+        "revise": {
+          "assigned": 7,
+          "matched": 6,
+          "accuracy": 0.8571428571428571
+        },
+        "reject": {
+          "assigned": 6,
+          "matched": 6,
+          "accuracy": 1.0
+        }
+      },
+      "confusion_matrix": {
+        "proceed": {
+          "proceed": 6,
+          "revise": 1,
+          "reject": 0,
+          "error": 0
+        },
+        "revise": {
+          "proceed": 0,
+          "revise": 6,
+          "reject": 1,
+          "error": 0
+        },
+        "reject": {
+          "proceed": 0,
+          "revise": 0,
+          "reject": 6,
+          "error": 0
+        }
+      },
+      "scope": "Decision agreement only; citation and explanation correctness need separate review."
+    },
+    "combined": {
+      "assigned": 20,
+      "matched": 13,
+      "mismatched": 7,
+      "errors": 0,
+      "accuracy": 0.65,
+      "by_expected_category": {
+        "proceed": {
+          "assigned": 7,
+          "matched": 1,
+          "accuracy": 0.14285714285714285
+        },
+        "revise": {
+          "assigned": 7,
+          "matched": 6,
+          "accuracy": 0.8571428571428571
+        },
+        "reject": {
+          "assigned": 6,
+          "matched": 6,
+          "accuracy": 1.0
+        }
+      },
+      "confusion_matrix": {
+        "proceed": {
+          "proceed": 1,
+          "revise": 6,
+          "reject": 0,
+          "error": 0
+        },
+        "revise": {
+          "proceed": 0,
+          "revise": 6,
+          "reject": 1,
+          "error": 0
+        },
+        "reject": {
+          "proceed": 0,
+          "revise": 0,
+          "reject": 6,
+          "error": 0
+        }
+      },
+      "scope": "Decision agreement only; citation and explanation correctness need separate review."
+    }
+  },
+  "review_notes": [
+    "Post-run descriptive audit only: no labels, model prompts, lesson approvals or historical decisions were changed.",
+    "The benchmark rationales emphasize falsifiability and data coverage; they do not consistently specify an expected research-value judgment.",
+    "P01, P02, P03, P06 and P07: checker and Jev viability both said proceed; the additional research-value gate changed the final decision to revise.",
+    "P04: Jev viability also chose revise, in addition to requesting research-value justification; its returned probabilities were close (0.51 revise, 0.48 proceed).",
+    "V03: both services chose reject for unavailable years, although the stated rubric treats repairable data gaps as revise. This is a learning-split rubric disagreement for human review.",
+    "The stored Jev confidence values are provider outputs, not established empirical accuracy measures.",
+    "Holdout cases were inspected for reporting; they must not be fed to the improvement script or used to claim an untouched final test after tuning."
   ]
 }
