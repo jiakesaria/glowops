@@ -30,17 +30,20 @@ class Settings(BaseModel):
 def get_config(*, provider: str | None = None, root: Path = ROOT) -> Settings:
     """Load repo .env, with process environment taking precedence; never print keys."""
     values = {**dotenv_values(root / ".env"), **os.environ}
-    selected = (provider or values.get("MODEL") or "deepseek").strip().lower()
-    if selected not in {"deepseek", "qwen"}:
-        raise ConfigurationError("MODEL must be deepseek or qwen")
+    selected = (provider or values.get("MODEL") or "foundry").strip().lower()
+    if selected not in {"foundry", "deepseek", "qwen"}:
+        raise ConfigurationError("MODEL must be foundry, deepseek or qwen")
     prefix = selected.upper()
     base_url = (values.get(f"{prefix}_BASE_URL") or "").strip()
     if not base_url and selected == "deepseek":
         base_url = "https://api.deepseek.com"
+    if not base_url and selected == "foundry":
+        base_url = "https://uwcapstone-resource.services.ai.azure.com/openai/v1/"
     try:
         return Settings(
             provider=selected,
-            model_id=(values.get(f"{prefix}_MODEL") or "").strip(),
+            model_id=((values.get("FOUNDRY_DEPLOYMENT") or "DeepSeek-V4-Flash-2") if selected == "foundry"
+                      else values.get(f"{prefix}_MODEL") or "").strip(),
             base_url=base_url,
             api_key=(values.get(f"{prefix}_API_KEY") or "").strip(),
             root=root.resolve(),
@@ -62,7 +65,7 @@ def create_client(settings: Settings | None = None):
     prefix = settings.provider.upper()
     for name, value in (
         (f"{prefix}_API_KEY", settings.api_key),
-        (f"{prefix}_MODEL", settings.model_id),
+        ("FOUNDRY_DEPLOYMENT" if settings.provider == "foundry" else f"{prefix}_MODEL", settings.model_id),
         (f"{prefix}_BASE_URL", settings.base_url),
     ):
         if not value:
@@ -71,5 +74,5 @@ def create_client(settings: Settings | None = None):
         api_key=settings.api_key,
         base_url=settings.base_url,
         timeout=settings.timeout_seconds,
-        max_retries=2,
+        max_retries=0,
     )

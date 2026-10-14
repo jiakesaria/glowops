@@ -1,0 +1,142 @@
+[
+  {
+    "id": "P01",
+    "hypothesis": "Among MID 5.0 disputes starting in 1946–2010 that ended and have exact, nonmissing start and end dates, disputes lasting more than 30 days have a higher proportion reaching HostLev 4 or 5 than disputes lasting 30 days or less. This is a retrospective association, not a forecast or causal claim.",
+    "split": "learn",
+    "expected_decision": "proceed",
+    "rationale": "Specific population, comparison, outcome and descriptive claim. Dates, duration bounds and hostility are documented; verify usable counts before analysis. Duration is known after the dispute, so it must not become an early-warning feature."
+  },
+  {
+    "id": "P02",
+    "hypothesis": "Among recorded MID 5.0 disputes starting in 1946–2010 with nonmissing Recip and HostLev, the proportion reaching use of force or war (HostLev 4 or 5) is higher for reciprocated disputes (Recip=1) than for nonreciprocated disputes (Recip=0). The proposed analysis is retrospective and associational.",
+    "split": "learn",
+    "expected_decision": "proceed",
+    "rationale": "The dispute-level variables and comparison are explicit. Reciprocation is measured over the dispute and cannot support a causal or prospective interpretation here."
+  },
+  {
+    "id": "P03",
+    "hypothesis": "Among MID 5.0 disputes starting in 1946–2010 with observed participant counts and hostility, disputes with NumA+NumB greater than two have a higher proportion reaching HostLev 4 or 5 than disputes with exactly two participants. This is a retrospective dispute-level association.",
+    "split": "learn",
+    "expected_decision": "proceed",
+    "rationale": "NumA, NumB and HostLev support this comparison within recorded disputes. Participation over the whole dispute is not assumed to precede escalation. Count disputes, not joined participant rows."
+  },
+  {
+    "id": "P04",
+    "hypothesis": "Among MIDB 5.0 participant-dispute records with participation starting in 1946–2010 and observed RevState and HostLev, revisionist participants (RevState=1) more often reach HostLev 4 or 5 than nonrevisionist participants (RevState=0). Treat this as an association and account for repeated countries and shared disputes.",
+    "split": "learn",
+    "expected_decision": "proceed",
+    "rationale": "The unit and variables are specified in MIDB. Dependence needs handling and no causal or novelty claim is made."
+  },
+  {
+    "id": "P05",
+    "hypothesis": "Among MIDB 5.0 revisionist participant-dispute records beginning in 1946–2010 with observed RevType1 and HostLev, those with primary revision type territory (RevType1=1) more often reach HostLev 4 or 5 than those with primary revision type policy (RevType1=2). Estimate the association while accounting for repeated countries and disputes.",
+    "split": "holdout",
+    "expected_decision": "proceed",
+    "rationale": "The comparison is defined using documented participant-level codes. Exclude other and missing categories explicitly; do not interpret an association as the effect of territorial motives."
+  },
+  {
+    "id": "P06",
+    "hypothesis": "Among MIDI 5.01 incidents starting in 1993–2010 with exact nonmissing start and end dates and HostLev 2 or 3, display-of-force incidents (HostLev=3) have a greater median duration in days than threat incidents (HostLev=2). Compute duration consistently from dates and account for incidents clustered within disputes.",
+    "split": "holdout",
+    "expected_decision": "proceed",
+    "rationale": "Incident dates and hostility allow this retrospective duration comparison. Date completeness and independent dispute counts must be checked; statistical significance is not assumed."
+  },
+  {
+    "id": "P07",
+    "hypothesis": "Among MID 5.0 disputes that start and end during 1993–2010, have observed HostLev, and have at least one linked MIDI incident, the median number of distinct incidents per dispute is greater for disputes reaching HostLev 4 or 5 than for disputes whose maximum HostLev is 2 or 3. This compares retrospective records, not pre-escalation predictors.",
+    "split": "holdout",
+    "expected_decision": "proceed",
+    "rationale": "MIDA and MIDI can be linked by dispute ID and incidents counted once. The included population is explicit. More coded incidents may reflect reporting and episode duration; the result would be descriptive."
+  },
+  {
+    "id": "V01",
+    "hypothesis": "Powerful countries are more aggressive.",
+    "split": "learn",
+    "expected_decision": "revise",
+    "rationale": "Power, aggression, population and period are undefined. Under the shared checker rubric, a repairable claim should be revised."
+  },
+  {
+    "id": "V02",
+    "hypothesis": "Democracies do not go to war.",
+    "split": "learn",
+    "expected_decision": "revise",
+    "rationale": "Clarify whether the claim concerns wars against each other, define democracy and war, specify period and comparison population, and identify regime data. Do not invent an already-tested citation without the actual paper corpus."
+  },
+  {
+    "id": "V03",
+    "hypothesis": "Using only MIDI 5.01, the number of incidents in the first seven days of a dispute predicts use of force in the following 90 days for disputes starting in 1850–1900.",
+    "split": "learn",
+    "expected_decision": "revise",
+    "rationale": "The inventory covers MIDI incidents in 1992–2014, not 1850–1900. Revise the years or identify another incident source; specify exact-day and full-horizon eligibility."
+  },
+  {
+    "id": "V04",
+    "hypothesis": "In MID 5.0, use the maximum hostility reached over the entire dispute as a predictor at day seven of whether the dispute later escalates to force.",
+    "split": "holdout",
+    "expected_decision": "revise",
+    "rationale": "Maximum hostility over the complete dispute can reveal the future outcome. Redefine predictors using only information observed by day seven and specify a later outcome horizon."
+  },
+  {
+    "id": "V05",
+    "hypothesis": "The all-country-pair probability of war from 1946–2010 can be estimated by dividing the number of MID wars by the number of rows in MIDB.",
+    "split": "holdout",
+    "expected_decision": "revise",
+    "rationale": "MIDB rows represent participants in recorded disputes, not the population of all eligible country pairs or peaceful pair-years. Redefine the denominator with a state-system risk set, or restrict the question to recorded disputes."
+  },
+  {
+    "id": "V06",
+    "hypothesis": "Among MID 5.0 disputes in 1946–2010, a higher mean HostLev for reciprocated disputes proves that reciprocation causes escalation.",
+    "split": "holdout",
+    "expected_decision": "revise",
+    "rationale": "Observed differences can support an association, not this causal conclusion. Revise the claim to association or supply a justified causal design; whole-dispute timing also needs care."
+  },
+  {
+    "id": "V07",
+    "hypothesis": "Using only MID 5.0, higher annual bilateral trade in maple syrup predicts fewer militarized disputes per eligible country pair in 1993–2010.",
+    "split": "holdout",
+    "expected_decision": "revise",
+    "rationale": "The unusual subject is not a reason to reject. MID does not supply bilateral commodity trade or the full eligible country-pair denominator. Specify additional trade and state-system data plus a justified comparison before proceeding."
+  },
+  {
+    "id": "R01",
+    "hypothesis": "An undetectable force that can never affect any measurable observation makes countries fight, and no possible evidence could count against this claim.",
+    "split": "learn",
+    "expected_decision": "reject",
+    "rationale": "Explicitly excludes every possible falsifying observation. Testing it would require replacing the claim rather than clarifying its measurements."
+  },
+  {
+    "id": "R02",
+    "hypothesis": "Countries fight wars because they possess war-causingness, where war-causingness is defined only as having fought the exact war being explained.",
+    "split": "learn",
+    "expected_decision": "reject",
+    "rationale": "Circular definition restates the outcome without an independently measurable explanation or discriminating test."
+  },
+  {
+    "id": "R03",
+    "hypothesis": "Every country morally ought to abolish its military, regardless of any empirical consequences.",
+    "split": "learn",
+    "expected_decision": "reject",
+    "rationale": "This is a normative recommendation, not an empirical hypothesis. Evidence about consequences could inform a separate research question but cannot settle the stated moral obligation."
+  },
+  {
+    "id": "R04",
+    "hypothesis": "For the same incident, at the same time and under exactly the same definition, force both was used and was not used; both assertions are the hypothesis.",
+    "split": "holdout",
+    "expected_decision": "reject",
+    "rationale": "The conjunction is logically inconsistent under its stipulated identical definition. It is unsuitable as a coherent empirical claim."
+  },
+  {
+    "id": "R05",
+    "hypothesis": "My theory predicts escalation if escalation occurs and predicts no escalation if it does not occur; no prediction is specified before seeing the outcome.",
+    "split": "holdout",
+    "expected_decision": "reject",
+    "rationale": "The rule accommodates every outcome after observing it, so it offers no discriminating prediction and cannot be falsified as stated."
+  },
+  {
+    "id": "R06",
+    "hypothesis": "A dispute recorded as having at least one death has at least one recorded death, using exactly the same record and coding definition; this establishes a new empirical relationship.",
+    "split": "holdout",
+    "expected_decision": "reject",
+    "rationale": "This is a definitional tautology, not an independent empirical relationship. A data-consistency audit could be useful but is a different task from the claimed substantive hypothesis."
+  }
+]

@@ -10,6 +10,7 @@ from uuid import uuid4
 from pydantic import ValidationError
 
 from config import ConfigurationError, Settings, create_client, get_config
+from telemetry import completion
 from contracts.schema import Dataset, LedgerRecord, Lesson, Paper, Split, Verdict
 from ledger import append_record
 
@@ -178,7 +179,7 @@ def check(hypothesis: str, *, settings: Settings | None = None, client=None,
     last_error = ""
     try:
         for attempt in range(settings.max_json_retries + 1):
-            response = client.chat.completions.create(
+            response = completion(settings, client,
                 model=settings.model_id, messages=messages, temperature=settings.temperature,
                 max_tokens=settings.max_tokens, response_format={"type": "json_object"},
             )
@@ -227,7 +228,7 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("hypothesis")
     parser.add_argument("--fake", action="store_true", help="Return the fixture without API access")
-    parser.add_argument("--model", choices=["deepseek", "qwen"])
+    parser.add_argument("--model", choices=["foundry", "deepseek", "qwen"])
     parser.add_argument("--round", type=int, default=0, help="Round 0 disables lessons")
     parser.add_argument("--run-id")
     parser.add_argument("--split", choices=["learn", "holdout"])

@@ -1,48 +1,146 @@
-# Hypothesis Validity Checker
+# Hypothesis Generation and Screening Prototype
 
-Capstone prototype: evaluate an international-relations hypothesis against a
-local paper corpus and dataset inventory, return a structured JSON verdict, and
-record the result. Prototype due **Tuesday, October 13, 2026**; demo
-**Wednesday, October 14, 2026**.
+Generate possible extensions of reviewed international-relations papers, assess their research
+viability, and evaluate screening decisions against a small draft benchmark. This prototype
+does not establish whether a hypothesis is scientifically true.
 
-## Current milestone
+## Start here
 
-Shared contracts, model configuration, checker, fake mode, and verdict logging
-are implemented. The team can build against `check()` and `fake_check()` now.
-The real paper corpus (`data/papers.json`), the CoW file inventory
-(`data/cow_vars.json`) and the lesson generator (`improve.py`) are in place.
-The evaluation runner and benchmark remain assigned to Amitej.
-
-The files in `contracts/sample_*` are **fictional format fixtures** and are used
-only when the matching real file in `data/` does not exist. They are not
-research evidence or actual CoW data. Fake-mode scores demonstrate plumbing,
-not hypothesis-checking accuracy.
-
-## Setup
-
-Use Python 3.11 or newer, then run from the repository root:
+Use Python 3.11 or newer. From this repository's root:
 
 ```sh
 python3 -m venv .venv
 source .venv/bin/activate
 python -m pip install -r requirements.txt
-python -m contracts.validate_samples
+# Run the following copy only if you do not already have a .env file:
+cp .env.example .env
 ```
 
-The validation command works without an API key. For later real-model runs,
-copy `.env.example` to `.env` and enter your own credentials and provider model
-identifiers. `config.py` reads these settings, with environment variables taking
-precedence over `.env`. Model IDs are explicit rather than silently chosen.
-Never commit `.env` or keys.
+Edit `.env` locally. Use the **conflict team's** keys, not the finance team's:
 
-## Run the checker
+| Variable | Value |
+| --- | --- |
+| `MODEL` | `foundry` |
+| `FOUNDRY_API_KEY` | Key Vault secret `conflict-foundry-key` |
+| `FOUNDRY_BASE_URL` | `https://uwcapstone-resource.services.ai.azure.com/openai/v1/` |
+| `FOUNDRY_DEPLOYMENT` | `DeepSeek-V4-Flash-2` |
+| `TYPESAFE_API_KEY` | Key Vault secret `conflict-jev-key` |
+| `JEV_MODEL` | `jev-1.13.0` |
+
+`config.py` and `jev.py` load `.env` explicitly. Variables already set in your shell
+have priority. `.env` is Git-ignored. Keys are never intentionally included in prompts,
+logs, reports or ledgers. Keep keys out of screenshots and chat messages.
+The example template contains blank values; the endpoint, deployment and Jev model above
+are the code defaults. A local `.env` stores secrets as plain text; shell environment
+variables are also supported if you prefer not to save secrets on disk.
+
+This repository already includes the paper summaries and dataset inventory. It does not
+have the finance project's `prepare_data.py`; do not run the finance setup here.
+
+## Run the prototype
+
+```sh
+# No keys or API requests: validate the connected components.
+python -m unittest discover -s tests -v
+python run_tests.py --fake
+python run_rounds.py --fake
+python generate.py --fake --count 1
+
+# After setting your two keys: one tiny request to each service.
+python smoke_test.py
+
+# One real generated hypothesis, grounded in a reviewed paper, then checker + Jev.
+python generate.py --count 1 --paper-id braithwaite_2011
+
+# One real benchmark case first; then the full 20-case evaluation.
+python run_tests.py --with-jev --limit 1
+python run_tests.py --with-jev
+```
+
+`generate.py` uses Foundry to propose an extension with source references and a rationale.
+Jia's checker supplies the structured evidence assessment. Jev independently chooses a
+viability decision and a research-value category using typed questions. Agreement and the
+shared schema gates are required for `proceed`; model disagreement or unclear research
+value becomes `revise`. Both component decisions are preserved. Jev's categories do not
+provide free-text explanations; the evidence explanations come from the checker.
+
+Generation accepts 1–5 candidates per run and defaults to one. `--paper-id` can be repeated;
+without it the first three corpus papers are used. `--topic` supplies an optional focus.
+Paper IDs are validated against the selected corpus. Human review is still needed to
+check whether the proposed extension faithfully represents the paper.
+
+## Where results go
+
+| File | Meaning |
+| --- | --- |
+| `data/tests.json` | Your 20 draft benchmark hypotheses and expected decisions |
+| `results/generated_candidates.json` | Latest generated hypotheses and screening results |
+| `data/candidate_ledger.jsonl` | Append-only generation and screening events, linked by candidate ID |
+| `data/ledger.jsonl` | Jia's original checker verdicts |
+| `data/screening_ledger.jsonl` | Jev assessments, checker drafts and combined final verdicts |
+| `results/single_run_summary.json` | Latest benchmark score, including errors |
+| `results/accuracy_by_round.png` | Latest three-round chart |
+| `results/round_summary.json` | Scores and review information by round |
+| `results/connections.json` | Latest small connection-check status |
+| `results/api_calls.jsonl` | Model, token counts, latency and safe error status; no keys or request bodies |
+| `data/failures.json` | Learning-case wrong verdicts in Sylvia's exact format; never holdout failures |
+
+Detailed runs are kept in timestamped directories under `results/`. Runtime outputs are
+Git-ignored. Curated, clearly labeled example outputs are in `docs/examples/`.
+
+The benchmark contains 7 `proceed`, 7 `revise`, and 6 `reject` cases, split 10/10 into
+learning and holdout. Its labels remain **draft judgments**, not research ground truth.
+Accuracy measures agreement on the final decision only. It does not establish the quality
+of citations, the scientific truth of a hypothesis, or real-world predictive performance.
+
+Fake mode calls the team's fixed `fake_check()` fixture. It answers `proceed` every time,
+so the 20-case demo scores 35%; each round scores 40% on learning and 30% on holdout.
+These are wiring checks, not measured model performance or improvement.
+
+## Reviewed improvement rounds
+
+```sh
+python run_rounds.py --with-jev
+```
+
+For each of three rounds the runner evaluates learning cases, calls Sylvia's real
+`improve.py` logic, pauses for human review, then evaluates holdout cases. Round 1 starts
+with no lessons. The holdout phase uses approved lessons through the current round;
+the next learning phase uses those same approved lessons. Generation itself is not
+trained by this loop; lessons affect the screening checker.
+
+When the runner pauses:
+
+```sh
+python improve.py list --pending
+python improve.py approve LESSON_ID
+# Or discard an unsuitable proposal:
+python improve.py reject LESSON_ID
+# Then use the exact --resume ... --review-complete command printed by run_rounds.py.
+```
+
+The runner verifies there are no pending proposals for that model and round. It never
+automatically approves a lesson. Fake rounds use Sylvia's deterministic improvement code
+and store unapproved fake lessons inside the run folder, separate from real lessons.
+Repeated holdout measurements are prototype monitoring, not a fresh final test. Freeze
+and review labels, corpus, rubric and lessons before comparing real runs. Existing approved
+lessons for the same model may be reused; inspect them before restarting an experiment.
+API errors count as evaluation errors and stop improvement rounds; they never become
+research decisions or lessons. Requests have timeouts and no automatic transport retries;
+the checker can make a bounded number of attempts to repair invalid JSON.
+
+API implementation references: [Microsoft Foundry v1](https://learn.microsoft.com/en-us/azure/foundry/openai/api-version-lifecycle),
+[Jev typed questions and answers](https://docs.typesafe.ai/api), and
+[Jev model versions](https://docs.typesafe.ai/models).
+
+## Existing checker interface
 
 ```sh
 # No API key needed; always returns the sample judgment and logs it as fake.
 python checker.py "Democracies are peaceful." --fake
 
 # Real calls after configuring the selected provider in .env.
-python checker.py "Democracies are peaceful." --model deepseek
+python checker.py "Democracies are peaceful." --model foundry
 python checker.py "Democracies are peaceful." --model qwen
 
 # Offline integration tests, including simulated provider requests.
@@ -144,8 +242,12 @@ fallbacks or suggest that unfinished scripts work.
 ├── tests/test_checker.py           A; offline core integration checks
 ├── cow_data.py                     C / Sylvia; sample, check and full-download command
 ├── improve.py                      C / Sylvia; failures -> proposed lessons (docs/improve_design.md)
-├── run_tests.py                    D / Amitej; planned
-├── run_rounds.py                   D; planned
+├── run_tests.py                    D / Amitej; benchmark evaluation
+├── run_rounds.py                   D; reviewed improvement rounds
+├── generate.py                     paper-grounded generation and candidate ledger
+├── screening.py                    checker + Jev combined screening
+├── jev.py                          typed Jev API client
+├── smoke_test.py                   small Foundry and Jev connection checks
 ├── data/
 |   ├──/papers_original             B: Original papers in .pdf format (10 papers, named lastname_year_short-title.pdf)
 |   |   ├── braithwaite_2011_unpacking-escalation.pdf                    Braithwaite & Lemke 2011: statistical analysis
@@ -275,9 +377,8 @@ Only failures from the learning split, for the selected model and round, are acc
 
 ## Evaluation and improvement protocol
 
-Amitej writes 20 reviewed cases, approximately 7 proceed / 7 revise / 6 reject,
-and splits them into ten learning and ten holdout cases with similar class
-coverage. The three sample tests illustrate formats only. They are not the
+Amitej’s `data/tests.json` supplies 20 draft cases: 7 proceed / 7 revise / 6 reject,
+with ten learning and ten holdout cases and similar class coverage. The three sample tests illustrate formats only. They are not the
 benchmark. Agree on gold labels and rationales against the final corpus and
 data inventory before freezing the split. Do not pass expected labels or
 rationales into the checker.
@@ -292,8 +393,9 @@ rationales into the checker.
    and per decision category, run metadata, and applied lesson IDs.
 
 Holdout errors and rationales never enter `improve.py`, lesson review, or prompt
-edits. Compare DeepSeek and Qwen from separate no-lesson baselines and separate
-lesson histories. Log prompt/schema versions, model identifiers, corpus/test
+edits. The current assigned services are Foundry DeepSeek and Jev, used in different pipeline roles.
+Legacy Qwen configuration remains supported but has not been verified with the current team accounts.
+Compare configurations from separate no-lesson baselines and separate lesson histories. Log prompt/schema versions, model identifiers, corpus/test
 file hashes, temperature, rounds, and lesson IDs with the run results. With ten
 holdout cases, one answer changes accuracy by ten percentage points, so report
 counts and treat this as a small prototype evaluation.

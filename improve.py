@@ -22,6 +22,7 @@ from pathlib import Path
 from pydantic import ValidationError
 
 from config import ConfigurationError, Settings, create_client, get_config
+from telemetry import completion
 from contracts.schema import Failure, Lesson, TestCase
 
 PROMPT_VERSION = "1.0"
@@ -296,7 +297,7 @@ def call_model(settings: Settings, client, failures: list[Failure], current: lis
     last_error = ""
     try:
         for attempt in range(settings.max_json_retries + 1):
-            response = client.chat.completions.create(
+            response = completion(settings, client,
                 model=settings.model_id, messages=messages, temperature=settings.temperature,
                 max_tokens=settings.max_tokens, response_format={"type": "json_object"})
             content = response.choices[0].message.content if response.choices else None
@@ -471,7 +472,7 @@ def _parsers():
     run = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     run.add_argument("failures", nargs="?", type=Path, help="default: data/failures.json, else the sample")
     run.add_argument("--round", type=int, required=True, help="round the failures came from")
-    run.add_argument("--model", choices=["deepseek", "qwen"])
+    run.add_argument("--model", choices=["foundry", "deepseek", "qwen"])
     run.add_argument("--fake", action="store_true", help="offline proposals; failures must be for model 'fake'")
     run.add_argument("--dry-run", action="store_true")
     run.add_argument("--force", action="store_true", help="propose again for failures already processed")
@@ -482,7 +483,7 @@ def _parsers():
         if name in ("approve", "unapprove", "reject"):
             p.add_argument("ids", nargs="+")
         else:
-            p.add_argument("--model", choices=["deepseek", "qwen"])
+            p.add_argument("--model", choices=["foundry", "deepseek", "qwen"])
             p.add_argument("--fake", action="store_true")
             p.add_argument("--round", type=int, required=(name == "status"))
         if name == "list":

@@ -13,3 +13,6 @@ results/*
 !results/.gitkeep
 data/cow_full/
 data/improve_log.jsonl
+.plot-cache/
+data/candidate_ledger.jsonl
+data/screening_ledger.jsonl

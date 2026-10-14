@@ -1,0 +1,86 @@
+{
+  "candidate_id": "0be7be32-dcc0-4276-835c-1104c8e89c26",
+  "run_id": "2681c296-9443-43a3-800d-f02083edb203",
+  "timestamp_utc": "2026-10-14T20:30:12.385164+00:00",
+  "mode": "fake",
+  "generator_model": "fake",
+  "corpus_is_sample": false,
+  "candidate": {
+    "hypothesis": "Among MIDB revisionist participant-dispute records beginning in 1946–2010, primary territorial revisionists (revtype1=1) have a higher proportion of hostlev 4 or 5 than primary policy revisionists (revtype1=2), excluding missing values and accounting for repeated countries and shared disputes. This is a retrospective association.",
+    "source_paper_ids": [
+      "braithwaite_2011"
+    ],
+    "source_basis": "Offline fixture linked to the selected source for workflow testing; substantive linkage requires review.",
+    "extension_rationale": "Offline demonstration of a period-specific comparison; no novelty is asserted.",
+    "required_data": [
+      "cow-midb-5.0: dispnum, ccode, styear, revstate, revtype1, hostlev"
+    ]
+  },
+  "source_references": [
+    {
+      "id": "braithwaite_2011",
+      "title": "Unpacking Escalation",
+      "year": 2011,
+      "doi": "10.1177/0738894210396631",
+      "url": null
+    }
+  ],
+  "status": "screened",
+  "screening": {
+    "schema_version": "1.0",
+    "hypothesis": "Among MIDB revisionist participant-dispute records beginning in 1946–2010, primary territorial revisionists (revtype1=1) have a higher proportion of hostlev 4 or 5 than primary policy revisionists (revtype1=2), excluding missing values and accounting for repeated countries and shared disputes. This is a retrospective association.",
+    "falsifiable": {
+      "status": "yes",
+      "explanation": "The association can be contradicted by observed dyad-year trade and conflict outcomes."
+    },
+    "already_tested": {
+      "status": "found",
+      "explanation": "The fictional sample corpus includes a study of this relationship. This supports a replication exercise, not a claim of novelty.",
+      "citations": [
+        {
+          "paper_id": "sample-paper-001",
+          "evidence": "The fixture describes prior-year trade and conflict onset in Sampleland during 2000–2010."
+        }
+      ]
+    },
+    "testable_with_available_data": {
+      "status": "available",
+      "explanation": "The fictional panel provides identifiers, annual trade, and onset including zero outcomes; its 1999 data supports the first lag.",
+      "required_unit_of_analysis": "unordered country dyad-year",
+      "required_years": {
+        "start": 1999,
+        "end": 2010
+      },
+      "matches": [
+        {
+          "concept": "prior-year bilateral trade",
+          "dataset_id": "sample-dyads-001",
+          "variable_names": [
+            "country_a",
+            "country_b",
+            "year",
+            "bilateral_trade"
+          ],
+          "explanation": "Construct a one-year lag within each dyad."
+        },
+        {
+          "concept": "interstate war onset",
+          "dataset_id": "sample-dyads-001",
+          "variable_names": [
+            "conflict_onset"
+          ],
+          "explanation": "The panel includes both onset and no-onset observations."
+        }
+      ],
+      "missing_requirements": []
+    },
+    "suggested_rewording": null,
+    "decision": "proceed",
+    "decision_reason": "Proceed as an explicitly labeled replication using the fictional fixture; prior study alone is not a rejection reason."
+  },
+  "jev": {
+    "mode": "fake",
+    "note": "Jev was not called. Fixture results measure wiring only."
+  },
+  "error_type": null
+}

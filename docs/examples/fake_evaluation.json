@@ -1,0 +1,50 @@
+{
+  "assigned": 20,
+  "matched": 7,
+  "mismatched": 13,
+  "errors": 0,
+  "accuracy": 0.35,
+  "by_expected_category": {
+    "proceed": {
+      "assigned": 7,
+      "matched": 7,
+      "accuracy": 1.0
+    },
+    "revise": {
+      "assigned": 7,
+      "matched": 0,
+      "accuracy": 0.0
+    },
+    "reject": {
+      "assigned": 6,
+      "matched": 0,
+      "accuracy": 0.0
+    }
+  },
+  "confusion_matrix": {
+    "proceed": {
+      "proceed": 7,
+      "revise": 0,
+      "reject": 0,
+      "error": 0
+    },
+    "revise": {
+      "proceed": 7,
+      "revise": 0,
+      "reject": 0,
+      "error": 0
+    },
+    "reject": {
+      "proceed": 6,
+      "revise": 0,
+      "reject": 0,
+      "error": 0
+    }
+  },
+  "scope": "Decision agreement only; citation and explanation correctness need separate review.",
+  "mode": "fake",
+  "model": "fake",
+  "with_jev": false,
+  "round": 0,
+  "benchmark_status": "draft"
+}
