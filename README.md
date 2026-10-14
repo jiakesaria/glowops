@@ -69,6 +69,17 @@ without it the first three corpus papers are used. `--topic` supplies an optiona
 Paper IDs are validated against the selected corpus. Human review is still needed to
 check whether the proposed extension faithfully represents the paper.
 
+If generation succeeded but screening failed, retry the saved candidates without paying
+for a new generation call:
+
+```sh
+python generate.py --screen-file results/generated_candidates.json
+```
+
+The original candidate IDs and generator model are preserved. Invalid generation responses
+are saved in `results/generation_response.json`; checker schema failures are saved in
+`results/checker_validation.json`. These contain research output, not API headers or keys.
+
 ## Where results go
 
 | File | Meaning |

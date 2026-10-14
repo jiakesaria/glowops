@@ -193,6 +193,11 @@ def check(hypothesis: str, *, settings: Settings | None = None, client=None,
                 validate_evidence(verdict, hypothesis, papers, datasets)
             except (ValueError, ValidationError) as exc:
                 last_error = str(exc)
+                # Keep invalid research output inspectable without logging API request details.
+                diagnostic = settings.root / "results/checker_validation.json"
+                diagnostic.parent.mkdir(parents=True, exist_ok=True)
+                diagnostic.write_text(json.dumps({"hypothesis": hypothesis, "attempt": attempt + 1,
+                    "content": content, "validation_error": last_error[:4000]}, indent=2), encoding="utf-8")
                 if attempt < settings.max_json_retries:
                     if content:
                         messages.append({"role": "assistant", "content": content})

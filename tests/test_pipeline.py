@@ -184,8 +184,35 @@ class PipelineTests(unittest.TestCase):
                                      datasets=datasets, client=client)
         context = json.loads(calls[0]['messages'][1]['content'])
         self.assertEqual(context['papers'][0]['id'], papers[0].id)
+        items = context['output_schema']['properties']['candidates']
+        self.assertEqual((items['minItems'], items['maxItems']), (1, 1))
+        self.assertIn('EXACTLY 1', calls[0]['messages'][0]['content'])
         self.assertNotIn('expected_decision', json.dumps(context))
         self.assertEqual(values[0].source_paper_ids, [papers[0].id])
+
+    def test_saved_candidate_can_be_rescreened_without_regeneration(self):
+        from checker import load_inputs
+        from generate import run
+        papers, datasets, _, _ = load_inputs(get_config())
+        candidate = {'hypothesis': self.verdict.hypothesis, 'source_paper_ids': [papers[0].id],
+                     'source_basis': 'Supplied finding', 'extension_rationale': 'Comparison',
+                     'required_data': ['Documented fields']}
+        prior = [{'candidate_id': 'keep-this-id', 'generator_model': 'original-generator',
+                  'mode': 'real', 'candidate': candidate}]
+        path = self.root / 'saved.json'
+        write_json(path, prior)
+        with patch('generate.ROOT', self.root), \
+             patch('generate.get_config', return_value=get_config(root=self.root)), \
+             patch('generate.load_inputs', return_value=(papers, datasets, [], False)), \
+             patch('generate.generate_candidates') as generator, \
+             patch('generate.screen', return_value=(self.verdict, {'answers': {}})):
+            result = run(screen_file=path)
+        generator.assert_not_called()
+        self.assertEqual(result[0]['candidate_id'], 'keep-this-id')
+        self.assertEqual(result[0]['generator_model'], 'original-generator')
+        self.assertEqual(result[0]['status'], 'screened')
+        events = [json.loads(line) for line in (self.root / 'data/candidate_ledger.jsonl').read_text().splitlines()]
+        self.assertEqual([x['status'] for x in events], ['screening_started', 'screened'])
 
 
 if __name__ == '__main__':

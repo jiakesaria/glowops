@@ -1,0 +1,180 @@
+{
+  "candidate_id": "be23f361-4937-4144-9a0e-9b5f3a5dcde0",
+  "run_id": "4a8731f3-ebfa-417e-a4bd-f59702996c2d",
+  "timestamp_utc": "2026-10-14T20:39:56.196959+00:00",
+  "mode": "real",
+  "generator_model": "DeepSeek-V4-Flash-2",
+  "corpus_is_sample": false,
+  "candidate": {
+    "hypothesis": "Among non-directed dyad-years from 1919 to 1995, territorial disputes (where at least one state seeks territorial revision) are more likely to escalate to war (1,000+ battle deaths) than disputes over policy or regime change, even after controlling for the selection of which disputes start.",
+    "source_paper_ids": [
+      "braithwaite_2011"
+    ],
+    "source_basis": "Braithwaite and Lemke (2011) find that territorial disputes consistently predict escalation across five of six definitions, with the largest effect size. Their analysis covers 1919-1995 using a two-step selection model on non-directed dyad-years, but they note that the link to war (1,000+ deaths) rests on only 8 cases and is sensitive to coding. They call for testing at the 25-death vs 1,000-death thresholds.",
+    "extension_rationale": "This extension directly tests the territory-war link at the 1,000-death threshold using the same dyad-year selection model but with updated MID 5.0 data (1919-2014) and the dyadic MID 4.03 file to increase the number of war cases beyond the 8 that Braithwaite and Lemke flagged as fragile. It also adds the COW interstate war data to verify fatality coding. The extension changes the time period (now 1919-2014) and uses a more recent version of the MID data, while keeping the same unit (non-directed dyad-year) and the same two-step censored probit method.",
+    "required_data": [
+      "cow-nondirected-dyad-year-2024",
+      "cow-mida-5.0",
+      "cow-midb-5.0",
+      "cow-dyadic-mid-4.03",
+      "cow-interstate-war-4.0",
+      "cow-nmc-7.0",
+      "cow-alliance-4.1-dyad-yearly",
+      "cow-direct-contiguity-3.2-dyad-year",
+      "cow-territorial-change-6",
+      "cow-igo-3-state-year"
+    ]
+  },
+  "source_references": [
+    {
+      "id": "braithwaite_2011",
+      "title": "Unpacking Escalation",
+      "year": 2011,
+      "doi": "10.1177/0738894210396631",
+      "url": null
+    }
+  ],
+  "status": "screened",
+  "screening": {
+    "schema_version": "1.0",
+    "hypothesis": "Among non-directed dyad-years from 1919 to 1995, territorial disputes (where at least one state seeks territorial revision) are more likely to escalate to war (1,000+ battle deaths) than disputes over policy or regime change, even after controlling for the selection of which disputes start.",
+    "falsifiable": {
+      "status": "yes",
+      "explanation": "The hypothesis makes a clear comparative claim (territorial disputes > policy/regime disputes) with a specific outcome (war, 1,000+ battle deaths), a defined population (non-directed dyad-years, 1919-1995), and a stated methodological requirement (control for selection of dispute onset). All key terms are empirically measurable."
+    },
+    "already_tested": {
+      "status": "found",
+      "explanation": "Braithwaite and Lemke (2011) directly test whether territorial disputes are more likely to escalate to war (1,000+ battle deaths) using a two-stage selection model on non-directed dyad-years from 1919-1995, exactly matching the hypothesis's population, time frame, outcome, and methodological requirement. They find that territorial disputes significantly increase escalation to war in their main models.",
+      "citations": [
+        {
+          "paper_id": "braithwaite_2011",
+          "evidence": "Uses a two-stage censored probit model on non-directed dyad-years from 1919-1995. The outcome 'war' is defined as 1,000+ battle deaths. Territorial disputes (from Huth and Allee territorial claims data) are the key explanatory variable. The paper reports that territorial disputes significantly increase escalation to war (one of six escalation measures). The selection stage models dispute onset, exactly as the hypothesis requires."
+        }
+      ]
+    },
+    "testable_with_available_data": {
+      "status": "available",
+      "explanation": "All required data exist in the COW and related datasets for the specified years and unit of analysis. The key variables (territorial revision type, war outcome, dyad-year frame) are available. The selection model can be implemented using the same approach as Braithwaite and Lemke (2011).",
+      "required_unit_of_analysis": "non-directed dyad-year",
+      "required_years": {
+        "start": 1919,
+        "end": 1995
+      },
+      "matches": [
+        {
+          "concept": "non-directed dyad-year frame",
+          "dataset_id": "cow-nondirected-dyad-year-2024",
+          "variable_names": [
+            "ccode1",
+            "ccode2",
+            "year"
+          ],
+          "explanation": "Provides the complete population of all state-pair years from 1816-2024, including years with no dispute. This is the base frame for the analysis."
+        },
+        {
+          "concept": "territorial dispute (revision type)",
+          "dataset_id": "cow-dyadic-mid-4.03",
+          "variable_names": [
+            "revtypea",
+            "revtypeb"
+          ],
+          "explanation": "The dyadic MID file includes revision type variables (1=territory, 2=policy, 3=regime/government) for each state in the dyad. This allows identification of disputes where at least one state seeks territorial revision."
+        },
+        {
+          "concept": "war (1,000+ battle deaths)",
+          "dataset_id": "cow-dyadic-mid-4.03",
+          "variable_names": [
+            "war",
+            "fatlev"
+          ],
+          "explanation": "The dyadic MID file includes a 'war' flag (1 if the dyad was a COW war dyad that year) and a fatality level variable (fatlev, where 6 = more than 999 deaths). Both can be used to define the war outcome."
+        },
+        {
+          "concept": "dispute onset (for selection stage)",
+          "dataset_id": "cow-dyadic-mid-4.03",
+          "variable_names": [
+            "disno",
+            "year"
+          ],
+          "explanation": "The dyadic MID file records the year each dispute begins. Merging onto the dyad-year frame and flagging the first year of a dispute provides the onset variable for the selection equation."
+        },
+        {
+          "concept": "capability ratio (control variable)",
+          "dataset_id": "cow-nmc-7.0",
+          "variable_names": [
+            "ccode",
+            "year",
+            "cinc"
+          ],
+          "explanation": "CINC scores per country-year can be used to compute the dyadic capability ratio (stronger/weaker or share of combined capabilities), a standard control in escalation models."
+        },
+        {
+          "concept": "joint democracy (control variable)",
+          "dataset_id": "cow-dyadic-mid-4.03",
+          "variable_names": [
+            "statea",
+            "stateb",
+            "year"
+          ],
+          "explanation": "Polity IV scores are not in the COW datasets listed, but the dyadic MID file can be merged with Polity data (available separately) to compute joint democracy. The hypothesis does not require this control, but it is commonly used."
+        },
+        {
+          "concept": "contiguity (control variable)",
+          "dataset_id": "cow-direct-contiguity-3.2-dyad-year",
+          "variable_names": [
+            "state1no",
+            "state2no",
+            "year",
+            "conttype"
+          ],
+          "explanation": "Provides contiguity type for each dyad-year. Contiguity is a standard control in conflict models and is used in Braithwaite and Lemke (2011)."
+        },
+        {
+          "concept": "alliance (control variable)",
+          "dataset_id": "cow-alliance-4.1-dyad-yearly",
+          "variable_names": [
+            "ccode1",
+            "ccode2",
+            "year",
+            "defense"
+          ],
+          "explanation": "Provides alliance data per dyad-year. Defense pacts are a standard control in escalation models."
+        }
+      ],
+      "missing_requirements": []
+    },
+    "suggested_rewording": null,
+    "decision": "revise",
+    "decision_reason": "The hypothesis is falsifiable, has been directly tested in the provided corpus (Braithwaite and Lemke 2011) with the exact same population, time frame, outcome definition, and methodological approach, and all required data are available for replication or extension. The hypothesis can proceed as stated. Jev viability assessment: revise; research value: worth_investigating. Combined decision: revise. Disagreement or unclear research value requires revision."
+  },
+  "jev": {
+    "model": "jev-1.13.0",
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "revise",
+        "confidence": 0.59,
+        "probabilities": {
+          "proceed": 0.27,
+          "revise": 0.73,
+          "reject": 0.0
+        }
+      },
+      "research_value": {
+        "type": "choice",
+        "choice": "worth_investigating",
+        "confidence": 0.91,
+        "probabilities": {
+          "worth_investigating": 0.94,
+          "needs_justification": 0.05,
+          "low_value": 0.01
+        }
+      }
+    },
+    "usage": {
+      "input_tokens": 29408,
+      "output_tokens": 90
+    }
+  },
+  "error_type": null
+}
